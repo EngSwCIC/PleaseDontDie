@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  specie: 
+  bio: MyText
+  bithdary: 2018-05-05
+  sex: MyString
+  group: 
+
+two:
+  name: MyString
+  specie: 
+  bio: MyText
+  bithdary: 2018-05-05
+  sex: MyString
+  group: 
