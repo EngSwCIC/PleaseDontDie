@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.3.1'
-
 #Flexible authentication solution for Rails with Warden.
 gem 'devise'
 #Translations for the devise gem 
