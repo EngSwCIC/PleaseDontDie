@@ -53,6 +53,8 @@ group :development, :test do
   gem 'better_errors'
   #Generate Entity-Relationship Diagrams for Rails applications
   gem 'rails-erd'
+  #RSpec for Rails-3+
+  gem 'rspec-rails', '~> 3.7'
 
 end
 
