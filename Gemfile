@@ -17,9 +17,12 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+# bootstrap
+gem 'rails-assets-bootstrap', source: 'https://rails-assets.org'
+# jquery
+gem 'jquery-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -48,6 +51,9 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   #Better error page for Rack apps 
   gem 'better_errors'
+  #Generate Entity-Relationship Diagrams for Rails applications
+  gem 'rails-erd'
+
 end
 
 group :development do
