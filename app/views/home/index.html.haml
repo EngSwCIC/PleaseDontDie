@@ -11,7 +11,7 @@
     / Navigation
     %nav.navbar.navbar-expand-lg.navbar-dark.navbar-custom.fixed-top
       .container
-        %a.navbar-brand{:href => "#"} Please Don't Die
+        %a.navbar-brand{:href => home_path} Please Don't Die
         %button.navbar-toggler{"aria-controls" => "navbarResponsive", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarResponsive", "data-toggle" => "collapse", :type => "button"}
           %span.navbar-toggler-icon
         #navbarResponsive.collapse.navbar-collapse
@@ -35,7 +35,7 @@
         .row.align-items-center
           .col-lg-6.order-lg-2
             .p-5
-              =image_tag 'mf3.jpeg', class: 'circ_image'
+              =image_tag 'mf3.jpeg', class: 'circ_image', size: "800x500"
           .col-lg-6.order-lg-1
             .p-5
               %h2.display-4 Keep track of your pets!
@@ -55,10 +55,10 @@
         .row.align-items-center
           .col-lg-6.order-lg-2
             .p-5
-              =image_tag 'm2.jpeg', class: 'circ_image'
+              =image_tag 'm2.jpeg', class: 'circ_image', size: "800x500"
           .col-lg-6.order-lg-1
             .p-5
-              %h2.display-4 Get pet-parenting tips!
+              %h2.display-4 Pet-parenting tips!
               %p Kitty litter smelling bad? We have tips to solve your everyday problems for you to become a great pet owner!
     %footer.py-5.bg-black
       .container
