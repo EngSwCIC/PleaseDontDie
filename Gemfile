@@ -21,6 +21,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'rails-assets-bootstrap', source: 'https://rails-assets.org'
 # jquery
 gem 'jquery-rails'
+#A simple, versatile notification library
+gem 'rails-assets-notifyjs', source: 'https://rails-assets.org'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 # Use CoffeeScript for .coffee assets and views

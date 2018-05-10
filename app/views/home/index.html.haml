@@ -1,68 +1,57 @@
-%html{:lang => "en"}
-  %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{:charset => "utf-8"}/
-    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
-    %title Please Don't Die
-    / Custom fonts for this template
-    %link{:href => "https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900", :rel => "stylesheet"}/
-    %link{:href => "https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i", :rel => "stylesheet"}/
-  %body
-    / Navigation
-    %nav.navbar.navbar-expand-lg.navbar-dark.navbar-custom.fixed-top
-      .container
-        %a.navbar-brand{:href => "#"} Please Don't Die
-        %button.navbar-toggler{"aria-controls" => "navbarResponsive", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarResponsive", "data-toggle" => "collapse", :type => "button"}
-          %span.navbar-toggler-icon
-        #navbarResponsive.collapse.navbar-collapse
-          %ul.navbar-nav.ml-auto
-            -if user_signed_in?
-              %li.nav-item
-                = link_to "Logout", destroy_user_session_path, :class => "nav-link", method: :delete
-            -else         
-              %li.nav-item
-                = link_to "Sign up", new_user_registration_path, :class => "nav-link"
-              %li.nav-item
-                = link_to "Log in", new_user_session_path, :class => "nav-link"
-    %header.masthead.text-center.text-white
-      .masthead-content
-        .container
-          %h1.masthead-heading.mb-0 Please Don't Die!
-          %h2.masthead-subheading.mb-0 Keep your pet alive! For reals!
-          %a.btn.btn-primary.btn-xl.rounded-pill.mt-5{:href => "#"} Get Started
-    %section
-      .container
-        .row.align-items-center
-          .col-lg-6.order-lg-2
-            .p-5
-              =image_tag 'mf3.jpeg', class: 'circ_image'
-          .col-lg-6.order-lg-1
-            .p-5
-              %h2.display-4 Keep track of your pets!
-              %p Make an everyday todo list so you never forget your pets needs! Making a pet agenda you'll never forget your pets vaccines!
-    %section
-      .container
-        .row.align-items-center
-          .col-lg-6
-            .p-5
-              =image_tag 'IMG_20170206_190504238.jpg', class: 'circ_image'
-          .col-lg-6
-            .p-5
-              %h2.display-4 Create a household environment!
-              %p "Who fed Rex?" Creating a family household environment everyone knows if your pets have been feed or not, and for how long!
-    %section
-      .container
-        .row.align-items-center
-          .col-lg-6.order-lg-2
-            .p-5
-              =image_tag 'm2.jpeg', class: 'circ_image'
-          .col-lg-6.order-lg-1
-            .p-5
-              %h2.display-4 Get pet-parenting tips!
-              %p Kitty litter smelling bad? We have tips to solve your everyday problems for you to become a great pet owner!
-    %footer.py-5.bg-black
-      .container
-        %p.m-0.text-center.text-white.small Copyright © Your Website 2018
-      / /.container
-    / Bootstrap core JavaScript
+%nav.navbar.navbar-expand-lg.navbar-dark.navbar-custom.fixed-top
+  .container
+    %a.navbar-brand{:href => "#"} Please Don't Die
+    %button.navbar-toggler{"aria-controls" => "navbarResponsive", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarResponsive", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarResponsive.collapse.navbar-collapse
+      %ul.navbar-nav.ml-auto
+        -if user_signed_in?
+          %li.nav-item
+            = link_to "Logout", destroy_user_session_path, :class => "nav-link", method: :delete
+        -else         
+          %li.nav-item
+            = link_to "Sign up", new_user_registration_path, :class => "nav-link"
+          %li.nav-item
+            = link_to "Log in", new_user_session_path, :class => "nav-link"
+%header.masthead.text-center.text-white
+  .masthead-content
+    .container
+      %h1.masthead-heading.mb-0 Please Don't Die!
+      %h2.masthead-subheading.mb-0 Keep your pet alive! For reals!
+      %a.btn.btn-primary.btn-xl.rounded-pill.mt-5{:href => "#"} Get Started
+%section
+  .container
+    .row.align-items-center
+      .col-lg-6.order-lg-2
+        .p-5
+          =image_tag 'mf3.jpeg', class: 'circ_image'
+      .col-lg-6.order-lg-1
+        .p-5
+          %h2.display-4 Keep track of your pets!
+          %p Make an everyday todo list so you never forget your pets needs! Making a pet agenda you'll never forget your pets vaccines!
+%section
+  .container
+    .row.align-items-center
+      .col-lg-6
+        .p-5
+          =image_tag 'IMG_20170206_190504238.jpg', class: 'circ_image'
+      .col-lg-6
+        .p-5
+          %h2.display-4 Create a household environment!
+          %p "Who fed Rex?" Creating a family household environment everyone knows if your pets have been feed or not, and for how long!
+%section
+  .container
+    .row.align-items-center
+      .col-lg-6.order-lg-2
+        .p-5
+          =image_tag 'm2.jpeg', class: 'circ_image'
+      .col-lg-6.order-lg-1
+        .p-5
+          %h2.display-4 Get pet-parenting tips!
+          %p Kitty litter smelling bad? We have tips to solve your everyday problems for you to become a great pet owner!
+%footer.py-5.bg-black
+  .container
+    %p.m-0.text-center.text-white.small Copyright © Your Website 2018
+  / /.container
+/ Bootstrap core JavaScript
 
