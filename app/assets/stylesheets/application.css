@@ -30,8 +30,9 @@ h6 {
     text-transform: uppercase;
     padding: 1.5rem 3rem;
     font-size: 0.9rem;
-    font-weight: 700;
+    font-weight: 900;
     letter-spacing: 0.1rem;
+    color: black;
 }
 
 .bg-black {
@@ -141,8 +142,8 @@ header.masthead .bg-circle-4 {
 }
 
 .btn-primary {
-    background-color: #ee0979;
-    border-color: #ee0979;
+    background-color: #7cfc00;
+    border-color: #7cfc00;
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
