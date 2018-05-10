@@ -16,10 +16,14 @@
           %span.navbar-toggler-icon
         #navbarResponsive.collapse.navbar-collapse
           %ul.navbar-nav.ml-auto
-            %li.nav-item
-              %a.nav-link{:href => "#"} Sign Up
-            %li.nav-item
-              %a.nav-link{:href => "#"} Log In
+            -if user_signed_in?
+              %li.nav-item
+                = link_to "Logout", destroy_user_session_path, :class => "nav-link", method: :delete
+            -else         
+              %li.nav-item
+                = link_to "Sign up", new_user_registration_path, :class => "nav-link"
+              %li.nav-item
+                = link_to "Log in", new_user_session_path, :class => "nav-link"
     %header.masthead.text-center.text-white
       .masthead-content
         .container
