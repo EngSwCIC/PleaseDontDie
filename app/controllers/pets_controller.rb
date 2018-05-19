@@ -4,16 +4,39 @@ class PetsController < ApplicationController
 
   # GET groups/1/pets
   def index
-    @pets = @group.pets
+    group = Group.find(params[:group_id])
+
+    @pets = group.pets
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @pets }
+    end
   end
 
   # GET groups/1/pets/1
   def show
+    group = Group.find(params[:group_id])
+
+    @pet = group.pets.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @pet }
+    end
+
   end
 
   # GET groups/1/pets/new
   def new
-    @pet = @group.pets.build
+    group = Group.find(params[:group_id])
+
+    @pet = group.pets.build
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @pet }
+    end
   end
 
   # GET groups/1/pets/1/edit
