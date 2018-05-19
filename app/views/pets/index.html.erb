@@ -1,0 +1,35 @@
+<h1>Listing pets</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Specie</th>
+    <th>Bio</th>
+    <th>Birthday</th>
+    <th>Sex</th>
+    <th>Group</th>
+    <th>Timestamps</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @pets.each do |pet| %>
+    <tr>
+      <td><%= pet.name %></td>
+      <td><%= pet.specie %></td>
+      <td><%= pet.bio %></td>
+      <td><%= pet.birthday %></td>
+      <td><%= pet.sex %></td>
+      <td><%= pet.group %></td>
+      <td><%= pet.timestamps %></td>
+      <td><%= link_to 'Show', [pet.group, pet] %></td>
+      <td><%= link_to 'Edit', edit_group_pet_path(pet.group, pet) %></td>
+      <td><%= link_to 'Destroy', [pet.group, pet], :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pet', new_group_pet_path(params[:group_id]) %>

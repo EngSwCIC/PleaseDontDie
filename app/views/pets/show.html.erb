@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @pet.name %>
+</p>
+
+<p>
+  <b>Specie:</b>
+  <%= @pet.specie %>
+</p>
+
+<p>
+  <b>Bio:</b>
+  <%= @pet.bio %>
+</p>
+
+<p>
+  <b>Birthday:</b>
+  <%= @pet.birthday %>
+</p>
+
+<p>
+  <b>Sex:</b>
+  <%= @pet.sex %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @pet.group %>
+</p>
+
+<p>
+  <b>Timestamps:</b>
+  <%= @pet.timestamps %>
+</p>
+
+
+<%= link_to 'Edit', edit_group_pet_path(@pet.group, @pet) %> |
+<%= link_to 'Back', group_pets_path(@pet.group) %>
