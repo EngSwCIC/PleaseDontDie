@@ -10,23 +10,23 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+  <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
+  </p>
+  <p>
     <%= f.label :bio %><br />
     <%= f.text_area :bio %>
-  </div>
-  <div class="field">
+  </p>
+  <p>
     <%= f.label :birthday %><br />
-    <%= f.date_select :bithdary %>
-  </div>
-  <div class="field">
+    <%= f.date_select :birthday, :start_year=>2000 %>
+  </p>
+  <p>
     <%= f.label :sex %><br />
-    <%= f.text_field :sex %>
-  </div>
+    <%= f.radio_button :sex, 'Male' %>Male<br />
+    <%= f.radio_button :sex, 'Female' %>Female<br />
+  </p>
   <div class="actions">
     <%= f.submit %>
   </div>

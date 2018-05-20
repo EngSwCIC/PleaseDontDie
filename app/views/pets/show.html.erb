@@ -4,17 +4,21 @@
   <b>Name:</b>
   <%= @pet.name %>
 </p>
-
 <p>
   <b>Bio:</b>
   <%= @pet.bio %>
 </p>
-
 <p>
   <b>Birthday:</b>
-  <%= @pet.bithdary %>
+  <%= @pet.birthday %>
 </p>
+<p>
+  <b>Sex:</b>
+  <%= @pet.sex %>
+</p>
+  <b>Specie:</b>
+  <%= %>
 
-
+</p>
 <%= link_to 'Edit', edit_group_pet_path(@pet.group, @pet) %> |
 <%= link_to 'Back', group_pets_path(@pet.group) %>

@@ -3,15 +3,13 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Bio</th>
     <th>Birthday</th>
   </tr>
 
   <% @pets.each do |pet| %>
     <tr>
       <td><%= pet.name %></td>
-      <td><%= pet.bio %></td>
-      <td><%= pet.bithdary %></td>
+      <td><%= pet.birthday %></td>
       <td><%= link_to 'Show', [pet.group, pet] %></td>
       <td><%= link_to 'Edit', edit_group_pet_path(pet.group, pet) %></td>
       <td><%= link_to 'Destroy', [pet.group, pet], :confirm => 'Are you sure?', :method => :delete %></td>
@@ -21,5 +19,5 @@
 
 <br />
 
-<%= link_to 'New Pet', new_group_pet_path(params[:group_id]) %>
+<%= link_to 'New Pet', new_group_pet_path(params[:group_id]) %> |
 <%= link_to 'Back to Group', group_path(@group) %>
