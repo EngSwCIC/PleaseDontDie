@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  get 'users/index'
+# rout groups
+  resources :groups do
+    resources :pets
+  end
   root 'home#index'
 # route users
   get 'perfil', to: 'users#index'
-#routes groups
-  resources :groups
 #routes home
   get 'home', to: 'home#index'
 #routes devise

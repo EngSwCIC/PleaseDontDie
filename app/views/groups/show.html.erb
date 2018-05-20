@@ -5,5 +5,11 @@
   <%= @group.name %>
 </p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<p>
+  <%= link_to 'Pets', group_pets_path(@group) %> |
+  <%= link_to 'New Pet', new_group_pet_path(@group) %>
+</p>
+<p>
+  <%= link_to 'Edit', edit_group_path(@group) %> |
+  <%= link_to 'Back', groups_path %>
+</p>
