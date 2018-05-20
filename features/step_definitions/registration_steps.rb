@@ -1,17 +1,24 @@
-Dado(/que está na (.+)$/) do |page|
+Dado(/que estou na (.+)$/) do |page|
   visit path_to(page)
 end
 
-Quando("cliclar em signup") do
-  pending # Write code here that turns the phrase above into concrete actions
+Quando(/cliclo em "([^"]*)"$/) do |button|
+  click_link(button)
 end
 
-Quando("preencher todos os dados") do
-  pending # Write code here that turns the phrase above into concrete actions
+Quando(/preencho "([^"]*)" com "([^"]*)"$/) do |field, value|
+  fill_in(field, :with => value)
 end
 
-Então("é possível fazer login") do
-  pending # Write code here that turns the phrase above into concrete actions
+Quando(/preencho com os seguintes dados:$/) do |fields|
+  fields.rows_hash.each do |name, value|
+    step %{preencho "#{name}" com "#{value}"}
+  end
 end
 
-
+Então(/é possível fazer login com os dados:$/) do |fields| 
+  click_link("Log in")
+  fields.rows_hash.each do |name, value|
+    step %{preencho "#{name}" com "#{value}"}
+  end
+end
