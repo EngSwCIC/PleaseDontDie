@@ -7,12 +7,11 @@ Funcionalidade: Login de usuário
 Cenário: Log in de usuário
     Dado que estou na home page
     E e o seguinte usuário está cadastrado:
-		| Email address         | teste@teste.com |
-		| Password              | senha1234       |
-		| Password confirmation | senha1234       |
-    Quando cliclo em "Log In"
+		| email                 | teste@teste.com |
+		| password              | senha1234       |
+		| password_confirmation | senha1234       |
+    Quando cliclo em "Log in"
     E preencho com os seguintes dados:
 		| Email address         | teste@teste.com |
 		| Password              | senha1234       |
-	Então 
-
+	Então aparece uma aviso que o login foi completado
