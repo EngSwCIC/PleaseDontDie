@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nome:</strong>
   <%= @group.name %>
 </p>
 
 <p>
   <%= link_to 'Pets', group_pets_path(@group) %> |
-  <%= link_to 'New Pet', new_group_pet_path(@group) %>
+  <%= link_to "Novo Pet", new_group_pet_path(@group), id:'novo-pet' %>
 </p>
 <p>
-  <%= link_to 'Edit', edit_group_path(@group) %> |
-  <%= link_to 'Back', groups_path %>
+  <%= link_to 'Editar', edit_group_path(@group) %> |
+  <%= link_to 'Voltar', groups_path %>
 </p>
