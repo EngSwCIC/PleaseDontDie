@@ -7,8 +7,12 @@
       %ul.navbar-nav.ml-auto
         -if user_signed_in?
           %li.nav-item
+            = link_to current_user.email, "/perfil/#{current_user.id}", class: "nav-link"
+          %li.nav-item
             = link_to "Logout", destroy_user_session_path, :class => "nav-link", method: :delete
         -else
+          %li.nav-item
+            = current_user
           %li.nav-item
             = link_to "Sign up", new_user_registration_path, :class => "nav-link"
           %li.nav-item
