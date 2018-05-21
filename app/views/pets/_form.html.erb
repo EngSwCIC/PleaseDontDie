@@ -11,23 +11,23 @@
     </div>
   <% end %>
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :nome %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :bio %><br />
+    <%= f.label :biografia %><br />
     <%= f.text_area :bio %>
   </p>
   <p>
-    <%= f.label :birthday %><br />
+    <%= f.label :aniversário %><br />
     <%= f.date_select :birthday, :start_year=>2000 %>
   </p>
   <p>
-    <%= f.label :sex %><br />
-    <%= f.radio_button :sex, 'Male' %>Male<br />
-    <%= f.radio_button :sex, 'Female' %>Female<br />
+    <%= f.label :sexo %><br />
+    <%= f.radio_button :sex, 1 %>Macho
+    <%= f.radio_button :sex, 2 %>Femea
   </p>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit" %>
   </div>
 <% end %>

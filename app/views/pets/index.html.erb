@@ -2,22 +2,22 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Birthday</th>
+    <th>Nome</th>
+    <th>Aniversário</th>
   </tr>
 
   <% @pets.each do |pet| %>
     <tr>
       <td><%= pet.name %></td>
-      <td><%= pet.birthday %></td>
-      <td><%= link_to 'Show', [pet.group, pet] %></td>
-      <td><%= link_to 'Edit', edit_group_pet_path(pet.group, pet) %></td>
-      <td><%= link_to 'Destroy', [pet.group, pet], :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= pet.birthday.strftime("%d/%m/%Y") %></td>
+      <td><%= link_to 'Mais', [pet.group, pet] %></td>
+      <td><%= link_to 'Editar', edit_group_pet_path(pet.group, pet) %></td>
+      <td><%= link_to 'Apagar', [pet.group, pet], :confirm => 'Tem certeza?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Pet', new_group_pet_path(params[:group_id]) %> |
-<%= link_to 'Back to Group', group_path(@group) %>
+<%= link_to 'Novo Pet', new_group_pet_path(params[:group_id]) %> |
+<%= link_to 'Voltar ao Grupo', group_path(@group) %>
