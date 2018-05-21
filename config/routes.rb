@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
   root 'home#index'
 # route users
-  get 'perfil', to: 'users#index'
+  get 'perfil/:id', to: 'users#index'
 #routes home
   get 'home', to: 'home#index'
 #routes devise
