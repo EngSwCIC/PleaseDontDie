@@ -16,3 +16,9 @@
   <strong>Phone:</strong>
   <%= @user.phone  %>
 </p>
+
+<% if @user.group_id %>
+  <%= link_to 'Group', group_path(@user.group_id) %>
+<% else %>
+  <%= link_to 'Add Group', new_group_path %>
+<% end %>
