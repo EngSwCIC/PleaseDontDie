@@ -4,7 +4,7 @@
       %h1.masthead-heading.mb-0 Please Don't Die!
       %h2.masthead-subheading.mb-0 Keep your pet alive! For reals!
       -if user_signed_in?
-        %a.btn.btn-primary.btn-xl.rounded-pill.mt-5{:href => home_path} Get Started
+        %a.btn.btn-primary.btn-xl.rounded-pill.mt-5{:href => user_path(current_user.id)} Get Started
       -else
         %a.btn.btn-primary.btn-xl.rounded-pill.mt-5{:href => new_user_session_path} Get Started
 %section
