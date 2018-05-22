@@ -10,14 +10,15 @@
 </p>
 <p>
   <b>Aniversário:</b>
-  <%= @pet.birthday %>
+  <%= @pet.birthday.strftime("%d/%m/%Y") %>
 </p>
 <p>
   <b>Sexo:</b>
   <%= @pet.sex %>
 </p>
   <b>Espécie:</b>
-  <%= %>
+  <%= @pet.specie_id %>
+  <%# TODO: Get pet specie name %>
 
 </p>
 <%= link_to 'Editar', edit_group_pet_path(@pet.group, @pet) %> |
