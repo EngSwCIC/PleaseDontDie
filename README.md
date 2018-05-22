@@ -2,17 +2,17 @@
 
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
-Devs: Juliana, Jonatas, Luisa, Felipe e João.
+Ferramenta para facilitar o gerenciamento de atividades de cuidado relacionado a cães, gatos, pássaros e plantas.
 
-https://engswcic.github.io/PleaseDontDie/
+## Documentação
 
-Add additional notes about how to deploy this on a live system
+A documentação e artefatos produzidos pode ser encontrada em https://engswcic.github.io/PleaseDontDie/
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Rails](https://github.com/rails/rails) - Web framework
+* [Devise](https://github.com/plataformatec/devise) - Auth
+* [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) - Images
 
 ## Contributing
 
