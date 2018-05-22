@@ -1,6 +1,6 @@
 ## Como contribuir com o PLZDD
 
-Agradecemos o interesse por nosso projeto! Toda ajuda serã muito bem vinda :heart: 
+Agradecemos o interesse! Toda ajuda será muito bem vinda :heart: 
 
 Para obter informações sobre o nosso projeto, pode começar pelo [README](README.md), mas não se esqueça de dar uma conferida no nosso [Código de Conduta](CODE_OF_CONDUCT.md).
 
