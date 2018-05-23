@@ -6,7 +6,7 @@ class CreateProfileUsers < ActiveRecord::Migration[5.2]
       t.date :birthday
       t.text :address
       t.string :phone
-
+      t.references :user, index:true, foreign_key: true
       t.timestamps
     end
   end

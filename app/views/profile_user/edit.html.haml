@@ -1,1 +1,23 @@
-meus dados
+= form_for(@profile_user, url: profile_user_path(@profile_user)) do |f|
+  %div
+    = f.label :Nome
+  %p
+    = f.text_field :first_name, placeholder: "Primeiro Nome"
+  %div
+    = f.label :Sobrenome
+  %p
+    = f.text_field :last_name, placeholder: "Sobrenome"
+  %div
+    = f.label :Data_de_nascimento
+  %p
+    = f.text_field :birthday, value: (l(@profile_user.birthday) unless @profile_user.birthday.blank?)
+  %div
+    = f.label :Endereço
+  %p
+    = f.text_field :address, placeholder: "Endereço"
+  %div
+    = f.label :Telefone
+  %p
+    = f.text_field :phone, placeholder: "Telefone"
+  .button
+    = submit_tag "Alterar Dados"
