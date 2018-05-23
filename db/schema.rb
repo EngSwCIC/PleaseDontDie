@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2018_05_20_191729) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
+    t.date "birthday"
     t.text "address"
     t.string "phone"
     t.bigint "group_id"

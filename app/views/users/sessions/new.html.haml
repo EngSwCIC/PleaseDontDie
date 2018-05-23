@@ -2,7 +2,8 @@
   %article.card-body.mx-auto{:style => "max-width: 400px;"}
     %h4.card-title.text-center.mb-4.mt-1 Log in
     %hr/
-    %p.text-success.text-center Algumas mensagens aqui
+    %p.text-success.text-center
+      = notice
     = form_for(resource, as: resource_name, url: session_path(resource_name),class: "form-signin") do |f|
       .form-group
         .input-group
