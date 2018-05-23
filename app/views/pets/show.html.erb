@@ -1,24 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Nome:</b>
   <%= @pet.name %>
 </p>
 <p>
-  <b>Bio:</b>
+  <b>Biografia:</b>
   <%= @pet.bio %>
 </p>
 <p>
-  <b>Birthday:</b>
-  <%= @pet.birthday %>
+  <b>Aniversário:</b>
+  <%= @pet.birthday.strftime("%d/%m/%Y") %>
 </p>
 <p>
-  <b>Sex:</b>
+  <b>Sexo:</b>
   <%= @pet.sex %>
 </p>
-  <b>Specie:</b>
-  <%= %>
+  <b>Espécie:</b>
+  <%= @pet.specie_id %>
+  <%# TODO: Get pet specie name %>
 
 </p>
-<%= link_to 'Edit', edit_group_pet_path(@pet.group, @pet) %> |
-<%= link_to 'Back', group_pets_path(@pet.group) %>
+<%= link_to 'Editar', edit_group_pet_path(@pet.group, @pet) %> |
+<%= link_to 'Voltar', group_pets_path(@pet.group) %>

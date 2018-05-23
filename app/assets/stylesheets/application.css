@@ -50,7 +50,8 @@ img {
 .navbar-custom {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color:  #00e6e6
+    /* TODO:  background-color: hsl(120, 100%, 50%);*/
 }
 
 .navbar-custom .navbar-brand {
@@ -65,6 +66,7 @@ img {
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.1rem;
+    color: black
 }
 
 header.masthead {
