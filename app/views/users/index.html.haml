@@ -1,0 +1,18 @@
+%p
+  %strong Name:
+  = @user.first_name
+  = @user.last_name
+%p
+  %strong Email:
+  = @user.email
+%p
+  %strong Address:
+  = @user.address
+%p
+  %strong Phone:
+  = @user.phone
+- if @user.group_id
+  = link_to 'Group', group_path(@user.group_id)
+- else
+  = link_to 'Add Group', new_group_path
+  = render 'layouts/shared/notifications'
