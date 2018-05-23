@@ -1,16 +1,46 @@
-.container
-  .card.card-container
-    %img#profile-img.profile-img-card{:src => "//ssl.gstatic.com/accounts/ui/avatar_2x.png"}/
-    %p#profile-name.profile-name-card
-    = form_for(resource, as: resource_name, url: registration_path(resource_name),class: "form-signin") do |f|
-      %span#reauth-email.reauth-email
+%article.card-body.mx-auto{:style => "max-width: 400px;"}
+  %h4.card-title.mt-6.text-center Crie uma conta
+  %p.text-center Get started with your free account
+  = form_for(resource, as: resource_name, url: registration_path(resource_name),class: "form-signin") do |f|
+    / .form-group.input-group
+    /   .input-group-prepend
+    /     %span.input-group-text
+    /       %i.fa.fa-user
+    /   /= f.first_name_field :first_name, autofocus: true, autocomplete: "first_name",type:"text", id:"inputFirst_name", class: "form-control", placeholder:"Nome"
+    .form-group.input-group
+      .input-group-prepend
+        %span.input-group-text
+          %i.fa.fa-user
+      %input.form-control{:name => "", :placeholder => "Sobrenome", :type => "text"}/
+    .form-group.input-group
+      .input-group-prepend
+        %span.input-group-text
+          %i.fa.fa-phone
+      %select.custom-select{:style => "max-width: 120px;"}
+        %option{:selected => "selected"} +61
+        %option{:value => "1"} +972
+        %option{:value => "2"} +198
+        %option{:value => "3"} +701
+      %input.form-control{:name => "", :placeholder => "Telefone", :type => "text"}/
+    .form-group.input-group
+      .input-group-prepend
+        %span.input-group-text
+          %i.fa.fa-envelope
       = f.email_field :email, autofocus: true, autocomplete: "email",type:"email", id:"inputEmail", class: "form-control", placeholder:"Email address"
-      - if @minimum_password_length
-        %em
-          ( "Password" #{@minimum_password_length} characters minimum)
-      %br/
-      = f.password_field :password, autocomplete: "off",type:"password", id:"inputPassword", class: "form-control", placeholder:"Password", required: true
-      %br/
-      = f.password_field :password_confirmation, autocomplete: "off", type:"password", id:"inputPassword", class: "form-control", placeholder:"Password confirmation", required: true
-      %br/
-      = f.submit "Register",class: "btn btn-lg btn-primary btn-block btn-signin", type:"submit"
+    .form-group.input-group
+      .input-group-prepend
+    .form-group.input-group
+      .input-group-prepend
+        %span.input-group-text
+          %i.fa.fa-lock
+      = f.password_field :password, autocomplete: "off",type:"password", id:"inputPassword", class: "form-control", placeholder:"Senha", required: true
+    .form-group.input-group
+      .input-group-prepend
+        %span.input-group-text
+          %i.fa.fa-lock
+      = f.password_field :password_confirmation, autocomplete: "off", type:"password", id:"inputPassword", class: "form-control", placeholder:"Confirme a senha", required: true
+    .form-group
+      = f.submit "Criar conta",class: "btn btn-lg btn-primary btn-block btn-signin", type:"submit"
+      - unless devise_error_messages!.blank?
+        - resource.errors.full_messages.each do |message|
+          = javascript_tag "$.notify( { message: '#{message}'}, { type: 'danger', placement: { from: 'top', align: 'center' }});"
