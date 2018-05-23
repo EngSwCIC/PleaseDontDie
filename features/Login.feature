@@ -7,7 +7,7 @@ Funcionalidade: Login de usuário
 
 Cenário: Log in de usuário
     Dado que estou na home page
-    E e o seguinte usuário está cadastrado:
+    E que o seguinte usuário está cadastrado:
 		| email                 | teste@teste.com |
 		| password              | senha1234       |
 		| password_confirmation | senha1234       |

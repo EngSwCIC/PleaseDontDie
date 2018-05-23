@@ -2,39 +2,44 @@
 
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
-Devs: Juliana, Jonatas, Luisa, Felipe e João.
+Ferramenta para facilitar o gerenciamento de atividades de cuidado relacionado a cães, gatos, pássaros e plantas.
 
-https://engswcic.github.io/PleaseDontDie/
+## Documentação
 
-Add additional notes about how to deploy this on a live system
+A documentação e artefatos produzidos pode ser encontrada em https://engswcic.github.io/PleaseDontDie/
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Rails](https://github.com/rails/rails) - Web framework
+* [Devise](https://github.com/plataformatec/devise) - Auth
+* [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) - Images
 
-## Contributing
+## Contribuindo
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Por favor leia o [arquivo de contribuição](CONTRIBUTING.md) para mais detalhes de como você pode nos ajudar.
 
-## Versioning
+## Rodando a aplicação
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+Os passos a seguir se referem a execução local do servidor em Ubuntu 16.04. Para isso, são requisitos:
+* Git
+* Ruby
+* Rails
 
-## Authors
+```bash
+git clone https://github.com/EngSwCIC/PleaseDontDie.git
+cd PleaseDontDie
+bin/bundle install
+bin/rake db:create
+bin/rake db:migrate
+bin/rake db:seed
+bin/rails s
+```
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+Após esses passos, o servidor Rails deve estar rodando. Mantendo o servido ativo, então acessar a página (local pela porta 3000)[http://localhost:3000].
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
-## License
+## Licença
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+Esse projeto está sob licença MIT - veja [LICENSE.md](LICENSE.md) para mais detalhes
 
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
 
