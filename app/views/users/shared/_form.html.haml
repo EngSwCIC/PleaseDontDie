@@ -1,0 +1,75 @@
+.container
+  #loginbox.mainbox.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2{:style => "#{devise_sign_in?} margin-top:50px;"}
+    .panel.panel-info
+      .panel-heading
+        .panel-title= t('labels.login')
+        %div{:style => "float:right; font-size: 80%; position: relative; top:-18px"}
+          = link_to t('labels.forgot_passoword'), new_user_password_path
+      .panel-body{:style => "padding-top:30px"}
+        #login-alert.alert.alert-danger.col-sm-12{:style => "display:none"}
+        = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal", role:"form" }) do |f|
+          .input-group{:style => "margin-bottom: 25px"}
+            %span.input-group-addon
+              %i.glyphicon.glyphicon-user
+            = f.email_field :email, autofocus: true, class:"form-control", placeholder:"Email"
+          .input-group{:style => "margin-bottom: 25px"}
+            %span.input-group-addon
+              %i.glyphicon.glyphicon-lock
+            = f.password_field :password, autocomplete: "off", class:"form-control", placeholder:"Senha"
+          .input-group
+            .checkbox
+              %label
+                - if devise_mapping.rememberable?
+                  = f.check_box :remember_me
+                  Lembrar-me
+          .form-group{:style => "margin-top:10px"}
+            / Button
+            .col-sm-12.controls
+              = f.submit (t('labels.enter')), class: "btn btn-success"
+              %a#btn-fblogin.btn.btn-primary{:disabled => "disabled", :href => "#"}= t('labels.sign_in_with_facebook')
+          .form-group
+            .col-md-12.control
+              %div{:style => "border-top: 1px solid#888; padding-top:15px; font-size:85%"}
+                = t('labels.dont_have_an_account')
+                %a{:href => "#", :onclick => "$('#loginbox').hide(); $('#signupbox').show()"}
+                  = t('labels.sign_up_here')
+  #signupbox.mainbox.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2{:style => "#{devise_sign_up?} margin-top:50px"}
+    .panel.panel-info
+      .panel-heading
+        .panel-title= t('labels.sign_up')
+        %div{:style => "float:right; font-size: 85%; position: relative; top:-18px"}
+          %a#signinlink{:href => "#", :onclick => "$('#signupbox').hide(); $('#loginbox').show()"}= t('labels.login')
+      .panel-body
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-horizontal", role:"form" }) do |f|
+          .form-group
+            = f.label :email, class:"col-md-3 control-label"
+            .col-md-9
+              = f.email_field :email, autofocus: true, class:"form-control", placeholder:"Email"
+          = f.fields_for :profile_member do |profile_fields|
+            .form-group
+              = profile_fields.label :first_name, class:"col-md-3 control-label"
+              .col-md-9
+                = profile_fields.text_field :first_name, class:"form-control", placeholder:"Primeiro nome"
+            .form-group
+              = profile_fields.label :second_name, class:"col-md-3 control-label"
+              .col-md-9
+                = profile_fields.text_field :second_name, class:"form-control", placeholder:"Segundo nome"
+          .form-group
+            = f.label :password, class:"col-md-3 control-label"
+            .col-md-9
+              = f.password_field :password, autocomplete: "off", class:"form-control", placeholder:"Senha"
+          .form-group
+            = f.label :password_confirmation, class:"col-md-3 control-label"
+            .col-md-9
+              = f.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder:"Confirmação da senha"
+          .form-group
+            / Button
+            .col-md-offset-3.col-md-9
+              = f.submit (t('labels.sign_up')), class: "btn btn-info" do
+                %i.icon-hand-right
+                \&nbsp Sign Up
+- flash.each do |key, value|
+  = javascript_tag "$.notify( { message: '#{value}'}, { type: 'danger', placement: { from: 'top', align: 'center' }});"
+- unless devise_error_messages!.blank?
+  - resource.errors.full_messages.each do |message|
+    = javascript_tag "$.notify( { message: '#{message}'}, { type: 'danger', placement: { from: 'top', align: 'center' }});"

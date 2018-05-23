@@ -1,0 +1,21 @@
+%p
+  %strong Name:
+  = @profile_user.first_name
+%p
+  %strong Sobrenome:
+  = @profile_user.last_name
+%p
+  %strong Email:
+  = current_user.email
+%p
+  %strong Data de nascimento:
+  = @profile_user.birthday
+%p
+  %strong Address:
+  = @profile_user.address
+%p
+  %strong Phone:
+  = @profile_user.phone
+%p
+  = link_to 'Alterar dados',edit_profile_user_path(current_user.id)
+  = render 'layouts/shared/notifications'
