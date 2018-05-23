@@ -13,3 +13,15 @@
   <%= link_to 'Editar', edit_group_path(@group) %> |
   <%= link_to 'Voltar', groups_path %>
 </p>
+
+<%= form_tag(add_group_user_path(@group.id)) do |form| %>
+
+  <div class="field">
+    <%= label_tag :email, "User email:" %>
+    <%= text_field_tag :email %>
+    <%= submit_tag "Add" %>
+  </div>
+<% end %>
+
+
+

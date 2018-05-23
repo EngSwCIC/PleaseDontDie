@@ -9,8 +9,12 @@ Rails.application.routes.draw do
   get 'home', to: 'home#index'
 
   # route users
+
   resources :profile_user, only: [:index, :edit, :update]
+  post 'group/:id/add_user', to: 'groups#add_user', as: 'add_group_user'
+
   get 'user/:id', to: 'profile_user#index', as: 'user'
+
   # routes devise
   devise_for :users, controllers: {registrations: 'users/registrations'}
 
