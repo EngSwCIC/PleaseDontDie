@@ -1,34 +1,13 @@
+= @user.inspect
 %article.card-body.mx-auto{:style => "max-width: 400px;"}
   %h4.card-title.mt-6.text-center Crie uma conta
   %p.text-center Get started with your free account
   = form_for(resource, as: resource_name, url: registration_path(resource_name),class: "form-signin") do |f|
-    / .form-group.input-group
-    /   .input-group-prepend
-    /     %span.input-group-text
-    /       %i.fa.fa-user
-    /   /= f.first_name_field :first_name, autofocus: true, autocomplete: "first_name",type:"text", id:"inputFirst_name", class: "form-control", placeholder:"Nome"
-    .form-group.input-group
-      .input-group-prepend
-        %span.input-group-text
-          %i.fa.fa-user
-      %input.form-control{:name => "", :placeholder => "Sobrenome", :type => "text"}/
-    .form-group.input-group
-      .input-group-prepend
-        %span.input-group-text
-          %i.fa.fa-phone
-      %select.custom-select{:style => "max-width: 120px;"}
-        %option{:selected => "selected"} +61
-        %option{:value => "1"} +972
-        %option{:value => "2"} +198
-        %option{:value => "3"} +701
-      %input.form-control{:name => "", :placeholder => "Telefone", :type => "text"}/
     .form-group.input-group
       .input-group-prepend
         %span.input-group-text
           %i.fa.fa-envelope
       = f.email_field :email, autofocus: true, autocomplete: "email",type:"email", id:"inputEmail", class: "form-control", placeholder:"Email address"
-    .form-group.input-group
-      .input-group-prepend
     .form-group.input-group
       .input-group-prepend
         %span.input-group-text
@@ -39,6 +18,32 @@
         %span.input-group-text
           %i.fa.fa-lock
       = f.password_field :password_confirmation, autocomplete: "off", type:"password", id:"inputPassword", class: "form-control", placeholder:"Confirme a senha", required: true
+      = f.fields_for :profile_user do |profile_fields|
+        .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-lock
+        = profile_fields.text_field :first_name, class:"form-control", placeholder:"Nome"
+        .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-lock
+        = profile_fields.text_field :last_name, class:"form-control", placeholder:"Sobrenome"
+        .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-lock
+        = profile_fields.text_field :birthday, class:"form-control", placeholder:"Data de nascimento"
+        .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-lock
+        = profile_fields.text_field :address, class:"form-control", placeholder:"Endereço"
+        .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-lock
+        = profile_fields.text_field :phone, class:"form-control", placeholder:"Telefone"
     .form-group
       = f.submit "Criar conta",class: "btn btn-lg btn-primary btn-block btn-signin", type:"submit"
       - unless devise_error_messages!.blank?

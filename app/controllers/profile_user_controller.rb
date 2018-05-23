@@ -24,7 +24,6 @@ class ProfileUserController < ApplicationController
 
   def params_profile_user
   	params.require(:profile_user).permit(:first_name, :last_name, :birthday, :address, :phone)
-  	
   end
 
 end
