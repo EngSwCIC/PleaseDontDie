@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_20_191729) do
+ActiveRecord::Schema.define(version: 2018_05_23_162938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 2018_05_20_191729) do
     t.index ["specie_id"], name: "index_pets_on_specie_id"
   end
 
+  create_table "profile_users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "birthday"
+    t.text "address"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "species", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -67,6 +77,7 @@ ActiveRecord::Schema.define(version: 2018_05_20_191729) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
+    t.date "birthday"
     t.text "address"
     t.string "phone"
     t.bigint "group_id"
