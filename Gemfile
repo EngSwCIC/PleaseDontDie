@@ -25,7 +25,8 @@ gem 'jquery-rails'
 gem 'rails-assets-bootstrap.growl', source: 'https://rails-assets.org'
 #an animation framework built on animate.css
 gem 'rails-assets-animate-css', source: 'https://rails-assets.org'
-# See https://github.com/rails/execjs#readme for more supported runtimes
+#the font-awesome font bundled as an asset for the rails asset pipeline
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
 # gem 'mini_racer', platforms: :ruby
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

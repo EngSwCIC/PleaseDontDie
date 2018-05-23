@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get 'home', to: 'home#index'
 
   # route users
-  get 'user/:id', to: 'users#index', as: 'user'
+  resources :profile_user, only: [:edit, :update]
+  get 'user/:id', to: 'profile_user#index', as: 'user'
   # routes devise
   devise_for :users
 

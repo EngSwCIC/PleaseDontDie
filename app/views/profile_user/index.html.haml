@@ -11,7 +11,8 @@
 %p
   %strong Phone:
   = @user.phone
-  = link_to "#{'teste'}", edit_profile_user_path(current_user.id)  
+%p
+  = link_to 'Alterar dados', edit_profile_user_path(current_user.id)
 - if @user.group_id
   = link_to 'Group', group_path(@user.group_id)
 - else
