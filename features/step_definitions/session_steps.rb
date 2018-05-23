@@ -1,4 +1,4 @@
-Dado("e o seguinte usuário está cadastrado:") do |table|
+Dado("que o seguinte usuário está cadastrado:") do |table|
   # table is a Cucumber::MultilineArgument::DataTable
   User.create!(table.rows_hash)
 end
