@@ -11,6 +11,7 @@
   </thead>
 
   <tbody>
+
     <% @groups.each do |group| %>
       <tr>
         <td><%= group.name %></td>
@@ -19,9 +20,8 @@
         <td><%= link_to 'Apagar', group, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
       </tr>
     <% end %>
+
   </tbody>
 </table>
-
-<br>
 
 <%= link_to 'Novo Grupo', new_group_path %>
