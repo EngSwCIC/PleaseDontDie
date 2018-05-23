@@ -11,6 +11,7 @@
   </thead>
 
   <tbody>
+
     <% @groups.each do |group| %>
       <tr>
         <td><%= group.name %></td>
@@ -19,9 +20,46 @@
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+
+  </tbody>
+</table>
+
+<h2>User</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @groups.user.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <%#<td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>%>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
 <br>
+
+<h2>Pet</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @groups.pets.each do |pet| %>
+      <tr>
+        <td><%= pet.name %></td>
+        <%#<td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'New Group', new_group_path %>
