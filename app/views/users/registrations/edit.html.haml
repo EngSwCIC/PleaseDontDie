@@ -1,32 +1,43 @@
-.container
-  .card.card-container
-    %p#profile-name.profile-name-card
-    %h2
-      Edit #{resource_name.to_s.humanize}
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-      = devise_error_messages!
-      .field
-        %br/
-        = f.email_field :email, autofocus: true, autocomplete: "email", type:"email", id:"inputEmail", class: "form-control", placeholder:"Email address"
-      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-        %div
-          Currently waiting confirmation for: #{resource.unconfirmed_email}
-      .field
-        %i (leave blank if you don't want to change it)
-        = f.password_field :password, autocomplete: "off", type:"password", id:"inputPassword", class: "form-control", placeholder:"New Password", required: true
-        - if @minimum_password_length
-          %em
-            = @minimum_password_length
-            characters minimum
-      .field
-        = f.password_field :password_confirmation, autocomplete: "off", type:"password", id:"inputPassword", class: "form-control", placeholder:"Confirm Password", required: true
-      .field
-        = f.label :current_password
-        = f.password_field :current_password, autocomplete: "off", type:"password", id:"inputPassword", class: "form-control", placeholder:"Current Password", required: true
-      %br/
-      .actions
-        = f.submit "Update", class: "btn btn-lg btn-primary btn-block btn-signin", type:"submit"
-    %h6 Cancel my account
+%h4.card-title.mt-6.text-center Alterar email e senha:
+%p#profile-name.profile-name-card
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = devise_error_messages!
+  .form-group.input-group
+    .input-group-prepend
+      %span.input-group-text
+        %i.fa.fa-envelope
+    = f.email_field :email, autofocus: true, type:"email", id:"inputEmail", placeholder:"Email",class: "form-control"
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    %div
+      Currently waiting confirmation for: #{resource.unconfirmed_email}
+  .field
+    %i (leave blank if you don't want to change it)
     %p
-      Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" },class: "btn btn-lg btn-primary btn-block btn-signin", method: :delete}
-    = link_to "Back", :back
+    .label
+      Nova senha
+  .form-group.input-group
+    .input-group-prepend
+      %span.input-group-text
+        %i.fa.fa-lock
+    = f.password_field :password, autocomplete: "off", type:"password", id:"inputPassword",placeholder:"Nova Senha", required: true , class: "form-control"
+  %p
+    - if @minimum_password_length
+      %em
+        Minimo de caracteres:
+        = @minimum_password_length
+  .form-group.input-group
+    .input-group-prepend
+      %span.input-group-text
+        %i.fa.fa-lock
+    = f.password_field :password_confirmation, autocomplete: "off", type:"password", id:"inputPassword", placeholder:"Confirme a senha", required: true , class: "form-control"
+  .form-group.input-group
+    .input-group-prepend
+      %span.input-group-text
+        %i.fa.fa-lock
+    = f.password_field :current_password, autocomplete: "off", type:"password", id:"inputPassword", placeholder:"Senha Atual", required: true , class: "form-control"
+  %br/
+  .actions
+    = f.submit "Atualizar", type:"submit",class: "btn btn-lg btn-success btn-block btn-signin"
+%h6.card-title.mt-6.text-center Deseja excluir sua conta ?
+#{button_to "Cancelar conta", registration_path(resource_name), data: { confirm: "Você esta prestes a excluir sua conta, tem certeza que deseja abandonar seus pets? PLZdontDie!!" },class: "btn btn-lg btn-primary btn-block btn-danger", method: :delete}
+= link_to "Back", :back

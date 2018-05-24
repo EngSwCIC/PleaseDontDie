@@ -10,7 +10,7 @@ class ProfileUserController < ApplicationController
 
   def update
     if @user.update(params_user)
-      redirect_to user_index_path(current_user.id) , notice: "Dados atualizados com sucesso."
+      redirect_to profile_user_index_path(current_user.id) , notice: "Dados atualizados com sucesso."
     else
       render :edit
     end
@@ -23,7 +23,7 @@ class ProfileUserController < ApplicationController
   end
 
   def params_user
-  	params.require(:user).permit(:first_name, :last_name, :birthday, :address, :phone)
+  	params.require(:profile_user).permit(:first_name, :last_name, :birthday, :address, :phone)
   end
 
 end
