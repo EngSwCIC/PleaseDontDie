@@ -1,22 +1,27 @@
-= @profile_user.inspect
 %p
   %strong Name:
-  = @profile_user.first_name
+  = @user.first_name
 %p
   %strong Sobrenome:
-  = @profile_user.last_name
+  = @user.last_name
 %p
   %strong Email:
   = current_user.email
 %p
   %strong Data de nascimento:
-  = @profile_user.birthday
+  = @user.birthday
 %p
   %strong Address:
-  = @profile_user.address
+  = @user.address
 %p
   %strong Phone:
-  = @profile_user.phone
+  = @user.phone
 %p
   = link_to 'Alterar dados',edit_profile_user_path(current_user.id)
+
+- if @user.group
+  = link_to 'Group', group_path(@user.group) 
+- else
+  = link_to 'Adicionar grupo', new_group_path
+
   = render 'layouts/shared/notifications'
