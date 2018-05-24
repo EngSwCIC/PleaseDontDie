@@ -1,4 +1,4 @@
-= form_for(@profile_user, url: profile_user_path(@profile_user)) do |f|
+= form_for(@user, url: profile_user_path(@user)) do |f|
   %div
     = f.label :Nome
   %p
@@ -10,7 +10,7 @@
   %div
     = f.label :Data_de_nascimento
   %p
-    = f.text_field :birthday, value: (l(@profile_user.birthday) unless @profile_user.birthday.blank?)
+    = f.text_field :birthday, type: 'date'
   %div
     = f.label :Endereço
   %p

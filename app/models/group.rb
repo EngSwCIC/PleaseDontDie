@@ -1,5 +1,5 @@
 class Group < ApplicationRecord
-  has_many :users
+  has_many :profile_users
   has_many :pets
 
   validates :name,

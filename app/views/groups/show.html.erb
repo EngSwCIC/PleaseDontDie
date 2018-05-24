@@ -15,9 +15,9 @@
     </tr>
   </thead>
   <tbody>
-    <% @group.users.each do |user| %>
+    <% @group.profile_users.each do |user| %>
       <tr>
-        <td><%= user.email %></td>
+        <td><%= user.user.email %></td>
       </tr>
     <% end %>
   </tbody>
