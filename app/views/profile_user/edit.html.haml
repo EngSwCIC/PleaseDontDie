@@ -1,0 +1,23 @@
+= form_for(@user, url: profile_user_path(@user)) do |f|
+  %div
+    = f.label :Nome
+  %p
+    = f.text_field :first_name, placeholder: "Primeiro Nome"
+  %div
+    = f.label :Sobrenome
+  %p
+    = f.text_field :last_name, placeholder: "Sobrenome"
+  %div
+    = f.label :Data_de_nascimento
+  %p
+    = f.text_field :birthday, type: 'date'
+  %div
+    = f.label :Endereço
+  %p
+    = f.text_field :address, placeholder: "Endereço"
+  %div
+    = f.label :Telefone
+  %p
+    = f.text_field :phone, placeholder: "Telefone"
+  .button
+    = submit_tag "Alterar Dados"

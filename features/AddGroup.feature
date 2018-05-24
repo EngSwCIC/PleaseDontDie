@@ -6,8 +6,8 @@ Funcionalidade: Lista do Grupo
     visão de todos que podem cuidar dos pets.
 
 Cenário: Ver todos os usuários de um grupo
-        Dado que usuário está logado
-        Quando cliclar em Grupo
-        Então mostra todos os usuários desse grupo
+        Dado que estou logado
+        Quando cliclo em Grupo
+        Então são mostrado todos os usuários desse grupo
 
 

@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :load_group, only: [:show, :edit, :update, :destroy]
+  before_action :load_group, only: [:show, :edit, :update, :destroy, :add_user]
 
   def index
     @groups = Group.all
@@ -20,6 +20,9 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
+        if current_user
+          @group.profile_users << current_user.profile_user
+        end
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
@@ -46,6 +49,22 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def add_user
+    @user = ProfileUser.where(email: params[:email]).first
+    if @user
+      @group.users << @user
+      respond_to do |format|
+        format.html { redirect_to @group, notice: 'ProfileUser successfully added.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @group, notice: 'No user found.' }
+        format.json { head :no_content }
+      end
     end
   end
 

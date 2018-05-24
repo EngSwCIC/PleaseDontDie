@@ -21,7 +21,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'rails-assets-bootstrap', source: 'https://rails-assets.org'
 # jquery
 gem 'jquery-rails'
-# See https://github.com/rails/execjs#readme for more supported runtimes
+#A simple, versatile notification library
+gem 'rails-assets-bootstrap.growl', source: 'https://rails-assets.org'
+#an animation framework built on animate.css
+gem 'rails-assets-animate-css', source: 'https://rails-assets.org'
+#the font-awesome font bundled as an asset for the rails asset pipeline
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
 # gem 'mini_racer', platforms: :ruby
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -50,7 +55,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   #Better error page for Rack apps 
-  gem 'better_errors'
+  #gem 'better_errors'
   #Generate Entity-Relationship Diagrams for Rails applications
   gem 'rails-erd'
   #RSpec for Rails-3+

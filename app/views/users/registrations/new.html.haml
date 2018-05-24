@@ -1,17 +1,50 @@
-.container
-  .card.card-container
-    %img#profile-img.profile-img-card{:src => "//ssl.gstatic.com/accounts/ui/avatar_2x.png"}/
-    %p#profile-name.profile-name-card
-    = form_for(resource, as: resource_name, url: session_path(resource_name),class: "form-signin") do |f|
-      %span#reauth-email.reauth-email
+%article.card-body.mx-auto{:style => "max-width: 400px;"}
+  %h4.card-title.mt-6.text-center Crie uma conta
+  %p.text-center Get started with your free account
+  = form_for(resource, as: resource_name, url: registration_path(resource_name),class: "form-signin") do |f|
+    .form-group.input-group
+      .input-group-prepend
+        %span.input-group-text
+          %i.fa.fa-envelope
       = f.email_field :email, autofocus: true, autocomplete: "email",type:"email", id:"inputEmail", class: "form-control", placeholder:"Email address"
-      - if @minimum_password_length
-        %em
-          ( "Password" #{@minimum_password_length} characters minimum)
-      %br/
-      = f.password_field :password, autocomplete: "off",type:"password", id:"inputPassword", class: "form-control", placeholder:"Password", required: true
-      %br/
-      = f.password_field :password_confirmation, autocomplete: "off", type:"password", id:"inputPassword", class: "form-control", placeholder:"Password confirmation", required: true
-      %br/
-      = f.submit "Log in",class: "btn btn-lg btn-primary btn-block btn-signin", type:"submit"
-    = render "users/shared/links"
+    .form-group.input-group
+      .input-group-prepend
+        %span.input-group-text
+          %i.fa.fa-lock
+      = f.password_field :password, autocomplete: "off",type:"password", id:"inputPassword", class: "form-control", placeholder:"Senha", required: true
+    .form-group.input-group
+      .input-group-prepend
+        %span.input-group-text
+          %i.fa.fa-lock
+      = f.password_field :password_confirmation, autocomplete: "off", type:"password", id:"inputPassword", class: "form-control", placeholder:"Confirme a senha", required: true
+      = f.fields_for :profile_user do |profile_fields|
+        .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-lock
+        = profile_fields.text_field :first_name, class:"form-control", placeholder:"Nome"
+        .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-lock
+        = profile_fields.text_field :last_name, class:"form-control", placeholder:"Sobrenome"
+        .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-lock
+        = profile_fields.text_field :birthday, class:"form-control", placeholder:"Data de nascimento"
+        .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-lock
+        = profile_fields.text_field :address, class:"form-control", placeholder:"Endereço"
+        .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-lock
+        = profile_fields.text_field :phone, class:"form-control", placeholder:"Telefone"
+    .form-group
+      = f.submit "Criar conta",class: "btn btn-lg btn-primary btn-block btn-signin", type:"submit"
+      - unless devise_error_messages!.blank?
+        - resource.errors.full_messages.each do |message|
+          = javascript_tag "$.notify( { message: '#{message}'}, { type: 'danger', placement: { from: 'top', align: 'center' }});"
