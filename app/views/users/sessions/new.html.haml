@@ -1,13 +1,13 @@
-%h4.card-title.text-center.mb-4.mt-1 Entrar
+%h4.card-title.text-center.mb-4.mt-1
+  PLEASE DON`T DIE
 %hr/
 %p.text-success.text-center
-  = notice
 = form_for(resource, as: resource_name, url: session_path(resource_name),class: "form-signin") do |f|
   .form-group
     .input-group
       .input-group-prepend
         %span.input-group-text
-          %i.fa.fa-user
+          %i.fa.fa-envelope 
       = f.email_field :email, autofocus: true, autocomplete: "email",type:"email", id:"inputEmail", class: "form-control", placeholder:"Email"
   .form-group
     .input-group
@@ -22,4 +22,7 @@
         = f.check_box :remember_me
         Lembrar-me
   .form-group
-    %button.btn.btn-success.btn-block{:type => "submit"} Login
+    = f.submit "Entrar",class: "btn btn-lg btn-primary btn-block", type:"submit"
+%hr/
+.card-header.bg-light.text-center
+  = link_to "Esqueceu sua senha?", new_password_path(resource_name)
