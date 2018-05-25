@@ -29,7 +29,7 @@
   </p>
   <p>
     <%= f.label :specie %><br />
-    <%= collection_select(:specie_id, 0, Specie.all, :id, :name) %>
+    <%= collection_select(:specie, :specie_id, Specie.all, :id, :name, :prompt => "Espécie") %>
   </p>
   <div class="actions">
     <%= f.submit "Submit" %>

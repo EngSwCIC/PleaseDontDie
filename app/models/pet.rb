@@ -1,4 +1,4 @@
 class Pet < ApplicationRecord
   belongs_to :group
-  belongs_to :specie
+  has_one :specie, foreign_key: 'specie_id'
 end
