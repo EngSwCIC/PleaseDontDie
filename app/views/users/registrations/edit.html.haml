@@ -37,7 +37,7 @@
     = f.password_field :current_password, autocomplete: "off", type:"password", id:"inputPassword", placeholder:"Senha Atual", required: true , class: "form-control"
   %br/
   .actions
-    = f.submit "Atualizar", type:"submit",class: "btn btn-lg btn-success btn-block btn-signin"
+    = f.submit "Atualizar",class: "btn btn-lg btn-success btn-block btn-signin"
 %h6.card-title.mt-6.text-center Deseja excluir sua conta ?
 #{button_to "Cancelar conta", registration_path(resource_name), data: { confirm: "Você esta prestes a excluir sua conta, tem certeza que deseja abandonar seus pets? PLZdontDie!!" },class: "btn btn-lg btn-primary btn-block btn-danger", method: :delete}
 = link_to "Back", :back

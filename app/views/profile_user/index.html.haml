@@ -1,12 +1,12 @@
 %p
   %strong Nome:
-  = @user.first_name
-%p
-  %strong Sobrenome:
-  = @user.last_name
+  = @user.first_name+" "+@user.last_name
 %p
   %strong Email:
   = current_user.email
+%p
+  %strong Telefone:
+  = @user.phone
 %p
   %strong Data de nascimento:
   = @user.birthday
@@ -14,15 +14,12 @@
   %strong Endereço:
   = @user.address
 %p
-  %strong Telefone:
-  = @user.phone
-%p
-  = link_to 'Alterar dados do perfil',edit_profile_user_path(current_user.id)
+  = link_to 'Editar perfil',edit_profile_user_path(current_user.id)
 %p
   = link_to "Alterar senha", edit_user_registration_path(current_user.id)
 
 - if @user.group
-  = link_to 'Group', group_path(@user.group) 
+  = link_to 'Grupos', group_path(@user.group) 
 - else
   = link_to 'Adicionar grupo', new_group_path
 = render 'layouts/shared/notifications'

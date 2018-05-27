@@ -12,12 +12,12 @@
     .input-group-prepend
       %span.input-group-text
         %i.fa.fa-lock
-    = f.password_field :password, autocomplete: "off",type:"password", id:"inputPassword", class: "form-control", placeholder:"Senha", required: true
+    = f.password_field :password, autocomplete: "off",type:"password", id:"inputPassword", class: "form-control", placeholder:"Senha"
   .form-group.input-group
     .input-group-prepend
       %span.input-group-text
         %i.fa.fa-lock
-    = f.password_field :password_confirmation, autocomplete: "off", type:"password", id:"inputPassword", class: "form-control", placeholder:"Confirme a senha", required: true
+    = f.password_field :password_confirmation, autocomplete: "off", type:"password", id:"inputPassword", class: "form-control", placeholder:"Confirme a senha"
     = f.fields_for :profile_user do |profile_fields|
       .form-group.input-group
       .input-group-prepend
@@ -45,7 +45,7 @@
           %i.fa.fa-phone 
       = profile_fields.text_field :phone, class:"form-control", placeholder:"Telefone"
   .form-group
-    = f.submit "Cadastre-se",class: "btn btn-lg btn-primary btn-block", type:"submit"
+    = f.submit "Cadastre-se",class: "btn btn-lg btn-primary btn-block"
     - unless devise_error_messages!.blank?
       - resource.errors.full_messages.each do |message|
         = javascript_tag "$.notify( { message: '#{message}'}, { type: 'danger', placement: { from: 'top', align: 'center' }})"
