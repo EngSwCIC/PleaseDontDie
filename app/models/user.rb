@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   def nested_attributes
   	if nested_attributes_blank?
-  		errors.add(:base, "É necessário preencher os campos")
+  		errors.add(:base, "É necessário preencher os dados pessoais")
   	end
   end
 

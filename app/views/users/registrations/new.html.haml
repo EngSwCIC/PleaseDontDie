@@ -1,8 +1,7 @@
 %h4.card-title.text-center.mb-4.mt-1 Criar uma nova conta
 %hr/
-%p.text-center
-  É gratuito e sempre será.
-= form_for(resource, as: resource_name, url: registration_path(resource_name),class: "form-signin") do |f|
+%p.text-success.text-center
+= form_for(resource, as: resource_name, url: registration_path(resource),class: "form-signup") do |f|
   .form-group.input-group
     .input-group-prepend
       %span.input-group-text
@@ -18,32 +17,34 @@
       %span.input-group-text
         %i.fa.fa-lock
     = f.password_field :password_confirmation, autocomplete: "off", type:"password", id:"inputPassword", class: "form-control", placeholder:"Confirme a senha"
-    = f.fields_for :profile_user do |profile_fields|
-      .form-group.input-group
+  .form-group
+    %h5.card-title.text-center.mb-4.mt-1 Dados pessoais:
+  = f.fields_for :profile_user do |profile_fields|
+    .form-group.input-group
       .input-group-prepend
         %span.input-group-text
           %i.fa.fa-user
-      = profile_fields.text_field :first_name, class:"form-control", placeholder:"Nome"
-      .form-group.input-group
+      = profile_fields.text_field :first_name, class: "form-control", placeholder:"Nome"
+    .form-group.input-group
       .input-group-prepend
         %span.input-group-text
           %i.fa.fa-user
-      = profile_fields.text_field :last_name, class:"form-control", placeholder:"Sobrenome"
-      .form-group.input-group
+      = profile_fields.text_field :last_name, class: "form-control", placeholder:"Sobrenome"
+    .form-group.input-group
       .input-group-prepend
         %span.input-group-text
           %i.fa.fa-birthday-cake 
-      = profile_fields.text_field :birthday, class:"form-control", placeholder:"Data de nascimento", type:'date'
-      .form-group.input-group
+      = profile_fields.text_field :birthday, class: "form-control", placeholder:"Data de nascimento", type:'date'
+    .form-group.input-group
       .input-group-prepend
         %span.input-group-text
           %i.fa.fa-map-marker 
-      = profile_fields.text_field :address, class:"form-control", placeholder:"Endereço"
-      .form-group.input-group
+      = profile_fields.text_field :address, class: "form-control", placeholder:"Endereço"
+    .form-group.input-group
       .input-group-prepend
         %span.input-group-text
           %i.fa.fa-phone 
-      = profile_fields.text_field :phone, class:"form-control", placeholder:"Telefone"
+      = profile_fields.text_field :phone, class: "form-control", placeholder:"Telefone"
   .form-group
     = f.submit "Cadastre-se",class: "btn btn-lg btn-primary btn-block"
     - unless devise_error_messages!.blank?

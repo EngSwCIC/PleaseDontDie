@@ -1,7 +1,6 @@
 %h4.card-title.mt-6.text-center Alterar email e senha:
 %p#profile-name.profile-name-card
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
   .form-group.input-group
     .input-group-prepend
       %span.input-group-text
@@ -11,7 +10,6 @@
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
   .field
-    %i (leave blank if you don't want to change it)
     %p
     .label
       Nova senha
@@ -38,6 +36,9 @@
   %br/
   .actions
     = f.submit "Atualizar",class: "btn btn-lg btn-success btn-block btn-signin"
+    - unless devise_error_messages!.blank?
+      - resource.errors.full_messages.each do |message|
+        = javascript_tag "$.notify( { message: '#{message}'}, { type: 'danger', placement: { from: 'top', align: 'center' }})"
 %h6.card-title.mt-6.text-center Deseja excluir sua conta ?
 #{button_to "Cancelar conta", registration_path(resource_name), data: { confirm: "Você esta prestes a excluir sua conta, tem certeza que deseja abandonar seus pets? PLZdontDie!!" },class: "btn btn-lg btn-primary btn-block btn-danger", method: :delete}
-= link_to "Back", :back
+= link_to "Voltar", :back
