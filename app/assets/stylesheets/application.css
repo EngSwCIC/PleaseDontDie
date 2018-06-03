@@ -51,8 +51,7 @@ img {
 }
 
 .navbar-custom {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 0.5rem 1rem;
     background-color:  #00e6e6
     /* TODO:  background-color: hsl(120, 100%, 50%);*/
 }
