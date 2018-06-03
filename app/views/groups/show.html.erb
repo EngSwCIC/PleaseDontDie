@@ -6,7 +6,7 @@
 </p>
 
 
-<h2>User</h2>
+<h2>Usuário</h2>
 <table>
   <thead>
     <tr>
@@ -29,7 +29,7 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Nome</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -37,7 +37,7 @@
     <% @group.pets.each do |pet| %>
       <tr>
         <td><%= pet.name %></td>
-        <%#<td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>%>
+<!--        <td><%#= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>
@@ -56,9 +56,9 @@
 <%= form_tag(add_group_user_path(@group.id)) do |form| %>
 
   <div class="field">
-    <%= label_tag :email, "User email:" %>
+    <%= label_tag :email, "Email do usuário:" %>
     <%= text_field_tag :email %>
-    <%= submit_tag "Add" %>
+    <%= submit_tag "Adicionar" %>
   </div>
 <% end %>
 

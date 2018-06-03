@@ -19,6 +19,6 @@
   = link_to "Alterar senha", edit_user_registration_path(current_user.id)
 
 - if @user.group
-  = link_to 'Grupos', group_path(@user.group) 
+  = link_to 'Grupo', group_path(@user.group)
 - else
   = link_to 'Adicionar grupo', new_group_path
