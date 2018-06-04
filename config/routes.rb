@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :species
   resources :groups do
     resources :pets
   end
