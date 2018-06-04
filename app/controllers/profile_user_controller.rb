@@ -10,7 +10,7 @@ class ProfileUserController < ApplicationController
 
   def update
     if @user.update(params_user)
-      redirect_to profile_user_index_path(current_user.id) , notice: "Dados atualizados com sucesso."
+      redirect_to profile_user_path(current_user.id) , notice: "Dados atualizados com sucesso."
     else
       render :edit
     end
