@@ -9,6 +9,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 	end
 
 	protected
+	def after_sign_up_path_for(user)
+		profile_user_index_path
+	end
+	def after_update_path_for(user)
+		profile_user_index_path
+	end
+
 
 	def configure_permitted_parameters
 		devise_parameter_sanitizer.permit(
