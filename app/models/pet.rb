@@ -1,6 +1,7 @@
 class Pet < ApplicationRecord
   belongs_to :group
   belongs_to :specie, optional: true
+  has_many :needs
 
   def sex
     sex_prettyp(self[:sex]) || self[:sex]
@@ -9,7 +10,7 @@ class Pet < ApplicationRecord
   private
 
   def sex_prettyp(num)
-    sex = {"1" => "male", "2" => "female"}
+    sex = {"1" => "macho", "2" => "fêmea"}
     sex[num]
   end
 
