@@ -10,6 +10,12 @@ class SpeciesController < ApplicationController
   # GET /species/1
   # GET /species/1.json
   def show
+    @specie = Specie.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @specie }
+    end
   end
 
   # GET /species/new
