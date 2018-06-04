@@ -45,6 +45,7 @@ class GroupsController < ApplicationController
   end
 
   def destroy
+    @group.profile_users.delete(@group.profile_users)
     @group.destroy
     respond_to do |format|
       format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
