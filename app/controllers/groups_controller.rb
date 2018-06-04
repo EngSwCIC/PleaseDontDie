@@ -54,9 +54,10 @@ class GroupsController < ApplicationController
   end
 
   def add_user
-    @user = ProfileUser.where(email: params[:email]).first
+    @user = User.where(email: params[:email]).first
     if @user
-      @group.users << @user
+      @profile_user = @user.profile_user
+      @group.profile_users << @profile_user
       respond_to do |format|
         format.html { redirect_to @group, notice: 'ProfileUser successfully added.' }
         format.json { head :no_content }
