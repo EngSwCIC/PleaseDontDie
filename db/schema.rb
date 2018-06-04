@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_23_162938) do
+ActiveRecord::Schema.define(version: 2018_06_04_205833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "duties", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "importance"
+    t.integer "frequency"
+    t.bigint "pet_id"
+    t.bigint "need_id"
+    t.boolean "done"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "until"
+    t.index ["need_id"], name: "index_duties_on_need_id"
+    t.index ["pet_id"], name: "index_duties_on_pet_id"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
@@ -83,6 +98,8 @@ ActiveRecord::Schema.define(version: 2018_05_23_162938) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "duties", "needs"
+  add_foreign_key "duties", "pets"
   add_foreign_key "profile_users", "groups"
   add_foreign_key "profile_users", "users"
 end

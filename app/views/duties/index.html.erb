@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Duties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Importance</th>
+      <th>Frequency</th>
+      <th>Pet</th>
+      <th>Need</th>
+      <th>Done</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @duties.each do |duty| %>
+      <tr>
+        <td><%= duty.name %></td>
+        <td><%= duty.description %></td>
+        <td><%= duty.importance %></td>
+        <td><%= duty.frequency %></td>
+        <td><%= duty.pet %></td>
+        <td><%= duty.need %></td>
+        <td><%= duty.done %></td>
+        <td><%= link_to 'Show', duty %></td>
+        <td><%= link_to 'Edit', edit_duty_path(duty) %></td>
+        <td><%= link_to 'Destroy', duty, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Duty', new_duty_path %>

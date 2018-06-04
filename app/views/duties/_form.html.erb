@@ -1,0 +1,52 @@
+<%= form_with(model: duty, local: true) do |form| %>
+  <% if duty.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(duty.errors.count, "error") %> prohibited this duty from being saved:</h2>
+
+      <ul>
+      <% duty.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :importance %>
+    <%= form.number_field :importance %>
+  </div>
+
+  <div class="field">
+    <%= form.label :frequency %>
+    <%= form.number_field :frequency %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pet_id %>
+    <%= form.text_field :pet_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :need_id %>
+    <%= form.text_field :need_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :done %>
+    <%= form.check_box :done %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
