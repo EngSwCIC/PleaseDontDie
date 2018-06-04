@@ -2,6 +2,7 @@ class Pet < ApplicationRecord
   belongs_to :group
   belongs_to :specie, optional: true
   has_many :needs
+  has_many :duties
 
   def sex
     sex_prettyp(self[:sex]) || self[:sex]
