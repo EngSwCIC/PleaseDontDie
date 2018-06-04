@@ -18,6 +18,8 @@ class PetsController < ApplicationController
   def show
     group = Group.find(params[:group_id])
 
+    @specie = Specie.find(@pet.specie_id)
+
     @pet = group.pets.find(params[:id])
 
     respond_to do |format|
