@@ -1,4 +1,5 @@
 class DutiesController < ApplicationController
+  before_action :set_pet, only: [:show, :edit, :update, :destroy]
   before_action :set_duty, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -50,6 +51,10 @@ class DutiesController < ApplicationController
   end
 
   private
+    def set_pet
+      @pet = Pet.find(params[:pet_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_duty
       @duty = Duty.find(params[:id])
