@@ -28,8 +28,9 @@
     <%= f.radio_button :sex, 2 %>Femea
   </p>
   <p>
-    <%= f.label :espécie %><br />
-    <%= collection_select(:specie_id, 0, Specie.all, :id, :name) %>
+    <%= f.label :specie %><br />
+    <%= f.collection_select :specie_id, Specie.all, :id, :name,
+    {prompt: "Specie"} %>
   </p>
   <div class="actions">
     <%= f.submit "Enviar" %>

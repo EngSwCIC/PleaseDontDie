@@ -52,5 +52,26 @@ recomendado, os ramos serão agrupados de acordo com tokens curtos, como na tabe
 
 Como delimitador de ramos, será utilizada a barra '/'.
 
+
+### Arquitetura
+
+A aplicação segue o padrão arquitetural MVC e em acordo com as convenções da comudade do framework Rails. Desse modo, há uma divisão em três componentes principais, o Model, o View e o Controller, como ilustrado em pela figura abaixo.
+![MVC](https://adrianmejia.com/images/rails_arch.png)
+
+### Regras de Negócio (Constraints)
+
+O PLZDD está centrado no cuidado de dependentes. Assim, há a questão de privacidade. Para isso, a aplicação está centrada em entidades básicas, sendo elas:
+
+* Usuário
+* Pet
+* Espécies
+* Cuidados
+* Grupos
+
+Para que usuários possam compartilhar tarefas, eles são então integrados em um grupo. Cada grupo pode possuir diferentes Pets. Esses pets, então, pertecem a uma espécie, cada qual com um tipo de cuidado diferenciado. 
+
+
+
+
 Agradecemos! :heart: :heart: :heart:
 Equipe PLZDD
