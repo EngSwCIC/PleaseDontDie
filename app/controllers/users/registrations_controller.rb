@@ -10,10 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 	protected
 	def after_sign_up_path_for(user)
-		profile_user_index_path
+		profile_user_path(user.profile_user)
 	end
 	def after_update_path_for(user)
-		profile_user_index_path
+		profile_user_path(user.profile_user)
 	end
 
 

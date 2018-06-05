@@ -1,4 +1,5 @@
 class DutiesController < ApplicationController
+  before_action :set_pet, only: [:new, :create, :show, :edit, :update, :destroy]
   before_action :set_duty, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -9,47 +10,48 @@ class DutiesController < ApplicationController
   end
 
   def new
-    @duty = Duty.new
+    @duty = @pet.duties.build
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @duty }
+    end
   end
 
   def edit
   end
 
   def create
-    @duty = Duty.new(duty_params)
+    @duty = @pet.duties.build(duty_params)
 
-    respond_to do |format|
-      if @duty.save
-        format.html { redirect_to @duty, notice: 'Duty was successfully created.' }
-        format.json { render :show, status: :created, location: @duty }
-      else
-        format.html { render :new }
-        format.json { render json: @duty.errors, status: :unprocessable_entity }
-      end
+    if @duty.save
+      redirect_to([@duty.pet, @duty], notice: 'Afazer criado!')
+    else
+      render action: 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @duty.update(duty_params)
-        format.html { redirect_to @duty, notice: 'Duty was successfully updated.' }
-        format.json { render :show, status: :ok, location: @duty }
-      else
-        format.html { render :edit }
-        format.json { render json: @duty.errors, status: :unprocessable_entity }
-      end
+    if @duty.update_attributes(duty_params)
+      redirect_to([@duty.pet, @duty], notice: 'Afazer atualizado!')
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
     @duty.destroy
     respond_to do |format|
-      format.html { redirect_to duties_url, notice: 'Duty was successfully destroyed.' }
+      format.html { redirect_to pet_duties_url(@pet), notice: 'Afazer destruído!' }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_pet
+      @pet = Pet.find(params[:pet_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_duty
       @duty = Duty.find(params[:id])
