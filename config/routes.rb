@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   resources :groups do
     resources :pets
   end
+
   resources :pets do
     resources :duties
+  end
+
+  resources :species, only: [:index, :show] do
+    resources :needs, only: [:index, :show]
   end
 
   # routes home
