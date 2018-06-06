@@ -2,7 +2,7 @@ class ProfileUserController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
   def show
-    @user = ProfileUser.find_or_create_by(user_id: current_user.id)
+    @user = ProfileUser.find_or_create_by(user_id: params[:id])
   end
   
   def edit
