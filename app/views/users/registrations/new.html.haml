@@ -44,7 +44,7 @@
       .input-group-prepend
         %span.input-group-text
           %i.fa.fa-phone 
-      = profile_fields.text_field :phone, class: "form-control", placeholder:"Telefone"
+      = profile_fields.text_field :phone, class: "form-control", placeholder:"Telefone", :data => {:mask=>'00-0-0000-0000'}
   .form-group
     = f.submit "Cadastre-se",class: "btn btn-lg btn-primary btn-block"
     - unless devise_error_messages!.blank?

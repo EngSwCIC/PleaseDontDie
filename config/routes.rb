@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :profile_user, only: [:index, :show, :edit, :update]
   post 'group/:id/add_user', to: 'groups#add_user', as: 'add_group_user'
 
-  get 'user/:id', to: 'profile_user#index', as: 'user'
+  get 'user/:id', to: 'profile_user#show', as: 'user'
 
   # routes devise
   devise_for :users, controllers: {registrations: 'users/registrations',sessions: 'users/sessions'}

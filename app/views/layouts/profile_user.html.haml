@@ -1,6 +1,7 @@
 !!!
 %html
   %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title PleaseDontDie
     = csrf_meta_tags
     = csp_meta_tag
@@ -23,7 +24,7 @@
                 = link_to "Alterar senha", edit_user_registration_path(current_user.id)
               .list-group-item.list-group-item-action
                 - if @user.group
-                  = link_to 'Grupo', group_path(@user.group)
+                  = link_to 'Grupos', group_path(@user.group)
                 - else
                   = link_to 'Adicionar grupo', new_group_path
               %a.list-group-item.list-group-item-action.disabled{:href => "#"} Amigos
