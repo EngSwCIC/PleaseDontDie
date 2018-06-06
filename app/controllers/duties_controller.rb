@@ -1,5 +1,5 @@
 class DutiesController < ApplicationController
-  before_action :set_pet, only: [:new, :create, :show, :edit, :update, :destroy]
+  before_action :set_pet 
   before_action :set_duty, only: [:show, :edit, :update, :destroy]
 
   def index
