@@ -1,5 +1,10 @@
 class ProfileUserController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  layout "profile_user"
+  before_action :set_user, only: [:index, :show, :edit, :update]
+
+  def index
+    
+  end
 
   def show
     @user = ProfileUser.find_or_create_by(user_id: current_user.id)

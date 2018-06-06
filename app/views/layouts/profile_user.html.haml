@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %title PleaseDontDie
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    %link{:href => "css/uikit.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "css/responsive.css", :media => "only screen and (max-width: 1200px)", :rel => "stylesheet"}/
+  %body
+    = render 'layouts/navbar'
+    .container
+      %hr/
+      .row
+        / Coluna da esquerda
+        .col-md-3
+          .text
+            .list-group.list-group-flush
+              .list-group-item.list-group-item-action
+                = link_to 'Editar perfil',edit_profile_user_path(current_user.id)
+              .list-group-item.list-group-item-action
+                = link_to "Alterar senha", edit_user_registration_path(current_user.id)
+              .list-group-item.list-group-item-action
+                - if @user.group
+                  = link_to 'Grupo', group_path(@user.group)
+                - else
+                  = link_to 'Adicionar grupo', new_group_path
+              %a.list-group-item.list-group-item-action.disabled{:href => "#"} Amigos
+              %a.list-group-item.list-group-item-action.disabled{:href => "#"} Pets
+        / Coluna da direita
+        .col-md-9
+          = yield
+          = render 'layouts/shared/notifications'
+      %hr/
