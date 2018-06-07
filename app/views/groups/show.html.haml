@@ -14,7 +14,7 @@
       = form_tag(add_group_user_path(@group.id)) do |form|
         .field
           = label_tag :email, "Email do usuário:"
-          = text_field_tag :Name
+          = text_field_tag :email
           = submit_tag "Adicionar"
       %h2 Usuários
       %table

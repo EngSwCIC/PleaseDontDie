@@ -7,15 +7,8 @@
     .list-group-item.list-group-item-action
       = link_to "Email e Senha", edit_user_registration_path(current_user.id)
     .list-group-item.list-group-item-action
-      - if devise_controller? && resource_name == :user
-        - if @user.profile_user.group
-          = link_to 'Grupos', groups_path(@user.profile_user.group)
-        - else
-          = link_to 'Adicionar grupo', new_group_path
-      - else
-        - if @user.group
-          = link_to 'Grupos', groups_path(@user.group)
-        - else
-          = link_to 'Adicionar grupo', new_group_path
+      = link_to 'Grupos', groups_path
+    .list-group-item.list-group-item-action
+      = link_to 'Adicionar grupo', new_group_path
     %a.list-group-item.list-group-item-action.disabled{:href => "#"} Amigos
     %a.list-group-item.list-group-item-action.disabled{:href => "#"} Pets
