@@ -1,0 +1,21 @@
+.container
+  %hr/
+  .row
+    .col-md-3
+      = render 'layouts/sidemenu'
+    .col-md-9
+      %p#notice= notice
+      %h1 Grupos
+      %table
+        %thead
+          %tr
+            %th Nome
+            %th{:colspan => "3"}
+        %tbody
+          - @groups.each do |group|
+            %tr
+              %td= group.name
+              %td= link_to 'Mais', group
+              %td= link_to 'Editar', edit_group_path(group)
+              %td= link_to 'Apagar', group, method: :delete, data: { confirm: 'Tem certeza?' }
+      = link_to 'Novo Grupo', new_group_path
