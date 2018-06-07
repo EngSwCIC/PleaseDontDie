@@ -2,20 +2,25 @@ class GroupsController < ApplicationController
   before_action :load_group, only: [:show, :edit, :update, :destroy, :add_user]
 
   def index
+    @user = set_user_profile
     @groups = Group.all
   end
 
   def show
+    @user = set_user_profile
   end
 
   def new
+    @user = set_user_profile
     @group = Group.new
   end
 
   def edit
+    @user = set_user_profile
   end
 
   def create
+    @user = set_user_profile
     @group = Group.new(group_params)
 
     respond_to do |format|
@@ -33,6 +38,7 @@ class GroupsController < ApplicationController
   end
 
   def update
+    @user = set_user_profile
     respond_to do |format|
       if @group.update(group_params)
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
@@ -45,6 +51,7 @@ class GroupsController < ApplicationController
   end
 
   def destroy
+    @user = set_user_profile
     @group.profile_users.delete(@group.profile_users)
     @group.destroy
     respond_to do |format|
@@ -71,6 +78,9 @@ class GroupsController < ApplicationController
   end
 
   private
+    def set_user_profile
+      @user = ProfileUser.find(current_user.id)
+    end
     def load_group
       @group = Group.find(params[:id])
     end

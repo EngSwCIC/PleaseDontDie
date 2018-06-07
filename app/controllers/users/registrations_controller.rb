@@ -7,6 +7,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 		respond_with self.resource		
 	end
 
+	def edit
+		@user = User.find(current_user.id)		
+	end
 	protected
 	def after_sign_up_path_for(user)
 		profile_user_path(user.profile_user)

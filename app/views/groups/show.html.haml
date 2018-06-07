@@ -1,0 +1,37 @@
+.container
+  %hr/
+  .row
+    .col-md-3
+      = render 'layouts/sidemenu'
+    .col-md-9
+      %p#notice= notice
+      %h1
+        = @group.name
+      %p
+        = link_to 'Editar', edit_group_path(@group)
+        |
+        \#{link_to 'Voltar', groups_path}
+      = form_tag(add_group_user_path(@group.id)) do |form|
+        .field
+          = label_tag :email, "Email do usuário:"
+          = text_field_tag :Name
+          = submit_tag "Adicionar"
+      %h2 Usuários
+      %table
+        %thead
+        %tbody
+          - @group.profile_users.each do |user|
+            %tr
+              %td= link_to user.user.email, profile_user_path(user)
+      %br/
+      %h2 Pets
+      %table
+        %thead
+        %tbody
+          - @group.pets.each do |pet|
+            %tr
+              %td= link_to pet.name, [pet.group, pet]
+      %p
+        = link_to 'Pets', group_pets_path(@group)
+        |
+        \#{link_to "Novo Pet", new_group_pet_path(@group), id:'novo-pet'}
