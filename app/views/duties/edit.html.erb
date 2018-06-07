@@ -1,6 +1,6 @@
-<h1>Editing Duty</h1>
+<h1>Editando um Afazer</h1>
 
-<%= render 'form', duty: @duty %>
+<%= render 'form' %>
 
-<%= link_to 'Show', @duty %> |
-<%= link_to 'Back', duties_path %>
+<%= link_to 'Mais', [@duty.pet, @duty] %> |
+<%= link_to 'Voltar', pet_duties_path(@duty.pet) %>
