@@ -11,7 +11,6 @@
     %link{:href => "css/responsive.css", :media => "only screen and (max-width: 1200px)", :rel => "stylesheet"}/
   %body
     = render 'layouts/navbar'
-    .container{:style => "padding-top: 3%;" }
-      %article.card-body.bg-info.mx-auto{:style => "max-width: 400px; padding-top: 25px;"}
-        = yield
-        = render 'layouts/shared/notifications'
+    .container
+      = yield
+      = render 'layouts/shared/notifications'
