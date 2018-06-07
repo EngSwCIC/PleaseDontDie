@@ -7,13 +7,13 @@
       %ul.navbar-nav.ml-auto
         -if user_signed_in?
           %li.nav-item
-            = link_to current_user.email, user_path(current_user.id), class: "nav-link"
+            = link_to current_user.profile_user.first_name+" "+current_user.profile_user.last_name, user_path(current_user.id), class: "nav-link"
           %li.nav-item
-            = link_to "Logout", destroy_user_session_path, :class => "nav-link", method: :delete
+            = button_to "Sair", destroy_user_session_path, :class => "nav-link btn btn-sm btn-outline-secondary", method: :delete
         -else
           %li.nav-item
             = current_user
           %li.nav-item
-            = link_to "Sign up", new_user_registration_path, :class => "nav-link"
+            = link_to "Cadastre-se", new_user_registration_path, :class => "nav-link"
           %li.nav-item
-            = link_to "Log in", new_user_session_path, :class => "nav-link"
+            = link_to "Entrar", new_user_session_path, :class => "nav-link"

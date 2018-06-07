@@ -17,9 +17,13 @@
   <%= @pet.sex %>
 </p>
   <b>Espécie:</b>
-  <%= @pet.specie_id %>
-  <%# TODO: Get pet specie name %>
+  <%= @specie.name%>
 
 </p>
+<strong>
+<%= link_to 'Adicionar Afazer', new_pet_duty_path(@pet) %>
+</strong>
+<br>
+<br>
 <%= link_to 'Editar', edit_group_pet_path(@pet.group, @pet) %> |
 <%= link_to 'Voltar', group_pets_path(@pet.group) %>

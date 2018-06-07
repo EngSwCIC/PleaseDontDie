@@ -24,14 +24,15 @@
   </p>
   <p>
     <%= f.label :sexo %><br />
-    <%= f.radio_button :sex, 1 %>Macho
-    <%= f.radio_button :sex, 2 %>Femea
+    <%= f.radio_button :sex, "macho" %> Macho
+    <%= f.radio_button :sex, "fêmea" %> Fêmea
   </p>
   <p>
     <%= f.label :specie %><br />
-    <%= collection_select(:specie_id, 0, Specie.all, :id, :name) %>
+    <%= f.collection_select :specie_id, Specie.all, :id, :name,
+    {prompt: "Specie"} %>
   </p>
   <div class="actions">
-    <%= f.submit "Submit" %>
+    <%= f.submit "Enviar" %>
   </div>
 <% end %>

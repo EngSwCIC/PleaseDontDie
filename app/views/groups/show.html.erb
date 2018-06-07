@@ -1,23 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nome:</strong>
+<h1>
   <%= @group.name %>
+</h1>
+
+<p>
+  <%= link_to 'Editar', edit_group_path(@group) %> |
+  <%= link_to 'Voltar', groups_path %>
 </p>
 
+<%= form_tag(add_group_user_path(@group.id)) do |form| %>
+  <div class="field">
+    <%= label_tag :email, "Email do usuário:" %>
+    <%= text_field_tag :email %>
+    <%= submit_tag "Adicionar" %>
+  </div>
+<% end %>
 
-<h2>User</h2>
+<h2>Usuários</h2>
 <table>
   <thead>
-    <tr>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
   </thead>
   <tbody>
     <% @group.profile_users.each do |user| %>
       <tr>
-        <td><%= user.user.email %></td>
+        <td><%= link_to user.user.email, profile_user_path(user) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -25,19 +32,15 @@
 
 <br>
 
-<h2>Pet</h2>
+<h2>Pets</h2>
 <table>
   <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
   </thead>
   <tbody>
     <% @group.pets.each do |pet| %>
       <tr>
-        <td><%= pet.name %></td>
-        <%#<td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>%>
+        <td><%= link_to pet.name, [pet.group, pet] %></td>
+<!--        <td><%#= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>
@@ -48,17 +51,4 @@
   <%= link_to 'Pets', group_pets_path(@group) %> |
   <%= link_to "Novo Pet", new_group_pet_path(@group), id:'novo-pet' %>
 </p>
-<p>
-  <%= link_to 'Editar', edit_group_path(@group) %> |
-  <%= link_to 'Voltar', groups_path %>
-</p>
-
-<%= form_tag(add_group_user_path(@group.id)) do |form| %>
-
-  <div class="field">
-    <%= label_tag :email, "User email:" %>
-    <%= text_field_tag :email %>
-    <%= submit_tag "Add" %>
-  </div>
-<% end %>
 

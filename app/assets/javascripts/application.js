@@ -14,8 +14,6 @@
 //= require rails-ujs
 //= require bootstrap.growl
 //= require activestorage
-//= require turbolinks
 //= require_tree .
 //= require bootstrap
-
-
+//= require turbolinks

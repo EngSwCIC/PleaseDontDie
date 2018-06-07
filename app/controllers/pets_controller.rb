@@ -1,12 +1,9 @@
 class PetsController < ApplicationController
-  before_action :set_pets
+  before_action :set_group
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
 
-  # GET groups/1/pets
   def index
-    group = Group.find(params[:group_id])
-
-    @pets = group.pets
+    @pets = @group.pets
 
     respond_to do |format|
       format.html
@@ -14,11 +11,10 @@ class PetsController < ApplicationController
     end
   end
 
-  # GET groups/1/pets/1
   def show
-    group = Group.find(params[:group_id])
+    @specie = Specie.find(@pet.specie_id)
 
-    @pet = group.pets.find(params[:id])
+    @pet = @group.pets.find(params[:id])
 
     respond_to do |format|
       format.html
@@ -27,11 +23,8 @@ class PetsController < ApplicationController
 
   end
 
-  # GET groups/1/pets/new
   def new
-    group = Group.find(params[:group_id])
-
-    @pet = group.pets.build
+    @pet = @group.pets.build
 
     respond_to do |format|
       format.html
@@ -39,11 +32,9 @@ class PetsController < ApplicationController
     end
   end
 
-  # GET groups/1/pets/1/edit
   def edit
   end
 
-  # POST groups/1/pets
   def create
     @pet = @group.pets.build(pet_params)
 
@@ -54,7 +45,6 @@ class PetsController < ApplicationController
     end
   end
 
-  # PUT groups/1/pets/1
   def update
     if @pet.update_attributes(pet_params)
       redirect_to([@pet.group, @pet], notice: 'Pet was successfully updated.')
@@ -72,7 +62,7 @@ class PetsController < ApplicationController
 
   private
   # Use callbacks to share common setup or constraints between actions.
-  def set_pets
+  def set_group
     @group = Group.find(params[:group_id])
   end
 

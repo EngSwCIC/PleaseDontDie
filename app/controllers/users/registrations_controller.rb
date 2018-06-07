@@ -1,5 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-
 	before_action :configure_permitted_parameters
 
 	def new
@@ -9,6 +8,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 	end
 
 	protected
+	def after_sign_up_path_for(user)
+		profile_user_path(user.profile_user)
+	end
+	def after_update_path_for(user)
+		profile_user_path(user.profile_user)
+	end
+
 
 	def configure_permitted_parameters
 		devise_parameter_sanitizer.permit(

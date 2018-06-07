@@ -1,9 +1,0 @@
-/*
- *= require bootstrap
-*/
-
- body, html {
-    height: 100%;
-    background-repeat: no-repeat;
-    background: #eee url(http://subtlepatterns.com/patterns/sativa.png);
-}

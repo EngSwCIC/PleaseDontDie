@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @duty.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @duty.description %>
+</p>
+
+<p>
+  <strong>Importance:</strong>
+  <%= @duty.importance %>
+</p>
+
+<p>
+  <strong>Frequency:</strong>
+  <%= @duty.frequency %>
+</p>
+
+<p>
+  <strong>Pet:</strong>
+  <%= @duty.pet %>
+</p>
+
+<p>
+  <strong>Need:</strong>
+  <%= @duty.need %>
+</p>
+
+<p>
+  <strong>Done:</strong>
+  <%= @duty.done %>
+</p>
+
+<%= link_to 'Edit', edit_duty_path(@duty) %> |
+<%= link_to 'Back', duties_path %>

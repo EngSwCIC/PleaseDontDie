@@ -1,4 +1,4 @@
-<h1>Your Pets</h1>
+<h1>Seus Pets</h1>
 
 <table>
   <tr>
@@ -8,9 +8,8 @@
 
   <% @pets.each do |pet| %>
     <tr>
-      <td><%= pet.name %></td>
+      <td><%= link_to pet.name, [pet.group, pet] %></td>
       <td><%= pet.birthday.strftime("%d/%m/%Y") %></td>
-      <td><%= link_to 'Mais', [pet.group, pet] %></td>
       <td><%= link_to 'Editar', edit_group_pet_path(pet.group, pet) %></td>
       <td><%= link_to 'Apagar', [pet.group, pet], :confirm => 'Tem certeza?', :method => :delete %></td>
     </tr>
