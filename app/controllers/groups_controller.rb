@@ -1,8 +1,13 @@
 class GroupsController < ApplicationController
-  before_action :load_group, only: [:show, :edit, :update, :destroy, :add_user]
+  before_action :load_group, except: [:index, :new, :create]
+  before_action :set_user_profile, except: [:add_user]
 
   def index
-    @groups = Group.all
+    if current_user
+      @groups = current_user.profile_user.groups
+    else
+      @groups = Group.all
+    end
   end
 
   def show
@@ -71,11 +76,14 @@ class GroupsController < ApplicationController
   end
 
   private
+    def set_user_profile
+      @user = ProfileUser.find(current_user.id)
+    end
+
     def load_group
       @group = Group.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
       params.require(:group).permit(:name)
     end

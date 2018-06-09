@@ -1,0 +1,14 @@
+.text
+  .list-group.list-group-flush
+    .list-group-item.list-group-item-action
+      = link_to 'Perfil',user_path(current_user.id)
+    .list-group-item.list-group-item-action
+      = link_to 'Editar perfil',edit_profile_user_path(current_user.id)
+    .list-group-item.list-group-item-action
+      = link_to "Email e Senha", edit_user_registration_path(current_user.id)
+    .list-group-item.list-group-item-action
+      = link_to 'Grupos', groups_path
+    .list-group-item.list-group-item-action
+      = link_to 'Adicionar grupo', new_group_path
+    %a.list-group-item.list-group-item-action.disabled{:href => "#"} Amigos
+    %a.list-group-item.list-group-item-action.disabled{:href => "#"} Pets
