@@ -31,7 +31,7 @@
           - @group.pets.each do |pet|
             %tr
               %td= link_to pet.name, [pet.group, pet]
-      %p
-        = link_to 'Pets', group_pets_path(@group)
-        |
-        \#{link_to "Novo Pet", new_group_pet_path(@group), id:'novo-pet'}
+
+      %a{:href => group_pets_path(@group), :class => "link"} Pets
+      |
+      %a{:href => new_group_pet_path(@group), :class => "link"} Novo Pet
