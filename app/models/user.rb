@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_one :profile_user
   accepts_nested_attributes_for :profile_user
-  validate :nested_attributes
+  #validate :nested_attributes
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

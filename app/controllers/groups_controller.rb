@@ -77,7 +77,7 @@ class GroupsController < ApplicationController
 
   private
     def set_user_profile
-      @user = ProfileUser.find(current_user.id)
+      @user = ProfileUser.find(current_user.profile_user.id)
     end
 
     def load_group
