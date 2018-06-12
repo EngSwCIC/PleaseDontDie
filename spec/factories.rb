@@ -21,4 +21,11 @@ FactoryBot.define do
     association :user, factory: :random_user
   end
 
+  factory :group do
+    name { 
+      n = Faker::StarTrek.specie
+      n.length < 2 ? (n = Faker::StarTrek.specie) : n
+    }
+  end
+
 end

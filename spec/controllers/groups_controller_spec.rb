@@ -29,11 +29,15 @@ RSpec.describe GroupsController, type: :controller do
   # Group. As you add validations to Group, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {name: 'Valid Name'}
+    { name: 'Valid Name' }
   }
 
   let(:invalid_attributes) {
-    {name: 1234}
+    { name: 1 }
+  }
+
+  let(:invalid_user) {
+    { email: 'unvalid' }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -45,6 +49,7 @@ RSpec.describe GroupsController, type: :controller do
     @profile_user = FactoryBot.create(:profile_user)
     allow(controller).to receive(:current_user) { @profile_user.user }
   end
+
   describe "GET #index" do
     it "returns a successful response" do
       group = Group.create! valid_attributes
@@ -93,7 +98,7 @@ RSpec.describe GroupsController, type: :controller do
     context "with invalid params" do
       it "returns a successful response (i.e. to display the 'new' template)" do
         post :create, params: {group: invalid_attributes}, session: valid_session
-        expect(response).not_to be_successful
+        expect(response).to be_successful
       end
     end
   end
@@ -123,7 +128,7 @@ RSpec.describe GroupsController, type: :controller do
       it "returns a successful response (i.e. to display the 'edit' template)" do
         group = Group.create! valid_attributes
         put :update, params: {id: group.to_param, group: invalid_attributes}, session: valid_session
-        expect(response).not_to be_successful
+        expect(response).to be_successful
       end
     end
   end
@@ -140,6 +145,45 @@ RSpec.describe GroupsController, type: :controller do
       group = Group.create! valid_attributes
       delete :destroy, params: {id: group.to_param}, session: valid_session
       expect(response).to redirect_to(groups_url)
+    end
+  end
+
+  describe "POST #add_user" do
+    before :each do
+      @group = FactoryBot.create(:group)
+      @dummy_email = 'one@email.com'
+      @user = FactoryBot.create(:user, email: @dummy_email)
+      @dummy = FactoryBot.create(:profile_user, user: @user)
+    end
+
+    it "calls User model to find the correct user" do
+      expect(User).to receive(:where).with({email: @dummy_email}).and_return([@user])
+      post :add_user, params: {id: @group.id, email: @dummy_email }, session: valid_session
+    end
+
+    it "returns a notice if the user was not found" do
+      post :add_user, params: {id: @group.id, email: "notuser@email.com" }, session: valid_session
+      expect(flash[:notice]).to eq('Usuário não encontrado.')
+    end
+
+    it "returns a notice if the user was not found if filled with invalid text" do
+      post :add_user, params: {id: @group.id, email: 4546 }, session: valid_session
+      expect(flash[:notice]).to eq('Usuário não encontrado.')
+    end
+
+    it "returns a notice if the user was not found if filled with invalid text" do
+      post :add_user, params: {id: @group.id, email: "" }, session: valid_session
+      expect(flash[:notice]).to eq('Usuário não encontrado.')
+    end
+
+    it "adds a user to group" do
+      post :add_user, params: {id: @group.id, email: @user.email }, session: valid_session
+      expect(@group.profile_users).to include(@dummy)
+    end
+
+    it "returns a notice if the user was successfully added" do
+      post :add_user, params: {id: @group.id, email: @user.email }, session: valid_session
+      expect(flash[:notice]).to eq('Usuário adicionado com sucesso.')
     end
   end
 
