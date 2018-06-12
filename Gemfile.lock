@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stympy/faker.git
+  revision: c7f21a067151d46678974d06261ad06684268047
+  branch: master
+  specs:
+    faker (1.8.7)
+      i18n (>= 0.7)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -304,6 +312,7 @@ DEPENDENCIES
   devise
   devise-i18n
   factory_bot_rails
+  faker!
   font-awesome-rails (~> 4.7, >= 4.7.0.4)
   haml
   jbuilder (~> 2.5)

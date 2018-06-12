@@ -1,13 +1,40 @@
-Dado("que estou logado") do
-  puts session.inspect
+Dado("que sou um usuário logado") do
+  login
 end
 
-Quando("cliclo em Grupo") do
-  pending # Write code here that turns the phrase above into concrete actions
+Dado(/que o usuário "([^"]*)" existe/) do |email|
+  password = "senha1234"
+  user = User.new(email: email, password: password)
+  puser = ProfileUser.new(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, user: user)
+  puser.save!
 end
 
-Então("são mostrados todos os usuários desse grupo") do
-  pending # Write code here that turns the phrase above into concrete actions
+E("que possuo um grupo") do
+  @group = Group.create!(name: Faker::GameOfThrones.house)
+  @group.profile_users << current_user.profile_user
 end
+
+Quando(/vou para (.+)/) do |page_name|
+  visit path_to(page_name)
+end
+
+Então("é mostrado que possuo esse grupo") do
+  page.should have_content(@group.name)
+end
+
+Quando(/^preencho "([^"]*)" com: "([^"]*)"$/) do |field, value|
+  fill_in(field, with: value)
+  click_button("Adicionar")
+end
+
+Então("é mostrado que o usuário não foi encontrado") do
+  page.should_not have_content("invalid@email.com")
+end
+
+Então(/é mostrado que "([^"]*)" foi adicionado com sucesso/) do |email|
+  page.should have_content(email)
+end
+
+
 
 

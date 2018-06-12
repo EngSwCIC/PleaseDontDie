@@ -93,7 +93,7 @@ RSpec.describe GroupsController, type: :controller do
     context "with invalid params" do
       it "returns a successful response (i.e. to display the 'new' template)" do
         post :create, params: {group: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+        expect(response).not_to be_successful
       end
     end
   end
@@ -101,14 +101,15 @@ RSpec.describe GroupsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        @new_name = 'Another name'
+        { name: @new_name }
       }
 
       it "updates the requested group" do
         group = Group.create! valid_attributes
         put :update, params: {id: group.to_param, group: new_attributes}, session: valid_session
         group.reload
-        skip("Add assertions for updated state")
+        expect(group.name).to eq(@new_name)
       end
 
       it "redirects to the group" do
@@ -122,7 +123,7 @@ RSpec.describe GroupsController, type: :controller do
       it "returns a successful response (i.e. to display the 'edit' template)" do
         group = Group.create! valid_attributes
         put :update, params: {id: group.to_param, group: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+        expect(response).not_to be_successful
       end
     end
   end

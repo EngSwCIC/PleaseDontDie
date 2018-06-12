@@ -61,7 +61,7 @@ group :development, :test do
   # RSpec for Rails-3+
   gem 'rspec-rails', '~> 3.7'
   gem 'factory_bot_rails'
-
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 end
 
 # Heroku deploy
