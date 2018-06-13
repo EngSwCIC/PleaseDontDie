@@ -5,6 +5,7 @@ end
 Dado(/que o usuário "([^"]*)" existe/) do |email|
   password = "senha1234"
   user = User.new(email: email, password: password)
+  user.save!
   puser = ProfileUser.new(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, user: user)
   puser.save!
 end
@@ -19,7 +20,7 @@ Quando(/vou para (.+)/) do |page_name|
 end
 
 Então("é mostrado que possuo esse grupo") do
-  page.should have_content(@group.name)
+  expect(page).to have_content(@group.name)
 end
 
 Quando(/^preencho "([^"]*)" com: "([^"]*)"$/) do |field, value|
@@ -28,11 +29,11 @@ Quando(/^preencho "([^"]*)" com: "([^"]*)"$/) do |field, value|
 end
 
 Então("é mostrado que o usuário não foi encontrado") do
-  page.should_not have_content("invalid@email.com")
+  expect(page).not_to have_content("invalid@email.com")
 end
 
 Então(/é mostrado que "([^"]*)" foi adicionado com sucesso/) do |email|
-  page.should have_content(email)
+  expect(page).to have_content(email)
 end
 
 

@@ -10,6 +10,7 @@ module UserSessionHelper
 	  first_name = 'Tester'
 	  last_name = 'Mock'
 	  user = User.new(email: email, password: password)
+      user.save!
 	  puser = ProfileUser.new(first_name: first_name, last_name: last_name, user: user)
 	  puser.save!
     end
@@ -18,7 +19,7 @@ module UserSessionHelper
 	fill_in 'inputEmail', with: @current_user.email
 	fill_in 'inputPassword', with: password
 	click_button 'Entrar'
-    page.should have_content(
+    expect(page).to have_content(
 		"#{@current_user.profile_user.first_name} #{@current_user.profile_user.last_name}"
 	)
   end
