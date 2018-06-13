@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Duties</h1>
+<h1>Afazeres</h1>
 
 <table>
   <thead>
@@ -19,6 +19,7 @@
   <tbody>
     <% @duties.each do |duty| %>
       <tr>
+        <td><%= link_to duty.name, [duty.pet, duty] %></td>
         <td><%= duty.name %></td>
         <td><%= duty.description %></td>
         <td><%= duty.importance %></td>
@@ -26,9 +27,8 @@
         <td><%= duty.pet %></td>
         <td><%= duty.need %></td>
         <td><%= duty.done %></td>
-        <td><%= link_to 'Show', duty %></td>
-        <td><%= link_to 'Edit', edit_duty_path(duty) %></td>
-        <td><%= link_to 'Destroy', duty, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Editar', edit_pet_duty_path(duty.pet, duty) %></td>
+        <td><%= link_to 'Apagar', [duty.pet, duty],  confirm: 'Tem certeza?', method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +36,5 @@
 
 <br>
 
-<%= link_to 'New Duty', new_duty_path %>
+<%= link_to 'Novo afazer', new_pet_duty_path(@pet) %>
+<%= link_to 'Voltar ao Grupo', group_path(@pet.group) %>

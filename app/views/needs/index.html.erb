@@ -1,10 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Needs</h1>
+<h1>Necessidades</h1>
 
 <table>
   <thead>
     <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Importância</th>
+      <th>Frequência</th>
+      <th>Espécie</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,9 +15,14 @@
   <tbody>
     <% @needs.each do |need| %>
       <tr>
-        <td><%= link_to 'Show', need %></td>
-        <td><%= link_to 'Edit', edit_need_path(need) %></td>
-        <td><%= link_to 'Destroy', need, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to need.name, [need.specie, need] %></td>
+        <td><%= need.description %></td>
+        <td><%= need.importance %></td>
+        <td><%= need.frequency %></td>
+        <td><%= need.specie.name %></td>
+<!--        <td><%#= link_to 'Mais', species_need_path(need.specie, need) %></td>-->
+        <td><%= link_to 'Editar', edit_species_need_path(need.specie, need) %></td>
+        <td><%= link_to 'Apagar', [need.specie, need], method: :delete, data: { confirm: 'Tem certeza?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +30,5 @@
 
 <br>
 
-<%= link_to 'New Need', new_need_path %>
+<%= link_to 'Nova necessidade', new_species_need_path %>
+<%#= link_to 'Voltar à Espécie', species _path(@need.specie) %>
