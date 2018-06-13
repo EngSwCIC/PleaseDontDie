@@ -10,11 +10,9 @@
   </thead>
 
   <tbody>
-    <% @species.each do |species| %>
+    <% @species.each do |specie| %>
       <tr>
-        <td><%= link_to 'Show', species %></td>
-        <td><%= link_to 'Edit', edit_species_path(species) %></td>
-        <td><%= link_to 'Destroy', species, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to specie.name, specie %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +20,3 @@
 
 <br>
 
-<%= link_to 'New Species', new_species_path %>
