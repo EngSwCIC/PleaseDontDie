@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     resources :duties
   end
 
-  resources :species, only: [:index, :show] do
-    resources :needs, only: [:index, :show]
+  resources :species do
+    resources :needs
   end
 
   # routes home
