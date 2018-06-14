@@ -5,7 +5,7 @@ Dado(/^que estou logado e me encontro na home page$/) do
 end
 
 Quando(/^clico em "([^"]*)"$/) do |button|
-  click_link(button)
+  click_on(button)
 end
 
 Então(/^devo ir para a página de perfil de usuário$/) do

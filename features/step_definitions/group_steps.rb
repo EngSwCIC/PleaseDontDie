@@ -25,7 +25,6 @@ end
 
 Quando(/^preencho "([^"]*)" com: "([^"]*)"$/) do |field, value|
   fill_in(field, with: value)
-  click_button("Adicionar")
 end
 
 Então("é mostrado que o usuário não foi encontrado") do
@@ -34,6 +33,14 @@ end
 
 Então(/é mostrado que "([^"]*)" foi adicionado com sucesso/) do |email|
   expect(page).to have_content(email)
+end
+
+Então(/sou redirecionado para "([^"]*)"/) do |group_name|
+  expect(page).to have_content(group_name)
+end
+
+Então(/sou avisado que "([^"]*)"/) do |warning|
+  expect(page).to have_content(warning)
 end
 
 
