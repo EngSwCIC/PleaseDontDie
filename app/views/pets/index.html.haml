@@ -1,0 +1,21 @@
+.container
+  %hr/
+  .row
+    .col-md-3
+      = render 'layouts/sidemenu'
+    .col-md-9
+      %h1 Seus Pets
+      %table
+        %tr
+          %th Nome
+          %th Aniversário
+        - @pets.each do |pet|
+          %tr
+            %td= link_to pet.name, [pet.group, pet]
+            %td= pet.birthday.strftime("%d/%m/%Y")
+            %td= link_to 'Editar', edit_group_pet_path(pet.group, pet)
+            %td= link_to 'Apagar', [pet.group, pet], :confirm => 'Tem certeza?', :method => :delete
+      %br/
+      = link_to 'Novo Pet', new_group_pet_path(@group)
+      |
+      \#{link_to 'Voltar ao Grupo', group_path(@group)}

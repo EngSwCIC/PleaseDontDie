@@ -1,5 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-
 	before_action :configure_permitted_parameters
 
 	def new
@@ -8,12 +7,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 		respond_with self.resource		
 	end
 
+	def edit
+		@user = User.find(current_user.id)		
+	end
 	protected
 	def after_sign_up_path_for(user)
-		profile_user_index_path
+		profile_user_path(user.profile_user)
 	end
 	def after_update_path_for(user)
-		profile_user_index_path
+		profile_user_path(user.profile_user)
 	end
 
 

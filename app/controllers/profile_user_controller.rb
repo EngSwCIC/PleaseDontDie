@@ -1,8 +1,12 @@
 class ProfileUserController < ApplicationController
-  before_action :set_user, only: [:index, :edit, :update]
+  layout "profile_user"
+  before_action :set_user, only: [:index, :show, :edit, :update]
 
   def index
     @user = ProfileUser.find_or_create_by(user_id: current_user.id)
+  end
+
+  def show
   end
   
   def edit
@@ -10,7 +14,7 @@ class ProfileUserController < ApplicationController
 
   def update
     if @user.update(params_user)
-      redirect_to profile_user_index_path(current_user.id) , notice: "Dados atualizados com sucesso."
+      redirect_to profile_user_path(current_user.id) , notice: "Dados atualizados com sucesso."
     else
       render :edit
     end
