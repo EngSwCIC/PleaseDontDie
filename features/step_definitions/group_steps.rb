@@ -43,6 +43,26 @@ Então(/sou avisado que "([^"]*)"/) do |warning|
   expect(page).to have_content(warning)
 end
 
+Dado(/que possuo um grupo chamado "([^"]*)"/) do |group_name|
+  @group = Group.create!(name: group_name)
+  @group.profile_users << current_user.profile_user
+end
+
+Quando("confirmo") do
+  click_on("OK")
+end
+
+Então(/o grupo "([^"]*)" não aparece mais na minha página de grupos/) do |group_name|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Quando(/clico em "([^"]*)" de "([^"]*)"/) do |link_name, owner|
+  click_on("#{link_name}_#{Group.find_by(name: owner).id}")
+end
+
+
+
+
 
 
 

@@ -19,4 +19,11 @@ Cenário: Adicionar um grupo com nome inválido
     E clico em "Enviar"
     Então sou avisado que "é muito curto"
 
+Cenário: Deletar um grupo
+    Dado que sou um usuário logado
+    E que possuo um grupo chamado "MeuGrupo"
+    E vou para a minha página do grupo
+    Quando clico em "apagar" de "MeuGrupo"
+    Então sou avisado que "deletado com sucesso"
+
 
