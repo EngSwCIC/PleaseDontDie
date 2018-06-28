@@ -1,8 +1,13 @@
 class GroupsController < ApplicationController
-  before_action :load_group, only: [:show, :edit, :update, :destroy, :add_user]
+  before_action :load_group, except: [:index, :new, :create]
+  before_action :set_user_profile, except: [:add_user]
 
   def index
-    @groups = Group.all
+    if current_user
+      @groups = current_user.profile_user.groups
+    else
+      @groups = Group.all
+    end
   end
 
   def show
@@ -45,6 +50,7 @@ class GroupsController < ApplicationController
   end
 
   def destroy
+    @group.profile_users.delete(@group.profile_users)
     @group.destroy
     respond_to do |format|
       format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
@@ -53,9 +59,10 @@ class GroupsController < ApplicationController
   end
 
   def add_user
-    @user = ProfileUser.where(email: params[:email]).first
+    @user = User.where(email: params[:email]).first
     if @user
-      @group.users << @user
+      @profile_user = @user.profile_user
+      @group.profile_users << @profile_user
       respond_to do |format|
         format.html { redirect_to @group, notice: 'ProfileUser successfully added.' }
         format.json { head :no_content }
@@ -69,11 +76,14 @@ class GroupsController < ApplicationController
   end
 
   private
+    def set_user_profile
+      @user = ProfileUser.find(current_user.id)
+    end
+
     def load_group
       @group = Group.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
       params.require(:group).permit(:name)
     end

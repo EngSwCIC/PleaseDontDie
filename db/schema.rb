@@ -10,15 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_23_162938) do
+ActiveRecord::Schema.define(version: 2018_06_07_192941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "duties", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "importance"
+    t.integer "frequency"
+    t.bigint "pet_id"
+    t.bigint "need_id"
+    t.boolean "done"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "until"
+    t.index ["need_id"], name: "index_duties_on_need_id"
+    t.index ["pet_id"], name: "index_duties_on_pet_id"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "groups_profile_users", force: :cascade do |t|
+    t.bigint "group_id"
+    t.bigint "profile_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_groups_profile_users_on_group_id"
+    t.index ["profile_user_id"], name: "index_groups_profile_users_on_profile_user_id"
   end
 
   create_table "needs", force: :cascade do |t|
@@ -41,6 +65,7 @@ ActiveRecord::Schema.define(version: 2018_05_23_162938) do
     t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["group_id"], name: "index_pets_on_group_id"
     t.index ["specie_id"], name: "index_pets_on_specie_id"
   end
@@ -52,10 +77,9 @@ ActiveRecord::Schema.define(version: 2018_05_23_162938) do
     t.text "address"
     t.string "phone"
     t.bigint "user_id"
-    t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_profile_users_on_group_id"
+    t.string "image"
     t.index ["user_id"], name: "index_profile_users_on_user_id"
   end
 
@@ -83,6 +107,9 @@ ActiveRecord::Schema.define(version: 2018_05_23_162938) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "profile_users", "groups"
+  add_foreign_key "duties", "needs"
+  add_foreign_key "duties", "pets"
+  add_foreign_key "groups_profile_users", "groups"
+  add_foreign_key "groups_profile_users", "profile_users"
   add_foreign_key "profile_users", "users"
 end

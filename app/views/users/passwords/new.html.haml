@@ -1,10 +1,13 @@
-%h2 Forgot your password?
+%h2 Esqueceu sua senha?
 = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .form-group
+    .input-group
+      .input-group-prepend
+        %span.input-group-text
+          %i.fa.fa-envelope 
+      = f.email_field :email, autofocus: true, autocomplete: "email",type:"email", id:"inputEmail", class: "form-control", placeholder:"Email"
   .actions
-    = f.submit "Send me reset password instructions"
-= render "users/shared/links"
+    = f.submit "Enviar redefinição de senha",class: "btn btn-lg btn-primary btn-block", type:"submit"
+- unless devise_error_messages!.blank?
+  - resource.errors.full_messages.each do |message|
+    = javascript_tag "$.notify( { message: '#{message}'}, { type: 'danger', placement: { from: 'top', align: 'center' }})"

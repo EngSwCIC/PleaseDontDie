@@ -11,8 +11,8 @@
  * It is generally better to create a new file per style scope.
 
  *= require animate-css
- *= require bootstrap
  *= require font-awesome
+ *= require bootstrap
  *= require_self
  */
 body {
@@ -51,9 +51,9 @@ img {
 }
 
 .navbar-custom {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    background-color:  #00e6e6
+    padding-top: 0.5rem 1rem;
+    background-color:  #000;
+    padding: 1rem 1rem;
     /* TODO:  background-color: hsl(120, 100%, 50%);*/
 }
 
@@ -69,7 +69,7 @@ img {
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.1rem;
-    color: black
+    color: #fff
 }
 
 header.masthead {
@@ -148,11 +148,6 @@ header.masthead .bg-circle-4 {
 
 .bg-primary {
     background-color: #ee0979 !important;
-}
-
-.btn-primary {
-    background-color: #7cfc00;
-    border-color: #7cfc00;
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {

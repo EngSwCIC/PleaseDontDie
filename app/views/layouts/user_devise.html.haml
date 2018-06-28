@@ -1,16 +1,16 @@
 !!!
 %html
   %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title PleaseDontDie
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = stylesheet_link_tag    'user', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'user', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
     %link{:href => "css/uikit.css", :rel => "stylesheet", :type => "text/css"}/
     %link{:href => "css/responsive.css", :media => "only screen and (max-width: 1200px)", :rel => "stylesheet"}/
   %body
     = render 'layouts/navbar'
-    = yield
-    = render 'layouts/shared/notifications'
+    .container
+      = yield
+      = render 'layouts/shared/notifications'

@@ -1,0 +1,42 @@
+<%= form_for([@need.specie, @need]) do |form| %>
+  <% if @need.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@need.errors.count, "error") %> prohibited this need from being saved:</h2>
+
+      <ul>
+      <% @need.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descrição %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :importância %>
+    <%= form.number_field :importance, in: 1..5, step: 1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label "frequência em horas" %>
+    <%= form.number_field :frequency, in: 1..1000 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :specie %><br />
+    <%= form.collection_select :specie_id, Specie.all, :id, :name, {prompt: "Specie"} %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

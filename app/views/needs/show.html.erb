@@ -1,0 +1,27 @@
+<p>
+  <strong>Nome:</strong>
+  <%= @need.name %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @need.description %>
+</p>
+
+<p>
+  <strong>Importância:</strong>
+  <%= @need.importance %>
+</p>
+
+<p>
+  <strong>Frequência:</strong>
+  <%= @need.frequency %>
+</p>
+
+<p>
+  <strong>Espécie:</strong>
+  <%= @need.specie.name %>
+</p>
+
+<%= link_to 'Editar', edit_species_need_path(@need.specie) %> |
+<%= link_to 'Voltar', species_needs_path %>
