@@ -1,6 +1,6 @@
 class ProfileUserController < ApplicationController
   layout "profile_user"
-  before_action :set_user, only: [:index, :show, :edit, :update]
+  before_action :set_user, only: [:index, :show, :edit, :update, :pets, :duties]
 
   def index
     @user = ProfileUser.find_or_create_by(user_id: current_user.id)
@@ -18,6 +18,14 @@ class ProfileUserController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def pets
+    @pets = @user.pets
+  end
+
+  def duties
+    @duties = @user.duties
   end
 
   private
