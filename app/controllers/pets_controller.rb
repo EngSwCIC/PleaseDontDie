@@ -3,6 +3,7 @@ class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
 
   def index
+    @user = set_user_profile
     @pets = @group.pets
 
     respond_to do |format|
@@ -12,6 +13,7 @@ class PetsController < ApplicationController
   end
 
   def show
+    @user = set_user_profile
     @specie = Specie.find(@pet.specie_id)
 
     @pet = @group.pets.find(params[:id])
@@ -24,6 +26,7 @@ class PetsController < ApplicationController
   end
 
   def new
+    @user = set_user_profile
     @pet = @group.pets.build
 
     respond_to do |format|
@@ -33,9 +36,11 @@ class PetsController < ApplicationController
   end
 
   def edit
+    @user = set_user_profile
   end
 
   def create
+    @user = set_user_profile
     @pet = @group.pets.build(pet_params)
 
     if @pet.save
@@ -46,6 +51,7 @@ class PetsController < ApplicationController
   end
 
   def update
+    @user = set_user_profile
     if @pet.update_attributes(pet_params)
       redirect_to([@pet.group, @pet], notice: 'Pet was successfully updated.')
     else
@@ -61,6 +67,9 @@ class PetsController < ApplicationController
   end
 
   private
+  def set_user_profile
+    @user = ProfileUser.find(current_user.id)
+  end
   # Use callbacks to share common setup or constraints between actions.
   def set_group
     @group = Group.find(params[:group_id])

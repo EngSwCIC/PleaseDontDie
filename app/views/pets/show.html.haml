@@ -1,0 +1,28 @@
+.container
+  %hr/
+  .row
+    .col-md-3
+      = render 'layouts/sidemenu'
+    .col-md-9
+      %p#notice= notice
+      %p
+        %b Nome:
+        = @pet.name
+      %p
+        %b Biografia:
+        = @pet.bio
+      %p
+        %b Aniversário:
+        = @pet.birthday.strftime("%d/%m/%Y")
+      %p
+        %b Sexo:
+        = @pet.sex
+      %b Espécie:
+      = @specie.name
+      %strong
+        = link_to 'Adicionar Afazer', new_pet_duty_path(@pet)
+      %br/
+      %br/
+      = link_to 'Editar', edit_group_pet_path(@pet.group, @pet)
+      |
+      \#{link_to 'Voltar', group_pets_path(@pet.group)}

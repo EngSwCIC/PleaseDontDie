@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   resources :groups do
     resources :pets
   end
+
   resources :pets do
     resources :duties
+  end
+
+  resources :species do
+    resources :needs
   end
 
   # routes home
@@ -12,7 +17,7 @@ Rails.application.routes.draw do
   get 'home', to: 'home#index'
 
   # route users
-  resources :profile_user, only: [:show, :edit, :update]
+  resources :profile_user, only: [:index, :show, :edit, :update]
   post 'group/:id/add_user', to: 'groups#add_user', as: 'add_group_user'
 
   get 'user/:id', to: 'profile_user#show', as: 'user'

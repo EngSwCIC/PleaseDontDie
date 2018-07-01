@@ -11,5 +11,14 @@
     %link{:href => "css/responsive.css", :media => "only screen and (max-width: 1200px)", :rel => "stylesheet"}/
   %body
     = render 'layouts/navbar'
-    = yield
-    = render 'layouts/shared/notifications'
+    .container
+      %hr/
+      .row
+        / Coluna da esquerda
+        .col-md-3
+          = render 'layouts/sidemenu'
+        / Coluna da direita
+        .col-md-9
+          = yield
+          = render 'layouts/shared/notifications'
+      %hr/
