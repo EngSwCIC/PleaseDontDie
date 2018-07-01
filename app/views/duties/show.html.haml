@@ -1,0 +1,30 @@
+.container
+  %hr/
+  .row
+    .col-md-3
+      = render 'layouts/sidemenu'
+    .col-md-9
+      %p
+        %strong Nome:
+        = @duty.name
+      %p
+        %strong Descrição:
+        = @duty.description
+      %p
+        %strong Importância:
+        = @duty.importance
+      %p
+        %strong Frequência:
+        = @duty.frequency
+      %p
+        %strong Pet:
+        = @duty.pet.name
+      %p
+        %strong Necessidade Associada:
+        = @duty.need.name
+      %p
+        %strong Feito?
+        = @duty.done
+      = link_to 'Editar', edit_pet_duty_path(@duty.pet)
+      |
+      = link_to 'Voltar', group_pets_path(@duty.pet.group)
