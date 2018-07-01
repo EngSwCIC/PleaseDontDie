@@ -4,6 +4,8 @@ class Pet < ApplicationRecord
   has_many :needs
   has_many :duties
 
+  has_one_attached :image
+
   def sex
     sex_prettyp(self[:sex]) || self[:sex]
   end
