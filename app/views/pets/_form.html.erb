@@ -32,6 +32,10 @@
     <%= f.collection_select :specie_id, Specie.all, :id, :name,
     {prompt: "Specie"} %>
   </p>
+  <p>
+    <%= f.label :image %><br />
+    <%= f.file_field :image %>
+  </p>
   <div class="actions">
     <%= f.submit "Enviar" %>
   </div>

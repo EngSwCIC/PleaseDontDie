@@ -6,6 +6,8 @@
     .col-md-9
       %p#notice= notice
       %p
+        - if @pet.image.attached?
+          = image_tag @pet.image
         %b Nome:
         = @pet.name
       %p
