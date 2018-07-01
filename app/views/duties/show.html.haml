@@ -21,7 +21,10 @@
         = @duty.pet.name
       %p
         %strong Necessidade Associada:
-        = @duty.need.name
+        - if @duty.need
+          = @duty.need.name
+        - else
+          Não associado
       %p
         %strong Feito?
         = @duty.done

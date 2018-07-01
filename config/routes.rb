@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     resources :pets
   end
 
+  get 'user/:id/pets', to: 'profile_user#pets', as: 'user_pets'
+  get 'user/:id/duties', to: 'profile_user#duties', as: 'user_duties'
+
   resources :pets do
     resources :duties
   end
