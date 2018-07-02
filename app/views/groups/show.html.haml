@@ -6,33 +6,40 @@
     .col-md-9
       %h1
         = @group.name
-        - if @group.picture.attached?
-          = image_tag @group.picture
-      %p
-        = link_to 'Editar', edit_group_path(@group)
-        |
-        \#{link_to 'Voltar', groups_path}
-      = form_tag(add_group_user_path(@group.id)) do |form|
-        .field
-          = label_tag :email, "Email do usuário:"
-          = text_field_tag :email
-          = submit_tag "Adicionar"
-      %h2 Usuários
-      %table
-        %thead
-        %tbody
-          - @group.profile_users.each do |user|
-            %tr
-              %td= link_to user.user.email, profile_user_path(user)
-      %br/
-      %h2 Pets
-      %table
-        %thead
-        %tbody
-          - @group.pets.each do |pet|
-            %tr
-              %td= link_to pet.name, [pet.group, pet]
-      %p
-        = link_to 'Pets', group_pets_path(@group)
-        |
-        \#{link_to "Novo Pet", new_group_pet_path(@group), id:'novo-pet'}
+      .row
+        .col-md-3
+          .img-thumbnail
+            - if @group.picture.attached?
+              =image_tag @group.picture
+            - else
+              = link_to (image_tag('profile_user.jpg'))
+          = link_to 'Editar grupo', edit_group_path(@group), class: "btn btn-lg btn-block btn-primary"
+          = link_to "Novo Pet", new_group_pet_path(@group), id:'novo-pet',class: "btn btn-lg btn-block btn-light btn-outline-primary"
+        .col-md-9
+          .row
+            .col-md-6
+              .h3 Descrição:
+            .col-md-6
+              = form_for(add_group_user_path(@group.id)) do |form|
+                .form-group
+                  %label.col-form-label{:for => "inputMember"}
+                  #inputMember
+                    = form.text_field :email, placeholder: "Email do usuário:", class: "form-control input"
+                    = form.submit "Adicionar", class: "btn btn-lg btn-primary btn-block btn-sm"
+                %h5 Membros:
+                .card-group
+                  - @group.profile_users.each do |user|
+                    .card{:style => "max-width: 50px;"}
+                      = link_to (image_tag(user.picture)), profile_user_path(user)
+        .col-md-12
+          .card-deck
+            - @group.pets.each do |pet|
+              .card{:style => "max-width: 300px;"}
+                .card-header.text-center
+                  = pet.name
+                -if pet.image.attached?
+                  = link_to (image_tag(pet.image)), [pet.group, pet]
+                -else
+                  = link_to (image_tag 'profile_user.jpg'), [pet.group, pet]
+
+

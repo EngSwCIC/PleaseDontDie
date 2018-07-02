@@ -4,22 +4,23 @@
     .col-md-3
       = render 'layouts/sidemenu'
     .col-md-9
-      %h1 Grupos
-      = link_to 'Novo Grupo', new_group_path
-      .card-group
+      %h1
+        = link_to 'Novo Grupo', new_group_path, class: "btn btn-primary"
+      .card-deck
         - @groups.each do |group|
           .card{:style => "min-width: 250px; max-width: 250px;"}
+            .card-header.text-center
+              = group.name
             - if group.picture.attached?
-              =image_tag group.picture
+              = link_to (image_tag(group.picture)), group
             - else
-              =image_tag 'profile_user.jpg'
-            .card-body
-              %h5.card-title
-                = link_to group.name, group
+              = link_to (image_tag('profile_user.jpg')), group
+            .card-body.text-center
               %p.card-text
                 Descricao do Grupo
-              %p.card-text
-                %small.text-muted colocar aqui quando foi atualizado...
               = link_to '', edit_group_path(group), class: "btn btn-primary fa fa-edit"
               %i.fa.fa-trash-alt
               = link_to '', group, class: "btn btn-danger fa fa-times-circle", method: :delete, data: { confirm: 'Tem certeza?' }
+            .card-footer
+              %small.text-muted
+                = "Atualizado em " + group.updated_at.localtime.strftime('%a, %d %b %Y %H:%M')

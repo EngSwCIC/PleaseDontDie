@@ -24,15 +24,18 @@ class ProfileUserController < ApplicationController
     @pets = @user.pets
   end
 
-  def feed
-    @duties = @user.duties
-  end
-
   def duties
     params["field_order"] ||= 'until'
     @duties = @user.duties.order("#{params["field_order"]} DESC")
   end
 
+  def feed
+    @duties = @user.duties.order(updated_at: :desc)
+    @groups = @user.groups.order(updated_at: :desc)
+    @pets = @user.pets.order(updated_at: :desc)
+    @groupsUsers = GroupsProfileUser.where(group_id: @user.groups).order(created_at: :desc)
+  end
+  
   def friends
     @friends = @user.profile_users.where.not(id: current_user.id).distinct
   end
