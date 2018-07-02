@@ -1,0 +1,81 @@
+= form_for([@pet.group, @pet]) do |f|
+  - if @pet.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@pet.errors.count, "error")
+        prohibited this pet from being saved:
+      %ul
+        - @pet.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputPicture"} Foto:
+    .col-sm-9
+      #inputPicture
+        = f.file_field :image, placeholder: "Foto", class: "form-control"
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputNome"} Nome:
+    .col-sm-9
+      #inputNome
+        = f.text_field :name, placeholder: "Nome", class: "form-control input"
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputNome"} Bibliografia:
+    .col-sm-9
+      #inputBio
+        = f.text_area :bio, placeholder: "biografia", class: "form-control input"
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputBirthday"} Data de nascimento:
+    .col-sm-9
+      #inputBirthday
+        = f.text_field :birthday, :start_year=>2000, type: 'date' ,class: "form-control"
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputSex"} Sexo:
+    .col-sm-9
+      #inputSex
+        = f.radio_button :sex, "Macho"
+        Macho
+        \#{f.radio_button :sex, "Fêmea"} Fêmea
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputNome"} Especie:
+    .col-sm-9
+      #inputEspecie
+        = f.collection_select :specie_id, Specie.all, :id, :name, |
+      {prompt: "Specie"}, class: "form-control"                                 |
+  .form-group.row
+    .button
+      = f.submit "Salvar", class: "btn btn-primary"
+
+
+/ = form_for(@user, url: profile_user_path(@user)) do |f|
+/   .form-group.row
+/     %label.col-sm-3.col-form-label{:for => "inputPicture"} Foto:
+/     .col-sm-9
+/       #inputPicture
+/         = f.file_field :picture, placeholder: "Foto", class: "form-control"
+/   .form-group.row
+/     %label.col-sm-3.col-form-label{:for => "inputNome"} Nome:
+/     .col-sm-9
+/       #inputNome
+/         = f.text_field :first_name, placeholder: "Primeiro Nome", class: "form-control input"
+/   .form-group.row
+/     %label.col-sm-3.col-form-label{:for => "inputSobrenome"} Sobrenome:
+/     .col-sm-9
+/       #inputSobrenome
+/         = f.text_field :last_name, placeholder: "Sobrenome", class: "form-control"
+/   .form-group.row
+/     %label.col-sm-3.col-form-label{:for => "inputNascimento"} Data de nascimento:
+/     .col-sm-9
+/       #inputNascimento
+/         = f.text_field :birthday, type: 'date' ,class: "form-control"
+/   .form-group.row
+/     %label.col-sm-3.col-form-label{:for => "inputEndereco"} Endereço:
+/     .col-sm-9
+/       #inputEndereco
+/         = f.text_field :address, placeholder: "Endereço", class: "form-control"
+/   .form-group.row
+/     %label.col-sm-3.col-form-label{:for => "inputTelefone"} Telefone:
+/     .col-sm-9
+/       #inputTelefone
+/         = f.text_field :phone, placeholder: "Telefone", class: "form-control"
+/   .form-group.row
+/     .button
+/       = f.submit "Salvar", class: "btn btn-primary"

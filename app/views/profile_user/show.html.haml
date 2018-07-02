@@ -6,6 +6,8 @@
           =image_tag @user.picture
         - else
           =image_tag 'profile_user.jpg'
+      - if current_user.id == params[:id].to_i
+        = link_to 'Editar perfil',edit_profile_user_path(current_user.id), class: "btn btn-lg btn-primary btn-block"
     .col-md-8
       %p
         %strong Nome:
@@ -23,6 +25,4 @@
         %strong Endereço:
         = @user.address
       %p
-        - if current_user.id == params[:id].to_i
-          = link_to 'Editar perfil',edit_profile_user_path(current_user.id), class: "btn btn-lg btn-primary"
       
