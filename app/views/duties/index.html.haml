@@ -4,21 +4,22 @@
     .col-md-3
       = render 'layouts/sidemenu'
     .col-md-9
-      %h1 Afazeres
-      %table
+      %h1 Afazeres teste
+      %table.table.table-striped
         %thead
           %tr
-            %th Nome
-            %th Descrição
-            %th Importância
-            %th Frequência
-            %th Pet
-            %th Necessidade Associada
-            %th Feito?
+            %th{:scope => "col"} Nome
+            %th{:scope => "col"} Descrição
+            %th{:scope => "col"} Importância
+            %th{:scope => "col"} Frequência
+            %th{:scope => "col"} Pet
+            %th{:scope => "col"} Necessidade Associada
+            %th{:scope => "col"} Feito?
             %th{:colspan => "3"}
         %tbody
           - @duties.each do |duty|
             %tr
+              %th{:scope => "row"}
               %td= link_to duty.name, [duty.pet, duty]
               %td= duty.name
               %td= duty.description
@@ -32,3 +33,30 @@
       %br/
       = link_to 'Novo afazer', new_pet_duty_path(@pet)
       = link_to 'Voltar ao Grupo', group_path(@pet.group)
+
+
+
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th{:scope => "col"} #
+      %th{:scope => "col"} First
+      %th{:scope => "col"} Last
+      %th{:scope => "col"} Handle
+  %tbody
+    %tr
+      %th{:scope => "row"} 1
+      %td Mark
+      %td Otto
+      %td @mdo
+    %tr
+      %th{:scope => "row"} 2
+      %td Jacob
+      %td Thornton
+      %td @fat
+    %tr
+      %th{:scope => "row"} 3
+      %td Larry
+      %td the Bird
+      %td @twitter

@@ -4,27 +4,31 @@
     .col-md-3
       = render 'layouts/sidemenu'
     .col-md-9
-      %p#notice= notice
-      %p
-        - if @pet.image.attached?
-          = image_tag @pet.image
-        %b Nome:
-        = @pet.name
-      %p
-        %b Biografia:
-        = @pet.bio
-      %p
-        %b Aniversário:
-        = @pet.birthday.strftime("%d/%m/%Y")
-      %p
-        %b Sexo:
-        = @pet.sex
-      %b Espécie:
-      = @specie.name
-      %br/
-      %strong
-        = link_to 'Adicionar Afazer', new_pet_duty_path(@pet)
-      %br/
-      = link_to 'Editar', edit_group_pet_path(@pet.group, @pet)
-      |
-      \#{link_to 'Voltar', group_pets_path(@pet.group)}
+      .row
+        .col-md-4
+          .img-thumbnail
+            - if @pet.image.attached?
+              =image_tag @pet.image
+            - else
+              =image_tag 'profile_user.jpg'
+          %p
+            = link_to 'Editar pet', edit_group_pet_path(@pet.group, @pet), class: "btn btn-lg btn-primary btn-block"
+          %p
+            = link_to 'Adicionar tarefa', new_pet_duty_path(@pet), class: "btn btn-lg btn-light btn-outline-primary btn-block"
+        .col-md-8
+          %p
+            %strong Nome:
+            = @pet.name
+          %p
+            %strong Biografia:
+            = @pet.bio
+          %p
+            %strong Aniversário:
+            = @pet.birthday.strftime("%d/%m/%Y")
+          %p
+            %strong Sexo:
+            = @pet.sex
+          %p
+            %strong Endereço:
+            = @user.address
+

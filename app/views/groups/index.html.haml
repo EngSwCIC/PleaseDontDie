@@ -22,4 +22,5 @@
               %i.fa.fa-trash-alt
               = link_to '', group, class: "btn btn-danger fa fa-times-circle", method: :delete, data: { confirm: 'Tem certeza?' }
             .card-footer
-              %small.text-muted colocar aqui quando foi atualizado...
+              %small.text-muted
+                = "Atualizado em " + group.updated_at.localtime.strftime('%a, %d %b %Y %H:%M')

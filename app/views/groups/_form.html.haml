@@ -1,0 +1,22 @@
+= form_with(model: group, local: true) do |form|
+  - if group.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(group.errors.count, "error")
+        prohibited this group from being saved:
+      %ul
+        - group.errors.full_messages.each do |message|
+          %li= message
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputPicture"} Foto:
+    .col-sm-9
+      #inputPicture
+        = form.file_field :picture, placeholder: "Foto", class: "form-control"
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputNome"} Nome:
+    .col-sm-9
+      #inputNome
+        = form.text_field :name, placeholder: "Nome", class: "form-control input"
+  .form-group.row
+    .button
+      = form.submit "Salvar", class: "btn btn-primary"
