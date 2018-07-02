@@ -6,6 +6,8 @@
     .col-md-9
       %p#notice= notice
       %p
+        - if @pet.image.attached?
+          = image_tag @pet.image
         %b Nome:
         = @pet.name
       %p
@@ -19,9 +21,9 @@
         = @pet.sex
       %b Espécie:
       = @specie.name
+      %br/
       %strong
         = link_to 'Adicionar Afazer', new_pet_duty_path(@pet)
-      %br/
       %br/
       = link_to 'Editar', edit_group_pet_path(@pet.group, @pet)
       |

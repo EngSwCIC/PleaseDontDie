@@ -1,6 +1,6 @@
 class ProfileUserController < ApplicationController
   layout "profile_user"
-  before_action :set_user, only: [:index, :show, :edit, :update]
+  before_action :set_user, only: [:index, :show, :edit, :update, :pets, :duties, :friends]
 
   def index
     @user = ProfileUser.find_or_create_by(user_id: current_user.id)
@@ -20,6 +20,18 @@ class ProfileUserController < ApplicationController
     end
   end
 
+  def pets
+    @pets = @user.pets
+  end
+
+  def duties
+    @duties = @user.duties
+  end
+
+  def friends
+    @friends = @user.profile_users
+  end
+
   private
 
   def set_user
@@ -27,7 +39,7 @@ class ProfileUserController < ApplicationController
   end
 
   def params_user
-  	params.require(:profile_user).permit(:first_name, :last_name, :birthday, :address, :phone)
+  	params.require(:profile_user).permit(:first_name, :last_name, :birthday, :address, :phone, :picture)
   end
 
 end

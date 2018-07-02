@@ -10,7 +10,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 	def edit
 		@user = User.find(current_user.id)		
 	end
+
 	protected
+
 	def after_sign_up_path_for(user)
 		profile_user_path(user.profile_user)
 	end
@@ -24,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 			:sign_up,
 			keys:[
 			:email, :password, :password_confirmation,
-			:profile_user_attributes => [:first_name, :last_name, :birthday, :address,:phone]]
+			:profile_user_attributes => [:first_name, :last_name, :birthday, :address, :phone, :picture]]
 			)
 	end
 

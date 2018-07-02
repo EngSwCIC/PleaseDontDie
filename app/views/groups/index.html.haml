@@ -14,8 +14,7 @@
         %tbody
           - @groups.each do |group|
             %tr
-              %td= group.name
-              %td= link_to 'Mais', group
+              %td= link_to group.name, group
               %td= link_to 'Editar', edit_group_path(group)
               %td= link_to 'Apagar', group, method: :delete, data: { confirm: 'Tem certeza?' }
       = link_to 'Novo Grupo', new_group_path
