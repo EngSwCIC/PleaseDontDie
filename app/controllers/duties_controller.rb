@@ -49,7 +49,7 @@ class DutiesController < ApplicationController
 
   def set_done
     if @duty.update_attributes(done: params['done'])
-      if params['done'] 
+      if params['done'] == true 
       end
       redirect_to user_duties_url(current_user.id), notice: 'Tarefa atualizada.'
     else
