@@ -33,10 +33,11 @@ class ProfileUserController < ApplicationController
     @duties = @user.duties.order(updated_at: :desc)
     @groups = @user.groups.order(updated_at: :desc)
     @pets = @user.pets.order(updated_at: :desc)
-    @groupsUsers = GroupsProfileUser.joins("INNER JOIN groups ON groups.id = groups_profile_users.group_id
-                                            INNER JOIN profile_users ON profile_users.id = groups_profile_users.profile_user_id")
-                                    .select("groups_profile_users.*, groups.name, profile_users.first_name")
-                                    .order(created_at: :desc)
+    @groupsUsers = Group.joins("INNER JOIN groups_profile_users ON groups_profile_users.group_id = groups.id
+                                INNER JOIN profile_users ON profile_users.id = groups_profile_users.profile_user_id")
+                        .where(groups: { id: @groups })
+                        .select("groups_profile_users.*, groups.name, profile_users.first_name")
+                        .order(created_at: :desc)
   end
   
   def friends
