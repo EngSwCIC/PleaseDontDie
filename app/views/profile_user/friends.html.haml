@@ -1,0 +1,21 @@
+%h1 Amigos
+%table
+  %thead
+    %tr
+      %th Nome
+      %th Email
+      %th Grupos
+  %tbody
+    - @friends.each do |user|
+      %tr
+        %td= link_to "#{user.first_name} #{user.last_name}", user_path(user.id)
+        %td= user.user.email 
+        %td= user.groups.map do |group| group.name end
+
+
+.card{:style => "width: 18rem;"}
+  %img.card-img-top{:alt => "Card image cap", :src => ".../100px180/"}/
+  .card-body
+    %h5.card-title Card title
+    %p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+    %a.btn.btn-primary{:href => "#"} Go somewhere

@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <p>
   <b>Nome:</b>
   <%= @specie.name %>
@@ -7,3 +6,5 @@
   <b>Descrição:</b>
   <%= @specie.description %>
 </p>
+
+<%= link_to 'Necessidades', species_needs_path(@specie) %>

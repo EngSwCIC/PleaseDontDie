@@ -4,9 +4,9 @@ class GroupsController < ApplicationController
 
   def index
     if current_user
-      @groups = current_user.profile_user.groups
+      @groups = current_user.profile_user.groups.order(updated_at: :desc)
     else
-      @groups = Group.all
+      @groups = Group.all.order(update_at: :desc)
     end
   end
 
@@ -85,6 +85,6 @@ class GroupsController < ApplicationController
     end
 
     def group_params
-      params.require(:group).permit(:name)
+      params.require(:group).permit(:name, :picture)
     end
 end
