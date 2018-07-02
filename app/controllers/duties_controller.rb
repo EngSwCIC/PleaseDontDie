@@ -2,6 +2,7 @@ class DutiesController < ApplicationController
   before_action :set_pet 
   before_action :set_duty, only: [:show, :edit, :update, :destroy, :set_done]
 
+
   def index
     @duties = Duty.all
   end
@@ -49,13 +50,12 @@ class DutiesController < ApplicationController
 
   def set_done
     if @duty.update_attributes(done: params['done'])
-      if params['done'] == true 
-      end
       redirect_to user_duties_url(current_user.id), notice: 'Tarefa atualizada.'
     else
       redirect_to user_duties_url(current_user.id), notice: 'Tarefa não atualizada.'
     end
   end
+
 
   private
     def set_pet
