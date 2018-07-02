@@ -30,7 +30,9 @@ class ProfileUserController < ApplicationController
   end
 
   def feed
-    @duties = @user.duties
+    @duties = @user.duties.order(updated_at: :desc)
+    @groups = @user.groups.order(updated_at: :desc)
+    @pets = @user.pets.order(updated_at: :desc)
   end
 
   def friends
