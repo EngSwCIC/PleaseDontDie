@@ -4,6 +4,10 @@ class Duty < ApplicationRecord
 
   after_save :dup_duty
 
+  validates :name,
+    presence: true,
+    length: { minimum: 2 }
+
   def dup_duty
     if self.frequency
       if self.done
