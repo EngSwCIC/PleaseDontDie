@@ -5,7 +5,7 @@
       = render 'layouts/sidemenu'
     .col-md-9
       %h1
-        = link_to 'Novo Grupo', new_group_path, class: "btn btn-primary"
+        = link_to 'Adicionar Grupo', new_group_path, class: "btn btn-primary"
       .card-deck
         - @groups.each do |group|
           .card{:style => "min-width: 250px; max-width: 250px;"}

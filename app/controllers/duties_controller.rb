@@ -42,7 +42,7 @@ class DutiesController < ApplicationController
   def destroy
     @duty.destroy
     respond_to do |format|
-      format.html { redirect_to pet_duties_url(@pet), notice: 'Tarefa destruída!' }
+      format.html { redirect_to user_duties_path(current_user.id), notice: 'Tarefa destruída!' }
       format.json { head :no_content }
     end
   end
