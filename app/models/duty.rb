@@ -5,10 +5,13 @@ class Duty < ApplicationRecord
   after_save :dup_duty
 
   def dup_duty
-    if self.done == true
-      byebug
-      new_duty = self.dup
-      new_duty.save
+    if self.frequency
+      if self.done
+        new_duty = self.dup
+        new_duty.done = false
+        new_duty.until = self.updated_at + self.frequency.hours
+        new_duty.save
+      end
     end
   end
 end

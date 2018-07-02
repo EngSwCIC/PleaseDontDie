@@ -1,18 +1,64 @@
 <h1>Feed</h1>
 
-<table>
-  <tbody>
-  <% @duties.each do |duty| %>
-    <tr>
-      <td>Grupo <%= duty.pet.group.name %> - A tarefa <%= duty.name %> do pet <%= duty.pet.name %> foi
-      <% if duty.done %>
-        realizada.</td>
-      <% elsif duty.created_at == duty.updated_at %>
-        criada em <%= duty.created_at %>.</td>
-      <% else %>
-        atualizada em <%= duty.updated_at %>.</td>
-      <% end %>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<% unless @duties.empty? %>
+<div class="card border-primary mb-3">
+  <div class="card-header"><h3>Tarefas</h3></div>
+  <div class="card-body text-dark">
+    <ul>
+    <% @duties.each do |duty| %>
+        <li>Grupo <%= link_to duty.pet.group.name, group_path(duty.pet.group) %> - A tarefa <%= link_to duty.name,
+            pet_duty_path(duty.pet, duty) %> do pet <%= link_to duty.pet.name, group_pet_path(duty.pet.group, duty.pet) %> foi
+        <% if duty.done %>
+          realizada.</li>
+        <% elsif duty.created_at == duty.updated_at %>
+          criada em <%= duty.created_at.localtime.strftime('%a, %d %b %Y %H:%M') %>.</li>
+        <% else %>
+          atualizada em <%= duty.updated_at.localtime.strftime('%a, %d %b %Y %H:%M') %>.</li>
+        <% end %>
+    <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+
+<% unless @pets.empty? %>
+<div class="card border-primary mb-3">
+  <div class="card-header"><h3>Pets</h3></div>
+  <div class="card-body text-dark">
+    <ul>
+    <% @pets.each do |pet| %>
+        <li>Grupo <%= link_to pet.group.name, group_path(pet.group) %> - O pet <%= link_to pet.name, group_pet_path(pet.group, pet) %> foi
+        <% if pet.created_at == pet.updated_at %>
+          adicionado em <%= pet.created_at.localtime.strftime('%a, %d %b %Y %H:%M') %>.</li>
+        <% else %>
+          atualizado em <%= pet.updated_at.localtime.strftime('%a, %d %b %Y %H:%M') %>.</li>
+        <% end %>
+        <li>Grupo <%= link_to pet.group.name, group_path(pet.group) %> - O pet <%= link_to pet.name,
+            group_pet_path(pet.group, pet) %> da espécie <%= pet.specie.name %> nasceu em <%= pet.birthday.strftime('%a, %d %b %Y') %></li>
+    <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+
+<% unless @groups.empty? %>
+<div class="card border-primary mb-3">
+  <div class="card-header"><h3>Grupos</h3></div>
+  <div class="card-body text-dark">
+    <ul>
+    <% @groupsUsers.each do |groupUser| %>
+      <li>Grupo <%= link_to groupUser.name, group_path(groupUser.group_id) %> - O usuário <%= link_to groupUser.first_name,
+          user_path(groupUser.profile_user_id) %> foi adicionado ao grupo em <%= groupUser.created_at.localtime.strftime('%a, %d %b %Y %H:%M') %>.</li>
+    <% end %>
+    <% @groups.each do |group| %>
+        <li>Grupo <%= link_to group.name, group_path(group) %> - O grupo foi
+        <% if group.created_at == group.updated_at %>
+          criado em <%= group.created_at.localtime.strftime('%a, %d %b %Y %H:%M') %>.</li>
+        <% else %>
+          atualizado em <%= group.updated_at.localtime.strftime('%a, %d %b %Y %H:%M') %>.</li>
+        <% end %>
+    <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
