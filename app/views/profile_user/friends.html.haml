@@ -1,0 +1,13 @@
+%h1 Amigos
+%table
+  %thead
+    %tr
+      %th Nome
+      %th Email
+      %th Grupos
+  %tbody
+    - @friends.each do |user|
+      %tr
+        %td= link_to "#{user.first_name} #{user.last_name}", user_path(user.id)
+        %td= user.user.email 
+        %td= user.groups.map do |group| group.name end
