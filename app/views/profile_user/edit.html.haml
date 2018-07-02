@@ -1,5 +1,14 @@
-%h4.card-title.mt-6.text-center Editar Perfil:
+.img.center{:style => "min-width: 200px; max-width: 200px;"}
+  - if @user.picture.attached?
+    =image_tag @user.picture
+  - else
+    =image_tag 'profile_user.jpg'
 = form_for(@user, url: profile_user_path(@user)) do |f|
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputPicture"} Foto:
+    .col-sm-9
+      #inputPicture
+        = f.file_field :picture, placeholder: "Foto", class: "form-control"
   .form-group.row
     %label.col-sm-3.col-form-label{:for => "inputNome"} Nome:
     .col-sm-9
@@ -25,11 +34,6 @@
     .col-sm-9
       #inputTelefone
         = f.text_field :phone, placeholder: "Telefone", class: "form-control"
-  .form-group.row
-    %label.col-sm-3.col-form-label{:for => "inputPicture"} Foto:
-    .col-sm-9
-      #inputTelefone
-        = f.file_field :picture, placeholder: "Foto", class: "form-control"
   .form-group.row
     .button
       = f.submit "Salvar", class: "btn btn-primary"

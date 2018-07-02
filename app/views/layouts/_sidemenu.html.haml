@@ -13,4 +13,7 @@
     .list-group-item.list-group-item-action
       = link_to 'Pets', user_pets_path(current_user.id)
     .list-group-item.list-group-item-action
-      = link_to 'Afazeres', user_duties_path(current_user.id)
+      = link_to 'Tarefas', user_duties_path(current_user.id)
+    .list-group-item.list-group-item-action
+      = link_to 'Atividades', user_feed_path(current_user.id)
+

@@ -4,17 +4,22 @@
     .col-md-3
       = render 'layouts/sidemenu'
     .col-md-9
-      %p#notice= notice
       %h1 Grupos
-      %table
-        %thead
-          %tr
-            %th Nome
-            %th{:colspan => "3"}
-        %tbody
-          - @groups.each do |group|
-            %tr
-              %td= link_to group.name, group
-              %td= link_to 'Editar', edit_group_path(group)
-              %td= link_to 'Apagar', group, method: :delete, data: { confirm: 'Tem certeza?' }
       = link_to 'Novo Grupo', new_group_path
+      .card-group
+        - @groups.each do |group|
+          .card{:style => "min-width: 250px; max-width: 250px;"}
+            - if group.picture.attached?
+              =image_tag group.picture
+            - else
+              =image_tag 'profile_user.jpg'
+            .card-body
+              %h5.card-title
+                = link_to group.name, group
+              %p.card-text
+                Descricao do Grupo
+              %p.card-text
+                %small.text-muted colocar aqui quando foi atualizado...
+              = link_to '', edit_group_path(group), class: "btn btn-primary fa fa-edit"
+              %i.fa.fa-trash-alt
+              = link_to '', group, class: "btn btn-danger fa fa-times-circle", method: :delete, data: { confirm: 'Tem certeza?' }
