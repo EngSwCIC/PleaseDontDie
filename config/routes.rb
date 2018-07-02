@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :pets do
     resources :duties
   end
+  post 'pets/:pet_id/duties/:id/set_done', to: 'duties#set_done', as: 'duty_done'
 
   resources :species do
     resources :needs
