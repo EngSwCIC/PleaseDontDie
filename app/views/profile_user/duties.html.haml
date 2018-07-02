@@ -17,5 +17,5 @@
         %td= duty.frequency
         %td= duty.pet.name
         %td= duty.until
-        %td= check_box_tag("#duty_{duty.id}", true,  duty.done)
+        %td= check_box_tag 'feito', duty.id,  duty.done, data: { remote: true, url: duty_done_path(duty.pet, duty, done: !duty.done), method: 'post'}
         %td= link_to 'Apagar', [duty.pet, duty],  confirm: 'Tem certeza?', method: :delete

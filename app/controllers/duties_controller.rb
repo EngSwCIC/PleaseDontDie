@@ -1,6 +1,6 @@
 class DutiesController < ApplicationController
   before_action :set_pet 
-  before_action :set_duty, only: [:show, :edit, :update, :destroy]
+  before_action :set_duty, only: [:show, :edit, :update, :destroy, :set_done]
 
   def index
     @duties = Duty.all
@@ -25,7 +25,7 @@ class DutiesController < ApplicationController
     @duty = @pet.duties.build(duty_params)
 
     if @duty.save
-      redirect_to([@duty.pet, @duty], notice: 'Afazer criado!')
+      redirect_to([@duty.pet, @duty], notice: 'Tarefa criada!')
     else
       render action: 'new'
     end
@@ -33,7 +33,7 @@ class DutiesController < ApplicationController
 
   def update
     if @duty.update_attributes(duty_params)
-      redirect_to([@duty.pet, @duty], notice: 'Afazer atualizado!')
+      redirect_to([@duty.pet, @duty], notice: 'Tarefa atualizada!')
     else
       render action: 'edit'
     end
@@ -42,8 +42,16 @@ class DutiesController < ApplicationController
   def destroy
     @duty.destroy
     respond_to do |format|
-      format.html { redirect_to pet_duties_url(@pet), notice: 'Afazer destruído!' }
+      format.html { redirect_to pet_duties_url(@pet), notice: 'Tarefa destruída!' }
       format.json { head :no_content }
+    end
+  end
+
+  def set_done
+    if @duty.update_attributes(done: params['done'])
+      redirect_to user_duties_url(current_user.id), notice: 'Tarefa atualizada.'
+    else
+      redirect_to user_duties_url(current_user.id), notice: 'Tarefa não atualizada.'
     end
   end
 
