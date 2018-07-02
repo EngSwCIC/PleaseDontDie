@@ -26,5 +26,10 @@
       #inputTelefone
         = f.text_field :phone, placeholder: "Telefone", class: "form-control"
   .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputPicture"} Foto:
+    .col-sm-9
+      #inputTelefone
+        = f.file_field :picture, placeholder: "Foto", class: "form-control"
+  .form-group.row
     .button
       = f.submit "Salvar", class: "btn btn-primary"
