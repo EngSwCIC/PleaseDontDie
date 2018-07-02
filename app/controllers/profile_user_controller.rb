@@ -33,6 +33,12 @@ class ProfileUserController < ApplicationController
     @duties = @user.duties.order("#{params["field_order"]} DESC")
   end
 
+  def feed
+    @duties = @user.duties.order(updated_at: :desc)
+    @groups = @user.groups.order(updated_at: :desc)
+    @pets = @user.pets.order(updated_at: :desc)
+  end
+  
   def friends
     @friends = @user.profile_users.where.not(id: current_user.id).distinct
   end
