@@ -6,6 +6,8 @@
     .col-md-9
       %h1
         = @group.name
+        - if @group.picture.attached?
+          = image_tag @group.picture
       %p
         = link_to 'Editar', edit_group_path(@group)
         |

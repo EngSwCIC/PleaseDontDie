@@ -1,11 +1,11 @@
 .container
-	%hr/
-	.row
-		.col-md-3
-			= render 'layouts/sidemenu'
-		.col-md-9
-            %h1 Editando um Afazer
-            = render 'form'
-            = link_to 'Mais', [@duty.pet, @duty]
-            |
-            = link_to 'Voltar', pet_duties_path(@duty.pet)
+  %hr/
+  .row
+    .col-md-3
+      = render 'layouts/sidemenu'
+    .col-md-9
+      %h1 Editando um Afazer
+      = render 'form'
+      = link_to 'Mais', [@duty.pet, @duty]
+      |
+      = link_to 'Voltar', pet_duties_path(@duty.pet)

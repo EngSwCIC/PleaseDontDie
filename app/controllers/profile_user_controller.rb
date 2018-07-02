@@ -25,7 +25,8 @@ class ProfileUserController < ApplicationController
   end
 
   def duties
-    @duties = @user.duties
+    params["field_order"] ||= 'until'
+    @duties = @user.duties.order("#{params["field_order"]} DESC")
   end
 
   def friends

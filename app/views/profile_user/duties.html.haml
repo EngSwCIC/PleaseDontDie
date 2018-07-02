@@ -2,24 +2,20 @@
 %table
   %thead
     %tr
-      %th Nome
-      %th Descrição
-      %th Importância
-      %th Frequência
+      %th= link_to "Nome", user_duties_path(current_user.id, field_order: 'name')
+      %th= link_to "Importância", user_duties_path(current_user.id, field_order: 'importance')
+      %th= link_to "Frequência", user_duties_path(current_user.id, field_order: 'frequency')
       %th Pet
-      %th Necessidade Associada
-      %th Feito?
+      %th= link_to "Prazo", user_duties_path(current_user.id, field_order: 'until')
+      %th= link_to "Feito?", user_duties_path(current_user.id, field_order: 'done')
       %th{:colspan => "3"}
   %tbody
     - @duties.each do |duty|
       %tr
         %td= link_to duty.name, [duty.pet, duty]
-        %td= duty.name
-        %td= duty.description
         %td= duty.importance
         %td= duty.frequency
         %td= duty.pet.name
-        %td= duty.need.name
-        %td= duty.done
-        %td= link_to 'Editar', edit_pet_duty_path(duty.pet, duty)
+        %td= duty.until
+        %td= check_box_tag("#duty_{duty.id}", true,  duty.done)
         %td= link_to 'Apagar', [duty.pet, duty],  confirm: 'Tem certeza?', method: :delete
