@@ -1,0 +1,46 @@
+= form_for([@duty.pet, @duty]) do |form|
+  - if @duty.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@duty.errors.count, "error")
+        prohibited this duty from being saved:
+      %ul
+        - @duty.errors.full_messages.each do |message|
+          %li= message
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputNome"} Nome:
+    .col-sm-9
+      #inputNome
+        = form.text_field :name, placeholder: "Nome", class: "form-control input"
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputDesc"} Descrição:
+    .col-sm-9
+      #inputDesc
+        = form.text_area :description, placeholder: "Descrição", class: "form-control input"
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputImportance"} Importância:
+    .col-sm-9
+      #inputImportance
+        = form.number_field :importance, in: 1..5, step: 1, class: "form-control input"
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputFrequency"} Frequência em horas:
+    .col-sm-9
+      #inputFrequency
+        = form.number_field :frequency, in: 1..1000, class: "form-control input"
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputUntil"} Data de execução:
+    .col-sm-9
+      #inputUntil
+        = form.datetime_local_field :until, class: "form-control input"
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputNeed"} Necessidade:
+    .col-sm-9
+      #inputNeed
+        = form.collection_select :need_id, Need.all, :id, :name, {prompt: "Need"}, class: "form-control input"
+  .form-group.row
+    %label.col-sm-3.col-form-label{:for => "inputDone"} Concluido?
+    #inputDone
+      = form.check_box :done, class: "form-control input"
+  .form-group.row
+    .button
+      = form.submit "Salvar", class: "btn btn-primary"

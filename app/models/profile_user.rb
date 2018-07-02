@@ -6,6 +6,15 @@ class ProfileUser < ApplicationRecord
   has_many :duties, through: :pets
   has_many :profile_users, through: :groups
 
+  validates :first_name,
+	  presence: true,
+	  length: { minimum: 2 }
+
+  validates :last_name,
+	  presence: true,
+	  length: { minimum: 2 }
+
+
   def name
     "#{first_name} #{last_name}"
   end
