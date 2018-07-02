@@ -26,8 +26,11 @@
         - else
           Não associado
       %p
-        %strong Feito?
-        = @duty.done
+        - if @duty.done
+          %strong Feito!
+        - else
+          %strong Próximo:
+          = @duty.until
       = link_to 'Editar', edit_pet_duty_path(@duty.pet)
       |
       = link_to 'Voltar', group_pets_path(@duty.pet.group)
