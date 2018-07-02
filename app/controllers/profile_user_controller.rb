@@ -3,7 +3,7 @@ class ProfileUserController < ApplicationController
   before_action :set_user, only: [:index, :show, :edit, :update, :pets, :duties, :feed, :friends]
 
   def index
-    @user = ProfileUser.find_or_create_by(user_id: current_user.id)
+    @user = ProfileUser.find_or_create_by(user_id: params[:id])
   end
 
   def show
@@ -34,7 +34,7 @@ class ProfileUserController < ApplicationController
   end
 
   def friends
-    @friends = @user.profile_users
+    @friends = @user.profile_users.where.not(id: current_user.id).distinct
   end
 
   private
