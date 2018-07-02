@@ -26,7 +26,8 @@ class ProfileUserController < ApplicationController
 
   def duties
     params["field_order"] ||= 'until'
-    @duties = @user.duties.order("#{params["field_order"]} DESC")
+    session[:order] = session[:order] ? toggle_order(session[:order]) : 'DESC' 
+    @duties = @user.duties.order("#{params["field_order"]} #{session[:order]}")
   end
 
   def feed
@@ -52,6 +53,10 @@ class ProfileUserController < ApplicationController
 
   def params_user
   	params.require(:profile_user).permit(:first_name, :last_name, :birthday, :address, :phone, :picture)
+  end
+
+  def toggle_order(order)
+    order == 'DESC' ? 'ASC' : 'DESC'
   end
 
 end
