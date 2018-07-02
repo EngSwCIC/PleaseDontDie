@@ -5,4 +5,8 @@ class ProfileUser < ApplicationRecord
   has_many :pets, through: :groups
   has_many :duties, through: :pets
   has_many :profile_users, through: :groups
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 end
