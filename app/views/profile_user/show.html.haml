@@ -23,5 +23,6 @@
         %strong Endereço:
         = @user.address
       %p
-        = link_to 'Editar perfil',edit_profile_user_path(current_user.id), class: "btn btn-lg btn-primary"
+        - if current_user.id == params[:id].to_i
+          = link_to 'Editar perfil',edit_profile_user_path(current_user.id), class: "btn btn-lg btn-primary"
       
