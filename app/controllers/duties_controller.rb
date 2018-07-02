@@ -51,7 +51,7 @@ class DutiesController < ApplicationController
     if @duty.update_attributes(done: params['done'])
       if params['done'] == true 
       end
-      :edirect_to user_duties_url(current_user.id), notice: 'Tarefa atualizada.'
+      redirect_to user_duties_url(current_user.id), notice: 'Tarefa atualizada.'
     else
       redirect_to user_duties_url(current_user.id), notice: 'Tarefa não atualizada.'
     end
