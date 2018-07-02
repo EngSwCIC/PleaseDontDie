@@ -1,13 +1,13 @@
-.col-md-9
-  %h1= "Meus Pets"
-  %table
-    %tr
-      %th Nome
-      %th Aniversário
-    - @pets.each do |pet|
-      %tr
-        %td= link_to pet.name, [pet.group, pet]
+.card-deck
+  - @pets.each do |pet|
+    .card{:style => "min-width: 250px; max-width: 250px;"}
+      .card-header.text-center
+        = pet.name
+      - if pet.image.attached?
+        = link_to (image_tag(pet.image)), [pet.group, pet]
+      .card-body.text-center
         - if pet.birthday
-          %td= pet.birthday.strftime("%d/%m/%Y")
-        %td= link_to 'Editar', edit_group_pet_path(pet.group, pet)
-        %td= link_to 'Apagar', [pet.group, pet], :confirm => 'Tem certeza?', :method => :delete
+          %p.card-text=  "Aniversário: #{pet.birthday.strftime("%d/%m/%Y")}"
+        = link_to '', edit_group_pet_path(pet.group, pet), class: "btn btn-primary fa fa-edit"
+        %i.fa.fa-trash-alt
+        = link_to '', [pet.group, pet], class: "btn btn-danger fa fa-times-circle", method: :delete, data: { confirm: 'Tem certeza?' }
