@@ -47,7 +47,8 @@
   <div class="card-body text-dark">
     <ul>
     <% @groupsUsers.each do |groupUser| %>
-      <li>Grupo <%= link_to groupUser.group_id, group_path(groupUser.group_id) %> - O usuário <%= link_to groupUser.profile_user_id, user_path(groupUser.profile_user_id) %> foi adicionado ao grupo em <%= groupUser.created_at.localtime.strftime('%a, %d %b %Y %H:%M') %>.</li>
+      <li>Grupo <%= link_to groupUser.name, group_path(groupUser.group_id) %> - O usuário <%= link_to groupUser.first_name,
+          user_path(groupUser.profile_user_id) %> foi adicionado ao grupo em <%= groupUser.created_at.localtime.strftime('%a, %d %b %Y %H:%M') %>.</li>
     <% end %>
     <% @groups.each do |group| %>
         <li>Grupo <%= link_to group.name, group_path(group) %> - O grupo foi
