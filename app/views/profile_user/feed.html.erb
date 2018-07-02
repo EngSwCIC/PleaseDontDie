@@ -34,7 +34,7 @@
           atualizado em <%= pet.updated_at.localtime.strftime('%a, %d %b %Y %H:%M') %>.</li>
         <% end %>
         <li>Grupo <%= link_to pet.group.name, group_path(pet.group) %> - O pet <%= link_to pet.name,
-            group_pet_path(pet.group, pet) %> da espécie <%= pet.specie.name %> nasceu em <%= pet.birthday.strftime('%a, %d %b %Y') %></li>
+          group_pet_path(pet.group, pet) %> da espécie <%= pet.specie.name %> <%= "nasceu em #{pet.birthday.strftime('%a, %d %b %Y')}" if pet.birthday %></li>
     <% end %>
     </ul>
   </div>
