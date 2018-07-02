@@ -33,7 +33,6 @@
                       = link_to (image_tag(user.picture)), profile_user_path(user)
       .row
         .col-md-12
-          %h5 Pets
           .card-deck
             - @group.pets.each do |pet|
               .card{:style => "max-width: 300px;"}
