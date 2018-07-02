@@ -1,9 +1,9 @@
 class ProfileUserController < ApplicationController
   layout "profile_user"
-  before_action :set_user, only: [:index, :show, :edit, :update, :pets, :duties, :feed, :friends]
+  before_action :set_user, only: [:index, :show, :edit, :update, :pets, :duties, :friends]
 
   def index
-    @user = ProfileUser.find_or_create_by(user_id: params[:id])
+    @user = ProfileUser.find_or_create_by(user_id: current_user.id)
   end
 
   def show
@@ -29,10 +29,6 @@ class ProfileUserController < ApplicationController
     @duties = @user.duties.order("#{params["field_order"]} DESC")
   end
 
-  def feed
-    @duties = @user.duties
-  end
-
   def friends
     @friends = @user.profile_users.where.not(id: current_user.id).distinct
   end
@@ -40,7 +36,7 @@ class ProfileUserController < ApplicationController
   private
 
   def set_user
-  	@user = ProfileUser.find(current_user.id)
+  	@user = ProfileUser.find(params[:id])
   end
 
   def params_user
