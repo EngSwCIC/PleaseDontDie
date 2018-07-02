@@ -1,6 +1,6 @@
 <h1>Feed</h1>
 
-<% if @duties %>
+<% unless @duties.empty? %>
 <div class="card border-primary mb-3">
   <div class="card-header"><h3>Tarefas</h3></div>
   <div class="card-body text-dark">
@@ -21,7 +21,7 @@
 </div>
 <% end %>
 
-<% if @pets %>
+<% unless @pets.empty? %>
 <div class="card border-primary mb-3">
   <div class="card-header"><h3>Pets</h3></div>
   <div class="card-body text-dark">
@@ -40,7 +40,8 @@
   </div>
 </div>
 <% end %>
-<% if @groups %>
+
+<% unless @groups.empty? %>
 <div class="card border-primary mb-3">
   <div class="card-header"><h3>Grupos</h3></div>
   <div class="card-body text-dark">
