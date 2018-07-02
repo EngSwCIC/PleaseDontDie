@@ -34,7 +34,7 @@ class ProfileUserController < ApplicationController
   end
 
   def friends
-    @friends = @user.profile_users
+    @friends = @user.profile_users.where.not(id: current_user.id).distinct
   end
 
   private
