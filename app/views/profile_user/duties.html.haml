@@ -8,7 +8,7 @@
       %th= link_to "Importância", user_duties_path(current_user.id, field_order: 'importance')
       %th= link_to "Frequência", user_duties_path(current_user.id, field_order: 'frequency')
       %th= link_to "Prazo", user_duties_path(current_user.id, field_order: 'until')
-      %th= link_to "Feito?", user_duties_path(current_user.id, field_order: 'done')
+      %th= link_to "Concluído?", user_duties_path(current_user.id, field_order: 'done')
       %th{:colspan => "3"}
   %tbody
     - @duties.each do |duty|

@@ -59,7 +59,7 @@ class GroupsController < ApplicationController
   end
 
   def add_user
-    @user = User.where(email: params[:email]).first
+    @user = User.where(email: params[:add_user][:email]).first
     if @user
       @profile_user = @user.profile_user
       @group.profile_users << @profile_user

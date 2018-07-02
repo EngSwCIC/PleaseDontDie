@@ -20,7 +20,7 @@
             .col-md-6
               .h3 Descrição:
             .col-md-6
-              = form_for(add_group_user_path(@group.id)) do |form|
+              = form_for(:add_user, url: add_group_user_path(@group.id)) do |form|
                 .form-group
                   %label.col-form-label{:for => "inputMember"}
                   #inputMember
@@ -31,7 +31,9 @@
                   - @group.profile_users.each do |user|
                     .card{:style => "max-width: 50px;"}
                       = link_to (image_tag(user.picture)), profile_user_path(user)
+      .row
         .col-md-12
+          %h5 Pets
           .card-deck
             - @group.pets.each do |pet|
               .card{:style => "max-width: 300px;"}
@@ -41,5 +43,4 @@
                   = link_to (image_tag(pet.image)), [pet.group, pet]
                 -else
                   = link_to (image_tag 'profile_user.jpg'), [pet.group, pet]
-
-
+  %hr/
