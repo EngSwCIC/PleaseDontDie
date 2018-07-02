@@ -1,0 +1,18 @@
+<h1>Feed</h1>
+
+<table>
+  <tbody>
+  <% @duties.each do |duty| %>
+    <tr>
+      <td>Grupo <%= duty.pet.group.name %> - A tarefa <%= duty.name %> do pet <%= duty.pet.name %> foi
+      <% if duty.done %>
+        realizada.</td>
+      <% elsif duty.created_at == duty.updated_at %>
+        criada em <%= duty.created_at %>.</td>
+      <% else %>
+        atualizada em <%= duty.updated_at %>.</td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'user/:id/pets', to: 'profile_user#pets', as: 'user_pets'
   get 'user/:id/duties', to: 'profile_user#duties', as: 'user_duties'
   get 'user/:id/friends', to: 'profile_user#friends', as: 'user_friends'
+  get 'user/:id/feed', to: 'profile_user#feed', as: 'user_feed'
 
   resources :pets do
     resources :duties
