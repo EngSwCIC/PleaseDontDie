@@ -24,11 +24,12 @@
             = @pet.bio
           %p
             %strong Aniversário:
-            = @pet.birthday.strftime("%d/%m/%Y")
+            -if @pet.birthday
+              = @pet.birthday.strftime("%d/%m/%Y")
           %p
             %strong Sexo:
             = @pet.sex
           %p
             %strong Endereço:
             = @user.address
-
+  %hr/
