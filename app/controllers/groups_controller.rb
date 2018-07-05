@@ -4,9 +4,9 @@ class GroupsController < ApplicationController
 
   def index
     if current_user
-      @groups = current_user.profile_user.groups
+      @groups = current_user.profile_user.groups.order(updated_at: :desc)
     else
-      @groups = Group.all
+      @groups = Group.all.order(update_at: :desc)
     end
   end
 
@@ -59,7 +59,7 @@ class GroupsController < ApplicationController
   end
 
   def add_user
-    @user = User.where(email: params[:email]).first
+    @user = User.where(email: params[:add_user][:email]).first
     if @user
       @profile_user = @user.profile_user
       @group.profile_users << @profile_user
@@ -85,6 +85,6 @@ class GroupsController < ApplicationController
     end
 
     def group_params
-      params.require(:group).permit(:name)
+      params.require(:group).permit(:name, :picture)
     end
 end

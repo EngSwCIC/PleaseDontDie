@@ -4,8 +4,14 @@
 		.col-md-3
 			= render 'layouts/sidemenu'
 		.col-md-9
-			%h1 Editar Grupo
-			= render 'form', group: @group
-			= link_to 'Mais', @group
-			|
-			\#{link_to 'Voltar', groups_path}
+			.row
+				.col-md-4
+					.img.center{:style => "min-width: 200px; max-width: 200px;"}
+						.img-thumbnail
+							-if @group.picture.attached?
+								=image_tag @group.picture
+							-else
+								=image_tag 'profile_user.jpg'
+				.col-md-8
+					= render 'form', group: @group
+	%hr/

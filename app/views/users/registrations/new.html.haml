@@ -35,6 +35,11 @@
       .form-group.input-group
         .input-group-prepend
           %span.input-group-text
+            %i.fa.fa-user
+        = profile_fields.file_field :picture, class: "form-control", placeholder:"Foto"
+      .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
             %i.fa.fa-birthday-cake 
         = profile_fields.text_field :birthday, class: "form-control", placeholder:"Data de nascimento", type:'date'
       .form-group.input-group
