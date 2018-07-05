@@ -2,12 +2,17 @@ FactoryBot.define do
   factory :user do
     email 'test@example.com'
     password 'senha1234'
+    after(:build) do |user|
+      user.profile_user ||= FactoryBot.build(:profile_user, user: user)
+    end
   end
 
   factory :profile_user do
     first_name 'Tester'
     last_name 'Quake'
-    user
+    after(:build) do |puser|
+      puser.user ||= FactoryBot.build(:user, profile_user: puser)
+    end
   end
 
   factory :random_user do

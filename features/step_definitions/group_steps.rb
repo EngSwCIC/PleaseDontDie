@@ -31,8 +31,9 @@ Então("é mostrado que o usuário não foi encontrado") do
   expect(page).not_to have_content("invalid@email.com")
 end
 
-Então(/é mostrado que "([^"]*)" foi adicionado com sucesso/) do |email|
-  expect(page).to have_content(email)
+Então(/é mostrado que "([^"]*)" foi adicionado com sucesso/) do |name|
+	elem = find("##{name}")
+	expect(elem).to be_present
 end
 
 Então(/sou redirecionado para "([^"]*)"/) do |group_name|
@@ -58,6 +59,10 @@ end
 
 Quando(/clico em "([^"]*)" de "([^"]*)"/) do |link_name, owner|
   click_on("#{link_name}_#{Group.find_by(name: owner).id}")
+end
+
+Então(/não há mais "([^"]*)"/) do |name|
+  expect(page).not_to have_content(name)
 end
 
 

@@ -158,31 +158,31 @@ RSpec.describe GroupsController, type: :controller do
 
     it "calls User model to find the correct user" do
       expect(User).to receive(:where).with({email: @dummy_email}).and_return([@user])
-      post :add_user, params: {id: @group.id, email: @dummy_email }, session: valid_session
+      post :add_user, params: {id: @group.id, email: @dummy_email, add_user: {email: @dummy_email}}, session: valid_session
     end
 
     it "returns a notice if the user was not found" do
-      post :add_user, params: {id: @group.id, email: "notuser@email.com" }, session: valid_session
+      post :add_user, params: {id: @group.id, email: "notuser@email.com", add_user: {email: "notuser@email.com"} }, session: valid_session
       expect(flash[:notice]).to eq('Usuário não encontrado.')
     end
 
     it "returns a notice if the user was not found if filled with invalid text" do
-      post :add_user, params: {id: @group.id, email: 4546 }, session: valid_session
+      post :add_user, params: {id: @group.id, email: 4546, add_user: {email: 4546} }, session: valid_session
       expect(flash[:notice]).to eq('Usuário não encontrado.')
     end
 
     it "returns a notice if the user was not found if filled with invalid text" do
-      post :add_user, params: {id: @group.id, email: "" }, session: valid_session
+      post :add_user, params: {id: @group.id, email: "",  add_user: {email: ""} }, session: valid_session
       expect(flash[:notice]).to eq('Usuário não encontrado.')
     end
 
     it "adds a user to group" do
-      post :add_user, params: {id: @group.id, email: @user.email }, session: valid_session
+      post :add_user, params: {id: @group.id, email: @user.email, add_user: {email: @user.email} }, session: valid_session
       expect(@group.profile_users).to include(@dummy)
     end
 
     it "returns a notice if the user was successfully added" do
-      post :add_user, params: {id: @group.id, email: @user.email }, session: valid_session
+      post :add_user, params: {id: @group.id, email: @user.email, add_user: {email: @user.email}} , session: valid_session
       expect(flash[:notice]).to eq('Usuário adicionado com sucesso.')
     end
   end

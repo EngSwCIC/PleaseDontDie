@@ -8,6 +8,9 @@ module NavigationHelpers
     when /^a minha página do grupo$/
       '/groups'
 
+    when /^a minha página de adicionar grupos$/
+      '/groups/new'
+
     when /^a página do grupo (.+)$/
       "/groups/#{$2}"
 
