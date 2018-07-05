@@ -1,0 +1,38 @@
+<%= form_for([@pet.group, @pet]) do |f| %>
+  <% if @pet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</h2>
+
+      <ul>
+        <% @pet.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :nome %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :biografia %><br />
+    <%= f.text_area :bio %>
+  </p>
+  <p>
+    <%= f.label :aniversário %><br />
+    <%= f.date_select :birthday, :start_year=>2000 %>
+  </p>
+  <p>
+    <%= f.label :sexo %><br />
+    <%= f.radio_button :sex, "macho" %> Macho
+    <%= f.radio_button :sex, "fêmea" %> Fêmea
+  </p>
+  <p>
+    <%= f.label :espécie %><br />
+    <%= f.collection_select :specie_id, Specie.all, :id, :name,
+    {prompt: "Espécie"} %>
+  </p>
+  <div class="actions">
+    <%= f.submit "Enviar" %>
+  </div>
+<% end %>

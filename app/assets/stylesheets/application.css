@@ -32,6 +32,14 @@ img {
     width: 100%;
     height: auto;
 }
+table {
+
+}
+
+.p {
+    font-family: 'monospace';
+    class: click_link;
+}
 
 .btn-xl {
     text-transform: uppercase;

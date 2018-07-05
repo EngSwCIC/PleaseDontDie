@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @duty.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @duty.description %>
+</p>
+
+<p>
+  <strong>Importance:</strong>
+  <%= @duty.importance %>
+</p>
+
+<p>
+  <strong>Frequency:</strong>
+  <%= @duty.frequency %>
+</p>
+
+<p>
+  <strong>Pet:</strong>
+  <%= @pet.name %>
+</p>
+
+<p>
+  <strong>Need:</strong>
+  <%= @duty.need %>
+</p>
+
+<p>
+  <strong>Done:</strong>
+  <%= @duty.done %>
+</p>
+
+<%= link_to 'Editar', edit_pet_duty_path(@duty.pet) %> |
+<%= link_to 'Voltar', group_pets_path(@duty.pet) %>
