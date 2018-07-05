@@ -5,7 +5,7 @@ end
 Dado(/que o usuário "([^"]*)" existe/) do |email|
   password = "senha1234"
   user = User.new(email: email, password: password)
-  user.save!
+  user.save!(validate: false)
   puser = ProfileUser.new(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, user: user)
   puser.save!
 end
