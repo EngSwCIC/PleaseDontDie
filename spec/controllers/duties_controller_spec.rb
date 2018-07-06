@@ -117,14 +117,14 @@ RSpec.describe DutiesController, type: :controller do
       it "redirects to the duty" do
         duty = Duty.create! valid_attributes
         put :update, params: {id: duty.to_param, pet_id: duty.pet.id, duty: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(duty)
+        expect(response).to redirect_to([duty.pet, duty])
       end
     end
 
     context "with invalid params" do
       it "returns a successful response (i.e. to display the 'edit' template)" do
         duty = Duty.create! valid_attributes
-        put :update, params: {id: duty.to_param, duty: invalid_attributes}, session: valid_session
+        put :update, params: {id: duty.to_param, pet_id: duty.pet.id, duty: invalid_attributes}, session: valid_session
         expect(response).to be_successful
       end
     end
@@ -134,14 +134,14 @@ RSpec.describe DutiesController, type: :controller do
     it "destroys the requested duty" do
       duty = Duty.create! valid_attributes
       expect {
-        delete :destroy, params: {id: duty.to_param}, session: valid_session
+        delete :destroy, params: {id: duty.to_param, pet_id: duty.pet.id}, session: valid_session
       }.to change(Duty, :count).by(-1)
     end
 
     it "redirects to the duties list" do
       duty = Duty.create! valid_attributes
-      delete :destroy, params: {id: duty.to_param}, session: valid_session
-      expect(response).to redirect_to(duties_url)
+      delete :destroy, params: {id: duty.to_param, pet_id: duty.pet.id}, session: valid_session
+      expect(response).to redirect_to user_duties_path(@profile_user.user.id)
     end
   end
 
