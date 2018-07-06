@@ -28,9 +28,29 @@ FactoryBot.define do
 
   factory :group do
     name { 
-      n = Faker::StarTrek.specie
-      n.length < 2 ? (n = Faker::StarTrek.specie) : n
+      n = Faker::GameOfThrones.house
+      n.length < 2 ? (n = Faker::GameOfThrones.house) : n
     }
+  end
+
+  factory :specie do
+    name { Faker::Pokemon.name }
+  end
+
+  factory :pet do
+    name { Faker::Dog.name }
+    birthday { Faker::Date.birthday(0, 30) }
+    sex { ["macho", "fêmea"].sample }
+    specie
+    group
+  end
+
+  factory :duty do
+    name { Faker::Name.quote }
+    importance { rand(5) }
+    frequency { rand(5) }
+    pet
+    done false
   end
 
 end
