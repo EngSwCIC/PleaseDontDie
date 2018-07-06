@@ -29,11 +29,11 @@ RSpec.describe SpeciesController, type: :controller do
   # Specie. As you add validations to Specie, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { name: 'Valid Name' }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name: 1 }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -41,34 +41,39 @@ RSpec.describe SpeciesController, type: :controller do
   # SpeciesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before :each do
+    @profile_user = FactoryBot.create(:profile_user)
+    allow(controller).to receive(:current_user) { @profile_user.user }
+  end
+
   describe "GET #index" do
-    it "returns a success response" do
+    it "returns a successful response" do
       specie = Specie.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   describe "GET #show" do
-    it "returns a success response" do
+    it "returns a successful response" do
       specie = Specie.create! valid_attributes
       get :show, params: {id: specie.to_param}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
-    it "returns a success response" do
+    it "returns a successful response" do
       get :new, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   describe "GET #edit" do
-    it "returns a success response" do
+    it "returns a successful response" do
       specie = Specie.create! valid_attributes
       get :edit, params: {id: specie.to_param}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -87,9 +92,9 @@ RSpec.describe SpeciesController, type: :controller do
     end
 
     context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
+      it "returns a successful response (i.e. to display the 'new' template)" do
         post :create, params: {specie: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
@@ -97,14 +102,15 @@ RSpec.describe SpeciesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+		@new_name = 'Another name'
+		{ name: @new_name }
       }
 
       it "updates the requested specie" do
         specie = Specie.create! valid_attributes
         put :update, params: {id: specie.to_param, specie: new_attributes}, session: valid_session
         specie.reload
-        skip("Add assertions for updated state")
+		expect(specie.name).to eq(@new_name)
       end
 
       it "redirects to the specie" do
@@ -115,10 +121,10 @@ RSpec.describe SpeciesController, type: :controller do
     end
 
     context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
+      it "returns a successful response (i.e. to display the 'edit' template)" do
         specie = Specie.create! valid_attributes
         put :update, params: {id: specie.to_param, specie: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
