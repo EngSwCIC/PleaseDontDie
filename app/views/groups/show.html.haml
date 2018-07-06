@@ -24,13 +24,16 @@
                 .form-group
                   %label.col-form-label{:for => "inputMember"}
                   #inputMember
-                    = form.text_field :email, placeholder: "Email do usuário:", class: "form-control input"
+                    = form.text_field :email, placeholder: "Email do usuário", class: "form-control input"
                     = form.submit "Adicionar", class: "btn btn-lg btn-primary btn-block btn-sm"
                 %h5 Membros:
                 .card-group
                   - @group.profile_users.each do |user|
                     .card{:style => "max-width: 50px;"}
-                      = link_to (image_tag(user.picture)), profile_user_path(user)
+                      - if user.picture.attached?
+                        = link_to (image_tag(user.picture)), profile_user_path(user), id: user.last_name
+                      - else
+                        = link_to (image_tag('profile_user.jpg')), profile_user_path(user), id: user.last_name
       .row
         .col-md-12
           .card-deck

@@ -3,11 +3,11 @@ Dado(/que estou na (.+)$/) do |page|
 end
 
 Quando(/cliclo em "([^"]*)"$/) do |button|
-  click_link(button)
+  click_button(button)
 end
 
 Quando(/preencho "([^"]*)" com "([^"]*)"$/) do |field, value|
-  fill_in(field, :with => value)
+  fill_in(field, with: value)
 end
 
 Quando(/preencho com os seguintes dados:$/) do |fields|

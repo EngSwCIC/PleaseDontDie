@@ -5,6 +5,19 @@ module NavigationHelpers
     when /^home\s?page$/
       '/'
 
+    when /^a minha página do grupo$/
+      '/groups'
+
+    when /^a minha página de adicionar grupos$/
+      '/groups/new'
+
+    when /^a página do grupo (.+)$/
+      "/groups/#{$2}"
+
+    when /^a página de um dos meus grupos$/
+      @group = current_user.profile_user.groups.take
+      "/groups/#{@group.id}"
+
     else
       begin
         page_name =~ /^the (.*) page$/

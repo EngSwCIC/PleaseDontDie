@@ -8,8 +8,4 @@ class Group < ApplicationRecord
     uniqueness: true,
     length: { minimum: 2 }
 
-  def group_expo
-    self.image.variant(resize: '300x300')
-  end
-
 end
