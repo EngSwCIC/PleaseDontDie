@@ -1,14 +1,10 @@
 class SpeciesController < ApplicationController
   before_action :set_species, only: [:show, :edit, :update, :destroy]
 
-  # GET /species
-  # GET /species.json
   def index
     @species = Specie.all
   end
 
-  # GET /species/1
-  # GET /species/1.json
   def show
     @specie = Specie.find(params[:id])
 
@@ -18,17 +14,13 @@ class SpeciesController < ApplicationController
     end
   end
 
-  # GET /species/new
   def new
     @species = Specie.new
   end
 
-  # GET /species/1/edit
   def edit
   end
 
-  # POST /species
-  # POST /species.json
   def create
     @species = Specie.new(species_params)
 
@@ -43,8 +35,6 @@ class SpeciesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /species/1
-  # PATCH/PUT /species/1.json
   def update
     respond_to do |format|
       if @species.update(species_params)
@@ -57,8 +47,6 @@ class SpeciesController < ApplicationController
     end
   end
 
-  # DELETE /species/1
-  # DELETE /species/1.json
   def destroy
     @species.destroy
     respond_to do |format|
@@ -68,13 +56,11 @@ class SpeciesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_species
       @species = Specie.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def species_params
-      params.fetch(:species, {})
+      params.require(:specie).permit(:name, :description)
     end
 end
