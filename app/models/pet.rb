@@ -4,6 +4,12 @@ class Pet < ApplicationRecord
   has_many :needs
   has_many :duties
 
+  has_one_attached :image
+
+  validates :name,
+    presence: true,
+    length: { minimum: 2 }
+
   def sex
     sex_prettyp(self[:sex]) || self[:sex]
   end

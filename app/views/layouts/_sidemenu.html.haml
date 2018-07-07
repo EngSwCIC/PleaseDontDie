@@ -3,12 +3,15 @@
     .list-group-item.list-group-item-action
       = link_to 'Perfil',user_path(current_user.id)
     .list-group-item.list-group-item-action
-      = link_to 'Editar perfil',edit_profile_user_path(current_user.id)
-    .list-group-item.list-group-item-action
       = link_to "Email e Senha", edit_user_registration_path(current_user.id)
     .list-group-item.list-group-item-action
       = link_to 'Grupos', groups_path
     .list-group-item.list-group-item-action
-      = link_to 'Adicionar grupo', new_group_path
-    %a.list-group-item.list-group-item-action.disabled{:href => "#"} Amigos
-    %a.list-group-item.list-group-item-action.disabled{:href => "#"} Pets
+      = link_to 'Amigos', user_friends_path(current_user.id)
+    .list-group-item.list-group-item-action
+      = link_to 'Pets', user_pets_path(current_user.id)
+    .list-group-item.list-group-item-action
+      = link_to 'Tarefas', user_duties_path(current_user.id)
+    .list-group-item.list-group-item-action
+      = link_to 'Atividades', user_feed_path(current_user.id)
+

@@ -1,19 +1,28 @@
-.col-md-6.offset-md-3
-  .img-thumbnail.rounded-circle{:style => "width: 200px; height: 200px;"}
-    =image_tag 'profile_user.jpg', class: 'rounded-circle'
-  %p
-    %strong Nome:
-    = @user.first_name+" "+@user.last_name
-  %p
-    %strong Email:
-    = current_user.email
-  %p
-    %strong Telefone:
-    = @user.phone
-  %p
-    %strong Data de nascimento:
-    = @user.birthday
-  %p
-    %strong Endereço:
-    = @user.address
-    
+.container
+  .row
+    .col-md-4
+      .img-thumbnail
+        - if @user.picture.attached?
+          =image_tag @user.picture
+        - else
+          =image_tag 'profile_user.jpg'
+      - if current_user.id == params[:id].to_i
+        = link_to 'Editar perfil',edit_profile_user_path(current_user.id), class: "btn btn-lg btn-primary btn-block"
+    .col-md-8
+      %p
+        %strong Nome:
+        = @user.first_name+" "+@user.last_name
+      %p
+        %strong Email:
+        = current_user.email
+      %p
+        %strong Telefone:
+        = @user.phone
+      %p
+        %strong Data de nascimento:
+        = @user.birthday
+      %p
+        %strong Endereço:
+        = @user.address
+      %p
+      

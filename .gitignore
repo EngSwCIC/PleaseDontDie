@@ -27,3 +27,5 @@
 
 .idea
 .idea/*
+
+\.rake_tasks~

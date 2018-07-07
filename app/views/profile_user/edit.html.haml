@@ -1,30 +1,42 @@
-%h4.card-title.mt-6.text-center Editar Perfil:
-= form_for(@user, url: profile_user_path(@user)) do |f|
-  .form-group.row
-    %label.col-sm-3.col-form-label{:for => "inputNome"} Nome:
-    .col-sm-9
-      #inputNome
-        = f.text_field :first_name, placeholder: "Primeiro Nome", class: "form-control input"
-  .form-group.row
-    %label.col-sm-3.col-form-label{:for => "inputSobrenome"} Sobrenome:
-    .col-sm-9
-      #inputSobrenome
-        = f.text_field :last_name, placeholder: "Sobrenome", class: "form-control"
-  .form-group.row
-    %label.col-sm-3.col-form-label{:for => "inputNascimento"} Data de nascimento:
-    .col-sm-9
-      #inputNascimento
-        = f.text_field :birthday, type: 'date' ,class: "form-control"
-  .form-group.row
-    %label.col-sm-3.col-form-label{:for => "inputEndereco"} Endereço:
-    .col-sm-9
-      #inputEndereco
-        = f.text_field :address, placeholder: "Endereço", class: "form-control"
-  .form-group.row
-    %label.col-sm-3.col-form-label{:for => "inputTelefone"} Telefone:
-    .col-sm-9
-      #inputTelefone
-        = f.text_field :phone, placeholder: "Telefone", class: "form-control"
-  .form-group.row
-    .button
-      = f.submit "Salvar", class: "btn btn-primary"
+.row
+  .col-sm-4
+    .img.center{:style => "min-width: 200px; max-width: 200px;"}
+      - if @user.picture.attached?
+        =image_tag @user.picture
+      - else
+        =image_tag 'profile_user.jpg'
+  .col-sm-8
+    = form_for(@user, url: profile_user_path(@user)) do |f|
+      .form-group.row
+        %label.col-sm-3.col-form-label{:for => "inputPicture"} Foto:
+        .col-sm-9
+          #inputPicture
+            = f.file_field :picture, placeholder: "Foto", class: "form-control"
+      .form-group.row
+        %label.col-sm-3.col-form-label{:for => "inputNome"} Nome:
+        .col-sm-9
+          #inputNome
+            = f.text_field :first_name, placeholder: "Primeiro Nome", class: "form-control input"
+      .form-group.row
+        %label.col-sm-3.col-form-label{:for => "inputSobrenome"} Sobrenome:
+        .col-sm-9
+          #inputSobrenome
+            = f.text_field :last_name, placeholder: "Sobrenome", class: "form-control"
+      .form-group.row
+        %label.col-sm-3.col-form-label{:for => "inputNascimento"} Data de nascimento:
+        .col-sm-9
+          #inputNascimento
+            = f.text_field :birthday, type: 'date' ,class: "form-control"
+      .form-group.row
+        %label.col-sm-3.col-form-label{:for => "inputEndereco"} Endereço:
+        .col-sm-9
+          #inputEndereco
+            = f.text_field :address, placeholder: "Endereço", class: "form-control"
+      .form-group.row
+        %label.col-sm-3.col-form-label{:for => "inputTelefone"} Telefone:
+        .col-sm-9
+          #inputTelefone
+            = f.text_field :phone, placeholder: "Telefone", class: "form-control"
+      .form-group.row
+        .button
+          = f.submit "Salvar", class: "btn btn-primary"

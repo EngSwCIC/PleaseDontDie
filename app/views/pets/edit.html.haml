@@ -4,12 +4,14 @@
 		.col-md-3
 			= render 'layouts/sidemenu'
 		.col-md-9
-			%h1 Editando um Pet
-			= render 'form'
-			= link_to 'Mais', [@pet.group, @pet]
-			|
-			\#{link_to 'Voltar', group_pets_path(@pet.group)}
-			%br/
-			= link_to 'Novo Pet', new_group_pet_path(@group)
-			|
-			\#{link_to 'Voltar ao Grupo', group_path(@group)}
+			.row
+				.col-md-4
+					.img.center{:style => "min-width: 200px; max-width: 200px;"}
+						.img-thumbnail
+							-if @pet.image.attached?
+								=image_tag @pet.image
+							-else
+								=image_tag 'profile_user.jpg'
+				.col-md-8
+					= render 'form'
+	%hr/

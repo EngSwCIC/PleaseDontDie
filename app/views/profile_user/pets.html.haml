@@ -1,0 +1,13 @@
+.card-deck
+  - @pets.each do |pet|
+    .card{:style => "min-width: 250px; max-width: 250px;"}
+      .card-header.text-center
+        = pet.name
+      - if pet.image.attached?
+        = link_to (image_tag(pet.image)), [pet.group, pet]
+      .card-body.text-center
+        - if pet.birthday
+          %p.card-text=  "Aniversário: #{pet.birthday.strftime("%d/%m/%Y")}"
+        = link_to '', edit_group_pet_path(pet.group, pet), class: "btn btn-primary fa fa-edit"
+        %i.fa.fa-trash-alt
+        = link_to '', [pet.group, pet], class: "btn btn-danger fa fa-times-circle", method: :delete, data: { confirm: 'Tem certeza?' }
