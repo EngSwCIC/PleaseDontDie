@@ -14,9 +14,7 @@ class PetsController < ApplicationController
 
   def show
     @user = set_user_profile
-    if @pet.specie_id
-      @specie = Specie.find(@pet.specie_id)
-    end
+    @specie = Specie.find(@pet.specie_id)
 
     @pet = @group.pets.find(params[:id])
 
