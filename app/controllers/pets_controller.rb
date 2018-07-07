@@ -14,7 +14,9 @@ class PetsController < ApplicationController
 
   def show
     @user = set_user_profile
-    @specie = Specie.find(@pet.specie_id)
+    if @pet.specie_id
+      @specie = Specie.find(@pet.specie_id)
+    end
 
     @pet = @group.pets.find(params[:id])
 
@@ -68,7 +70,7 @@ class PetsController < ApplicationController
 
   private
   def set_user_profile
-    @user = ProfileUser.find(current_user.id)
+    @user = ProfileUser.find(current_user.profile_user.id)
   end
   # Use callbacks to share common setup or constraints between actions.
   def set_group
