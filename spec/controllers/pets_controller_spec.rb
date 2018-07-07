@@ -23,13 +23,13 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe SpeciesController, type: :controller do
+RSpec.describe PetsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Specie. As you add validations to Specie, be sure to
+  # Pet. As you add validations to Pet, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    { name: 'Valid Name' }
+    { name: 'Valid Name', group: FactoryBot.create(:group), specie: FactoryBot.create(:specie) }
   }
 
   let(:invalid_attributes) {
@@ -38,62 +38,63 @@ RSpec.describe SpeciesController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # SpeciesController. Be sure to keep this updated too.
+  # PetsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   before :each do
     @profile_user = FactoryBot.create(:profile_user)
+	@group = FactoryBot.create(:group)
     allow(controller).to receive(:current_user) { @profile_user.user }
   end
 
   describe "GET #index" do
     it "returns a successful response" do
-      specie = Specie.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      pet = Pet.create! valid_attributes
+      get :index, params: {group_id: pet.group.id}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "GET #show" do
     it "returns a successful response" do
-      specie = Specie.create! valid_attributes
-      get :show, params: {id: specie.to_param}, session: valid_session
+      pet = Pet.create! valid_attributes
+      get :show, params: {id: pet.to_param, group_id: pet.group.id}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
     it "returns a successful response" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {group_id: @group.id}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "GET #edit" do
     it "returns a successful response" do
-      specie = Specie.create! valid_attributes
-      get :edit, params: {id: specie.to_param}, session: valid_session
+      pet = Pet.create! valid_attributes
+      get :edit, params: {id: pet.to_param, group_id: pet.group.id}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Specie" do
+      it "creates a new Pet" do
         expect {
-          post :create, params: {specie: valid_attributes}, session: valid_session
-        }.to change(Specie, :count).by(1)
+          post :create, params: {group_id: valid_attributes[:group].id, pet: valid_attributes}, session: valid_session
+        }.to change(Pet, :count).by(1)
       end
 
-      it "redirects to the created specie" do
-        post :create, params: {specie: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Specie.last)
+      it "redirects to the created pet" do
+        post :create, params: {group_id: valid_attributes[:group].id, pet: valid_attributes}, session: valid_session
+        expect(response).to redirect_to([Pet.last.group, Pet.last])
       end
     end
 
     context "with invalid params" do
       it "returns a successful response (i.e. to display the 'new' template)" do
-        post :create, params: {specie: invalid_attributes}, session: valid_session
+        post :create, params: {group_id: valid_attributes[:group].id, pet: invalid_attributes}, session: valid_session
         expect(response).to be_successful
       end
     end
@@ -103,44 +104,44 @@ RSpec.describe SpeciesController, type: :controller do
     context "with valid params" do
       let(:new_attributes) {
 		@new_name = 'Another name'
-		{ name: @new_name }
+	    { name: @new_name }
       }
 
-      it "updates the requested specie" do
-        specie = Specie.create! valid_attributes
-        put :update, params: {id: specie.to_param, specie: new_attributes}, session: valid_session
-        specie.reload
-		expect(specie.name).to eq(@new_name)
+      it "updates the requested pet" do
+        pet = Pet.create! valid_attributes
+        put :update, params: {id: pet.to_param, group_id: pet.group.id, pet: new_attributes}, session: valid_session
+        pet.reload
+        expect(pet.name).to eq(@new_name)	
       end
 
-      it "redirects to the specie" do
-        specie = Specie.create! valid_attributes
-        put :update, params: {id: specie.to_param, specie: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(specie)
+      it "redirects to the pet" do
+        pet = Pet.create! valid_attributes
+        put :update, params: {id: pet.to_param, group_id: pet.group.id, pet: valid_attributes}, session: valid_session
+        expect(response).to redirect_to([pet.group, pet])
       end
     end
 
     context "with invalid params" do
       it "returns a successful response (i.e. to display the 'edit' template)" do
-        specie = Specie.create! valid_attributes
-        put :update, params: {id: specie.to_param, specie: invalid_attributes}, session: valid_session
+        pet = Pet.create! valid_attributes
+        put :update, params: {id: pet.to_param, group_id: pet.group.id, pet: invalid_attributes}, session: valid_session
         expect(response).to be_successful
       end
     end
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested specie" do
-      specie = Specie.create! valid_attributes
+    it "destroys the requested pet" do
+      pet = Pet.create! valid_attributes
       expect {
-        delete :destroy, params: {id: specie.to_param}, session: valid_session
-      }.to change(Specie, :count).by(-1)
+        delete :destroy, params: {id: pet.to_param, group_id: pet.group.id}, session: valid_session
+      }.to change(Pet, :count).by(-1)
     end
 
-    it "redirects to the species list" do
-      specie = Specie.create! valid_attributes
-      delete :destroy, params: {id: specie.to_param}, session: valid_session
-      expect(response).to redirect_to(species_url)
+    it "redirects to the pets list" do
+      pet = Pet.create! valid_attributes
+      delete :destroy, params: {id: pet.to_param, group_id: pet.group.id}, session: valid_session
+      expect(response).to redirect_to group_pets_path(pet.group.id)
     end
   end
 
