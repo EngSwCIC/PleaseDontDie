@@ -29,11 +29,11 @@ RSpec.describe NeedsController, type: :controller do
   # Need. As you add validations to Need, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { name: 'Valid Name', specie: FactoryBot.create(:specie) }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name: 1 }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -41,34 +41,40 @@ RSpec.describe NeedsController, type: :controller do
   # NeedsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before :each do
+    @profile_user = FactoryBot.create(:profile_user)
+    @species = FactoryBot.create(:specie)
+    allow(controller).to receive(:current_user) { @profile_user.user }
+  end
+
   describe "GET #index" do
-    it "returns a success response" do
+    it "returns a successful response" do
       need = Need.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      get :index, params: {species_id: need.specie.id}, session: valid_session
+      expect(response).to be_successful
     end
   end
 
   describe "GET #show" do
-    it "returns a success response" do
+    it "returns a successful response" do
       need = Need.create! valid_attributes
-      get :show, params: {id: need.to_param}, session: valid_session
-      expect(response).to be_success
+      get :show, params: {id: need.to_param, species_id: need.specie.id}, session: valid_session
+      expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
-    it "returns a success response" do
-      get :new, params: {}, session: valid_session
-      expect(response).to be_success
+    it "returns a successful response" do
+      get :new, params: {species_id: @species.id}, session: valid_session
+      expect(response).to be_successful
     end
   end
 
   describe "GET #edit" do
-    it "returns a success response" do
+    it "returns a successful response" do
       need = Need.create! valid_attributes
-      get :edit, params: {id: need.to_param}, session: valid_session
-      expect(response).to be_success
+      get :edit, params: {id: need.to_param, species_id: need.specie.id}, session: valid_session
+      expect(response).to be_successful
     end
   end
 
@@ -76,20 +82,20 @@ RSpec.describe NeedsController, type: :controller do
     context "with valid params" do
       it "creates a new Need" do
         expect {
-          post :create, params: {need: valid_attributes}, session: valid_session
+          post :create, params: {species_id: @species.id, need: valid_attributes}, session: valid_session
         }.to change(Need, :count).by(1)
       end
 
       it "redirects to the created need" do
-        post :create, params: {need: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Need.last)
+        post :create, params: {species_id: @species.id, need: valid_attributes}, session: valid_session
+        expect(response).to redirect_to([Need.last.specie, Need.last])
       end
     end
 
     context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {need: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+      it "returns a successful response (i.e. to display the 'new' template)" do
+        post :create, params: {species_id: @species.id, need: invalid_attributes}, session: valid_session
+        expect(response).to be_successful
       end
     end
   end
@@ -97,28 +103,29 @@ RSpec.describe NeedsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        @new_name = 'Another name' 
+        { name: @new_name }
       }
 
       it "updates the requested need" do
         need = Need.create! valid_attributes
-        put :update, params: {id: need.to_param, need: new_attributes}, session: valid_session
+        put :update, params: {id: need.to_param, species_id: need.specie.id, need: new_attributes}, session: valid_session
         need.reload
-        skip("Add assertions for updated state")
+        expect(need.name).to eq(@new_name)
       end
 
       it "redirects to the need" do
         need = Need.create! valid_attributes
-        put :update, params: {id: need.to_param, need: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(need)
+        put :update, params: {id: need.to_param, species_id: need.specie.id,  need: valid_attributes}, session: valid_session
+        expect(response).to redirect_to([need.specie, need])
       end
     end
 
     context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
+      it "returns a successful response (i.e. to display the 'edit' template)" do
         need = Need.create! valid_attributes
-        put :update, params: {id: need.to_param, need: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        put :update, params: {id: need.to_param, species_id: need.specie.id, need: invalid_attributes}, session: valid_session
+        expect(response).to be_successful
       end
     end
   end
@@ -127,14 +134,14 @@ RSpec.describe NeedsController, type: :controller do
     it "destroys the requested need" do
       need = Need.create! valid_attributes
       expect {
-        delete :destroy, params: {id: need.to_param}, session: valid_session
+        delete :destroy, params: {id: need.to_param, species_id: need.specie.id}, session: valid_session
       }.to change(Need, :count).by(-1)
     end
 
     it "redirects to the needs list" do
       need = Need.create! valid_attributes
-      delete :destroy, params: {id: need.to_param}, session: valid_session
-      expect(response).to redirect_to(needs_url)
+      delete :destroy, params: {id: need.to_param, species_id: need.specie.id}, session: valid_session
+      expect(response).to redirect_to species_needs_path(need.specie.id)
     end
   end
 
