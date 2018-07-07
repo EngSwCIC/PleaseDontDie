@@ -68,7 +68,7 @@ class PetsController < ApplicationController
 
   private
   def set_user_profile
-    @user = ProfileUser.find(current_user.id)
+    @user = ProfileUser.find(current_user.profile_user.id)
   end
   # Use callbacks to share common setup or constraints between actions.
   def set_group
